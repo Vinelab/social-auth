@@ -1,6 +1,6 @@
 <?php namespace Vinelab\Auth\Exception;
 
-Class ServiceNotSupportedException extends \Exception {
+Class SocialNetworkNotSupportedException extends \Exception {
 
 	function __construct($message, $code = 1, Exception $previous = null)
 	{
