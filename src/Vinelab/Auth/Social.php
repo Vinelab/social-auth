@@ -1,6 +1,5 @@
 <?php namespace Vinelab\Auth;
 
-use Vinelab\Auth\Contracts\SocialAuthenticationInterface;
 use Vinelab\Auth\Social\Network as SocialNetwork;
 
 use Illuminate\Config\Repository as Config;
@@ -8,7 +7,7 @@ use Illuminate\Cache\CacheManager as Cache;
 use Illuminate\Http\Response as Response;
 use Illuminate\Routing\Redirector as Redirector;
 
-Class Social implements SocialAuthenticationInterface {
+Class Social {
 
 	/**
 	 * @var Vinelab\Auth\Social\Network
