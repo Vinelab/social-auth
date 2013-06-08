@@ -18,10 +18,11 @@
     },
     "autoload": {
         "classmap": [
-            "src/migrations"
+            "src/migrations",
+            "src/controllers"
         ],
         "psr-0": {
-            "Vinelab\\Auth": "src/",
+            "Vinelab\\Auth": "src/"
         }
     },
     "minimum-stability": "dev"
