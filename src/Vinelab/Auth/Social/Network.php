@@ -26,14 +26,17 @@ Class Network {
 		$this->service = new $class($this->config);
 	}
 
-	public function authenticationURL()
+	/**
+	 * A way to proxy methods to the service
+	 * @param  string $name
+	 * @param  array $arguments
+	 */
+	function __call($name, $arguments)
 	{
-		return $this->service->authenticationURL();
-	}
-
-	public function settings($setting = null)
-	{
-		return $this->service->settings($setting);
+		if (!method_exists($this, $name))
+		{
+			return call_user_func_array([$this->service, $name], $arguments);
+		}
 	}
 
 }
