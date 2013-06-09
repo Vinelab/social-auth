@@ -21,14 +21,13 @@ Class SocialTest extends TestCase {
 
 	public function testInstantiation()
 	{
-		$social = new Social($this->service, $this->mConfig, $this->mCache, $this->mResposne, $this->mRedirector);
+		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector);
 		$this->assertInstanceOf('Vinelab\Auth\Social', $social);
-		$this->assertInstanceOf('Vinelab\Auth\Social\Network', $social->network);
 	}
 
 	public function testMakeState()
 	{
-		$social = new Social($this->service, $this->mConfig, $this->mCache, $this->mResposne, $this->mRedirector);
+		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector);
 		$this->assertNotNull($social->makeState());
 	}
 
@@ -39,8 +38,8 @@ Class SocialTest extends TestCase {
 		$state       = 'aFakeState';
 
 		$this->mCache->shouldReceive('put')->once();
-		$social = new Social($this->service, $this->mConfig, $this->mCache, $this->mResposne, $this->mRedirector);
-		$social->authenticate($apiKey, $redirectURI);
+		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector);
+		$social->authenticate($this->service, $apiKey, $redirectURI);
 
 		$this->assertNotNull($social->state);
 	}
@@ -54,12 +53,12 @@ Class SocialTest extends TestCase {
 		$this->mCache->shouldReceive('put')->with($state, [
 			'api_key'      => $apiKey,
 			'redirect_uri' => $redirectURI
-		])->once();
+		], 5)->once();
 
-		$social = new Social($this->service, $this->mConfig, $this->mCache, $this->mResposne, $this->mRedirector);
+		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector);
 		// IMPORTANT! This is put here for testing purposes ONLY, though should never be done this way
 		$social->state = $state;
 
-		$this->assertNotNull($social->authenticate($apiKey, $redirectURI));
+		$this->assertNotNull($social->authenticate($this->service, $apiKey, $redirectURI));
 	}
 }
