@@ -10,13 +10,25 @@ Class SocialTest extends TestCase {
 	{
 		$this->service = 'facebook';
 
+		$this->apiKey = 'someApiKey';
+		$this->redirectURI = 'comeBack';
+		$this->authenticationUrl = '123';
+		$this->permissions = 'permissions';
+
+		$this->settings = [
+			'api_key'      => $this->apiKey,
+			'redirect_uri' => $this->redirectURI,
+			'authentication_url' => $this->authenticationUrl,
+			'permissions' => $this->permissions
+		];
+
 		$this->mConfig     = M::mock('\Illuminate\Config\Repository');
-		$this->mConfig->shouldReceive('get')->andReturn(true);
+		$this->mConfig->shouldReceive('get')->andReturn($this->settings);
 
 		$this->mCache      = M::mock('\Illuminate\Cache\CacheManager');
 		$this->mResposne   = M::mock('\Illuminate\Http\Response');
 		$this->mRedirector = M::mock('\Illuminate\Routing\Redirector');
-		$this->mRedirector->shouldReceive('to')->andReturn(true);
+		$this->mRedirector->shouldReceive('to')->andReturn($this->mRedirector);
 	}
 
 	public function testInstantiation()
@@ -46,19 +58,18 @@ Class SocialTest extends TestCase {
 
 	public function testAuthentication()
 	{
-		$apiKey      = 'someApiKey';
-		$redirectURI = 'someRedirectURI';
 		$state       = 'aFakeState';
 
-		$this->mCache->shouldReceive('put')->with($state, [
-			'api_key'      => $apiKey,
-			'redirect_uri' => $redirectURI
-		], 5)->once();
+		$this->mCache->shouldReceive('put')
+			->with($state, ['api_key'=>$this->apiKey, 'redirect_uri'=>$this->redirectURI], 5)
+			->once();
 
 		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector);
 		// IMPORTANT! This is put here for testing purposes ONLY, though should never be done this way
 		$social->state = $state;
+		$authenticate = $social->authenticate($this->service);
 
-		$this->assertNotNull($social->authenticate($this->service, $apiKey, $redirectURI));
+		$this->assertNotNull($authenticate);
+		$this->assertInstanceOf('\Illuminate\Routing\Redirector', $authenticate);
 	}
 }

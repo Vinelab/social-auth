@@ -53,16 +53,20 @@ Class Social {
 
 	/**
 	 *
-	 * @param  string $apiKey
-	 * @param  string $redirectURI
+	 * @param  string $service
 	 * @return  Illuminate\Routing\Redirector
 	 */
-	public function authenticate($service, $apiKey, $redirectURI)
+	public function authenticate($service)
 	{
-		$this->network  = new SocialNetwork($service, $this->config);
+		$this->network = new SocialNetwork($service, $this->config);
 
 		$this->state = $this->state ?: $this->makeState();
+
+		$apiKey = $this->network->settings('api_key');
+		$redirectURI = $this->network->settings('redirect_uri');
+
 		$this->cache->put($this->state, ['api_key'=>$apiKey, 'redirect_uri'=>$redirectURI], 5);
+
 		// TODO: verify developer account
 		$url = $this->network->authenticationURL();
 
