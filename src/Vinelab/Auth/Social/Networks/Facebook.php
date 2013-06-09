@@ -1,8 +1,10 @@
 <?php namespace Vinelab\Auth\Social\Networks;
 
+use Vinelab\Auth\Contracts\SocialNetworkInterface;
+
 use Illuminate\Config\Repository as Config;
 
-Class Facebook {
+Class Facebook implements SocialNetworkInterface {
 
 	function __construct(Config $config)
 	{
@@ -22,4 +24,10 @@ Class Facebook {
 
 		return sprintf('%s?%s', $url, http_build_query($params));
 	}
+
+	public function settings($setting = null)
+	{
+		return !is_null($setting) ? $this->settings[$setting] : $this->settings;
+	}
+
 }

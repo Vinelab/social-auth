@@ -21,7 +21,7 @@ Class Network {
 
 		$this->name = $name;
 
-		// instantiate the service to authenticate
+		// instantiate the service
 		$class = sprintf('Vinelab\Auth\Social\Networks\%s', ucfirst($name));
 		$this->service = new $class($this->config);
 	}
@@ -29,6 +29,11 @@ Class Network {
 	public function authenticationURL()
 	{
 		return $this->service->authenticationURL();
+	}
+
+	public function settings($setting = null)
+	{
+		return $this->service->settings($setting);
 	}
 
 }
