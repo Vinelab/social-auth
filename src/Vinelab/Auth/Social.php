@@ -41,19 +41,14 @@ Class Social {
 	public $state;
 
 	function __construct(
-		$service,
-		Config $config         = null,
-		Cache $cache           = null,
-		Response $response     = null,
-		Redirector $redirector = null
+		Config $config,
+		Cache $cache,
+		Redirector $redirector
 	) {
 
-		$this->config   = $config ?: new Config;
-		$this->cache    = $cache ?: new Cache;
-		$this->response = $response ?: new Response;
-		$this->redirect = $redirector ?: new Redirector;
-
-		$this->network  = new SocialNetwork($service, $this->config);
+		$this->config   = $config;
+		$this->cache    = $cache;
+		$this->redirect = $redirector;
 	}
 
 	/**
@@ -62,10 +57,12 @@ Class Social {
 	 * @param  string $redirectURI
 	 * @return  Illuminate\Routing\Redirector
 	 */
-	public function authenticate($apiKey, $redirectURI)
+	public function authenticate($service, $apiKey, $redirectURI)
 	{
+		$this->network  = new SocialNetwork($service, $this->config);
+
 		$this->state = $this->state ?: $this->makeState();
-		$this->cache->put($this->state, ['api_key'=>$apiKey, 'redirect_uri'=>$redirectURI]);
+		$this->cache->put($this->state, ['api_key'=>$apiKey, 'redirect_uri'=>$redirectURI], 5);
 		// TODO: verify developer account
 		$url = $this->network->authenticationURL();
 
