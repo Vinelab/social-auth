@@ -4,12 +4,9 @@ use Vinelab\Auth\Contracts\SocialNetworkInterface;
 
 use Illuminate\Config\Repository as Config;
 
-Class Facebook implements SocialNetworkInterface {
+Class Facebook extends SocialNetwork {
 
-	function __construct(Config $config)
-	{
-		$this->settings = $config->get('auth::social.facebook');
-	}
+	protected $name = 'facebook';
 
 	public function authenticationURL()
 	{
@@ -23,11 +20,6 @@ Class Facebook implements SocialNetworkInterface {
 		];
 
 		return sprintf('%s?%s', $url, http_build_query($params));
-	}
-
-	public function settings($setting = null)
-	{
-		return !is_null($setting) ? $this->settings[$setting] : $this->settings;
 	}
 
 }
