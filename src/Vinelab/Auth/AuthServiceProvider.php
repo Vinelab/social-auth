@@ -30,8 +30,8 @@ class AuthServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['social_auth'] = $this->app->share(function($app){
-			return new Social;
+		$this->app['vinelab.social.auth'] = $this->app->share(function($app){
+			return new Social($app['config'], $app['cache'], $app['redirect']);
 		});
 
 		$this->app->booting(function(){
