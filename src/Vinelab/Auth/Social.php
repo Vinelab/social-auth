@@ -71,7 +71,6 @@ Class Social {
 
 		$this->cache->put($this->state, ['api_key'=>$apiKey, 'redirect_uri'=>$redirectURI], 5);
 
-		// TODO: verify developer account
 		$url = $this->network->authenticationURL();
 
 		$url = $url.'&'.http_build_query(['state' => $this->state]);
@@ -84,32 +83,19 @@ Class Social {
 		$this->network = $this->networkInstance($service);
 
 		// check for state
-		if (!isset($input['state']))
+		if (!isset($input['state']) or empty($input['state']))
 		{
 			throw new AuthenticationException('state', 'not found');
 		}
 
 		$state = $input['state'];
 
-		// compare returned api_key to stored values
-		$cachedStateData = $this->cache->get($state);
+		// verify state existance
+		if(!$this->cache-has($state))
+		{
+			throw new AuthenticationException('CSRF', 'Unexisting state');
+		}
 
-		// TODO: implement Developer so that we can check for API keys here
-		// if ($input['api_key'] == $cachedStateData['api_key'])
-		// {
-		// 	try {
-
-		// 		return $this->network->authenticationCallback($input);
-
-		// 	} catch (\Exception $e) {
-
-		// 		var_dump($e->getMessage());
-		// 	}
-
-		// } else {
-
-		// 	throw new AuthenticationException('api key', 'mismatch');
-		// }
 		return $this->network->authenticationCallback($input);
 	}
 
