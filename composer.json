@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "4.0.x"
+        "illuminate/support": "4.0.x",
+        "vinelab/http": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.8.x@dev",
