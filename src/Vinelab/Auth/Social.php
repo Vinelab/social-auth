@@ -91,12 +91,17 @@ Class Social {
 		$state = $input['state'];
 
 		// verify state existance
-		if(!$this->cache-has($state))
+		if(!$this->cache->has($state))
 		{
-			throw new AuthenticationException('CSRF', 'Unexisting state');
+			throw new AuthenticationException('CSRF', 'You might be a victim');
 		}
 
-		return $this->network->authenticationCallback($input);
+		$accessToken = $this->network->authenticationCallback($input);
+
+		// add access token to cached data and extend to another 5 min
+		$cachedStateData = $this->cache->get($state);
+		$cachedStateData['access_token'] = $accessToken;
+		$this->cache->put($state, $cachedStateData, 5);
 	}
 
 	public function makeState()
