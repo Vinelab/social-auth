@@ -24,6 +24,11 @@ Class Facebook extends SocialNetwork {
 		return sprintf('%s?%s', $url, http_build_query($params));
 	}
 
+	/**
+	 * Handles the callback returned from facebook.com. Usually triggered by the redirect URI
+	 * @param  array $input [The request input params]
+	 * @return Vinelab\Auth\AccessToken
+	 */
 	public function authenticationCallback($input)
 	{
 		if(isset($input['error']))
@@ -31,12 +36,12 @@ Class Facebook extends SocialNetwork {
 			throw new AuthenticationException($input['error'], $input['error_description']);
 		}
 
-		if(!isset($input['code']))
+		if(!isset($input['code']) or empty($input))
 		{
 			throw new AuthenticationException('Input::code', 'Not found');
 		}
 
-		$this->requestAccessToken($input['code']);
+		return $this->requestAccessToken($input['code']);
 	}
 
 	/**
@@ -58,8 +63,7 @@ Class Facebook extends SocialNetwork {
 			]
 		];
 
-		$accessToken = new AccessToken($this->parseAccessTokenResponse($this->httpClient->get($request)));
-		var_dump($accessToken);
+		return new AccessToken($this->parseAccessTokenResponse($this->httpClient->get($request)));
 	}
 
 	/**
