@@ -3,6 +3,7 @@
 use Vinelab\Auth\Contracts\SocialNetworkInterface;
 use Vinelab\Auth\Exception\AuthenticationException;
 use Vinelab\Auth\Social\AccessToken;
+use Vinelab\Auth\Exception\FacebookException;
 
 use Illuminate\Config\Repository as Config;
 
@@ -63,7 +64,8 @@ Class Facebook extends SocialNetwork {
 			]
 		];
 
-		return new AccessToken($this->parseAccessTokenResponse($this->httpClient->get($request)));
+		$this->accessToken = new AccessToken($this->parseAccessTokenResponse($this->httpClient->get($request)));
+		return $this->accessToken;
 	}
 
 	/**
