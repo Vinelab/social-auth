@@ -1,6 +1,7 @@
 <?php namespace Vinelab\Auth\Social\Networks;
 
 use Vinelab\Auth\Contracts\SocialNetworkInterface;
+use Vinelab\Http\Client as HttpClient;
 
 use Illuminate\Config\Repository as Config;
 
@@ -12,9 +13,10 @@ Abstract Class SocialNetwork implements SocialNetworkInterface{
 	 */
 	protected $name;
 
-	function __construct(Config $config)
+	function __construct(Config $config, HttpClient $httpClient)
 	{
 		$this->settings = $config->get("auth::social.{$this->name}");
+		$this->httpClient = $httpClient;
 	}
 
 	public function settings($setting = null)

@@ -2,6 +2,7 @@
 
 use App;
 use Response;
+use Input;
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Cache\CacheManager as Cache;
@@ -21,7 +22,11 @@ Class AuthenticationController extends BaseController {
 
 	public function callback($service)
 	{
-		return $this->auth->authenticationCallback($service, Input::get());
+		try {
+			return $this->auth->authenticationCallback($service, Input::get());
+		} catch (\Exception $e) {
+			var_dump($e->getMessage());
+		}
 	}
 }
 

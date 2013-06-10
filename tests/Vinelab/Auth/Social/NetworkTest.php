@@ -22,11 +22,13 @@ Class NetworkTest extends TestCase {
 		$this->mConfig->shouldReceive('get')
 			->with('auth::social.facebook')
 			->andReturn($this->settings);
+
+		$this->mHttpClient = M::mock('Vinelab\Http\Client[get]');
 	}
 
 	public function testInstantiationWithService()
 	{
-		$network = new SocialNetwork('facebook', $this->mConfig);
+		$network = new SocialNetwork('facebook', $this->mConfig, $this->mHttpClient);
 		$this->assertInstanceOf('Vinelab\Auth\Social\Network', $network);
 		$this->assertInstanceOf('Vinelab\Auth\Social\Networks\Facebook', $network->service, 'Should have instantiated a Facebook instance as a service');
 	}
@@ -36,23 +38,23 @@ Class NetworkTest extends TestCase {
 	 */
 	public function testUnsupportedService()
 	{
-		$network = new SocialNetwork('nothing', $this->mConfig);
+		$network = new SocialNetwork('nothing', $this->mConfig, $this->mHttpClient);
 	}
 
 	public function testAuthenticationURL()
 	{
-		$this->assertNotNull((new SocialNetwork('facebook', $this->mConfig))->authenticationURL());
+		$this->assertNotNull((new SocialNetwork('facebook', $this->mConfig, $this->mHttpClient))->authenticationURL(), $this->mHttpClient);
 	}
 
 	public function testSettings()
 	{
-		$network = new SocialNetwork('facebook', $this->mConfig);
+		$network = new SocialNetwork('facebook', $this->mConfig, $this->mHttpClient);
 		$this->assertEquals($this->settings, $network->settings());
 	}
 
 	public function testFetchingSingleSetting()
 	{
-		$network = new SocialNetwork('facebook', $this->mConfig);
+		$network = new SocialNetwork('facebook', $this->mConfig, $this->mHttpClient);
 		$this->assertEquals($this->settings['api_key'], $network->settings('api_key'));
 		$this->assertEquals($this->settings['authentication_url'], $network->settings('authentication_url'));
 	}

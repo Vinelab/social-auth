@@ -4,5 +4,6 @@ Interface SocialNetworkInterface {
 
 	public function authenticationURL();
 	public function settings($setting = null);
+	public function authenticationCallback($input);
 
 }

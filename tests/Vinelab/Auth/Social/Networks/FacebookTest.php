@@ -25,16 +25,18 @@ Class FacebookTest extends TestCase {
 		$this->mConfig->shouldReceive('get')
 			->once('auth::social.facebook')
 			->andReturn($this->settings);
+
+		$this->mHttpClient = M::mock('Vinelab\Http\Client[get]');
 	}
 
 	public function testInstantiation()
 	{
-		$this->assertInstanceOf('Vinelab\Auth\Social\Networks\Facebook', new Facebook($this->mConfig));
+		$this->assertInstanceOf('Vinelab\Auth\Social\Networks\Facebook', new Facebook($this->mConfig, $this->mHttpClient), $this->mHttpClient);
 	}
 
 	public function testAuthenticationURL()
 	{
-		$f = new Facebook($this->mConfig);
+		$f = new Facebook($this->mConfig, $this->mHttpClient);
 		$url = $f->authenticationURL();
 
 		$this->assertNotNull($url);
@@ -47,6 +49,34 @@ Class FacebookTest extends TestCase {
 
 		$expectedURL = sprintf('%s?%s', $this->settings['authentication_url'], http_build_query($params));
 		$this->assertEquals($expectedURL, $url, 'URL must be of this format');
+	}
+
+	/**
+	 * @expectedException Vinelab\Auth\Exception\AuthenticationException
+	 */
+	public function testAuthenticationCallbackExceptionWithNull()
+	{
+		$f = new Facebook($this->mConfig, $this->mHttpClient);
+		$f->authenticationCallback(null);
+	}
+
+	/**
+	 * @expectedException Vinelab\Auth\Exception\AuthenticationException
+	 * @expectedExceptionMessage Authentication failed: access_denied - The user declined your app
+	 */
+	public function testAuthenticationCallbackWithError()
+	{
+		$f = new Facebook($this->mConfig, $this->mHttpClient);
+		$f->authenticationCallback(['error'=>'access_denied', 'error_description'=>'The user declined your app']);
+	}
+
+	/**
+	 * @expectedException Vinelab\Auth\Exception\AuthenticationException
+	 */
+	public function testAuthenticationCallbackWithoutCode()
+	{
+		$f = new Facebook($this->mConfig, $this->mHttpClient);
+		$f->authenticationCallback(['state'=>'123', 'api_key'=>'something else']);
 	}
 
 }

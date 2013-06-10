@@ -8,11 +8,11 @@ return [
 
 		// App Configuration
 
-		'api_key'      =>'',
+		'api_key'      => '285387068232524',
 
-		'secret'       => '',
+		'secret'       => '6bf8ac651d75726605b8bcbea5944591',
 
-		'redirect_uri' => '',
+		'redirect_uri' => 'http://localhost:8000/auth/social/facebook/callback',
 
 		'permissions'  => 'email,user_about_me,user_birthday,user_hometown,user_interests,user_location,user_website',
 
