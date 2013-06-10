@@ -5,7 +5,7 @@ use Vinelab\Http\Client as HttpClient;
 
 use Illuminate\Config\Repository as Config;
 
-Abstract Class SocialNetwork implements SocialNetworkInterface{
+Abstract Class SocialNetwork implements SocialNetworkInterface {
 
 	/**
 	 * The social network name - used when loading the configuration
