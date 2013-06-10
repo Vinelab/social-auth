@@ -79,4 +79,60 @@ Class FacebookTest extends TestCase {
 		$f->authenticationCallback(['state'=>'123', 'api_key'=>'something else']);
 	}
 
+	/**
+	 * @expectedException Vinelab\Auth\Exception\AccessTokenException
+	 */
+	public function testAuthenticationCallbackWithErronousResponse()
+	{
+		$mResponse = M::mock('Vinelab\Http\Response');
+		$mResponse->shouldReceive('json')->once()->andReturn(false);
+		$mResponse->shouldReceive('content')->once()->andReturn('access_token');
+
+		$this->mHttpClient->shouldReceive('get')->andReturn($mResponse);
+		$f = new Facebook($this->mConfig, $this->mHttpClient);
+
+		$f->authenticationCallback(['code'=>'abadish']);
+	}
+
+	public function testRequestAccessToken()
+	{
+		$returnedAccessToken = '123';
+		$expires = '1234';
+
+		$mResponse = M::mock('Vinelab\Http\Response');
+		$mResponse->shouldReceive('json')->once()->andReturn(null);
+		$mResponse->shouldReceive('content')->once()->andReturn("access_token={$returnedAccessToken}&expires={$expires}");
+
+		$this->mHttpClient->shouldReceive('get')->andReturn($mResponse);
+
+		$f = new Facebook($this->mConfig, $this->mHttpClient);
+
+		$requestAccessToken = static::getProtectedMethod('requestAccessToken', $f);
+		$accessToken = $requestAccessToken->invokeArgs($f, ['123']);
+
+		$this->assertInstanceOf('Vinelab\Auth\Social\AccessToken', $accessToken);
+		$this->assertEquals($returnedAccessToken, $accessToken->token);
+		$this->assertEquals($expires, $accessToken->expires);
+	}
+
+	public function testParseAccessToekenResponse()
+	{
+		$f = new Facebook($this->mConfig, $this->mHttpClient);
+
+		$mResponse = M::mock('Vinelab\Http\Response');
+		$mResponse->shouldReceive('json')->once()->andReturn(false);
+		$mResponse->shouldReceive('content')->once()->andReturn('access_token=123&expires=1234');
+
+		$parseAccessTokenResponse = static::getProtectedMethod('parseAccessTokenResponse', $f);
+		$parseAccessTokenResponse->invokeArgs($f, [$mResponse]);
+	}
+
+	protected static function getProtectedMethod($name, $class)
+	{
+		$class = new \ReflectionClass(get_class($class));
+		$method = $class->getMethod($name);
+		$method->setAccessible(true);
+		return $method;
+	}
+
 }
