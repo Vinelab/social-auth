@@ -28,12 +28,15 @@ Class SocialTest extends TestCase {
 		$this->mConfig->shouldReceive('get')->andReturn($this->settings);
 
 		$this->mCache      = M::mock('\Illuminate\Cache\CacheManager');
-		$this->mResposne   = M::mock('\Illuminate\Http\Response');
+		$this->mCache->shouldReceive('put')->andReturn(true);
+
 		$this->mRedirector = M::mock('\Illuminate\Routing\Redirector');
 		$this->mRedirector->shouldReceive('to')->andReturn($this->mRedirector);
 
+		$this->mResponse   = M::mock('\Vinelab\Http\Response');
+
 		$this->mHttpClient = M::mock('\Vinelab\Http\Client');
-		$this->mHttpClient->shouldReceive('get')->andReturn(true);
+		$this->mHttpClient->shouldReceive('get')->andReturn($this->mResponse);
 	}
 
 	public function testInstantiation()
@@ -94,8 +97,24 @@ Class SocialTest extends TestCase {
 		$this->mCache->shouldReceive('get')
 			->with($state)
 			->andReturn(['api_key'=>$this->apiKey, 'redirect_uri'=>$this->redirectURI]);
+		$this->mCache->shouldReceive('has')->andReturn(true);
+
+		$this->mResponse->shouldReceive('json')->andReturn(null);
+		$this->mResponse->shouldReceive('content')->andReturn('access_token=123&expires=1234');
 
 		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient);
 		$s->authenticationCallback($this->service, ['state'=>$state, 'code'=>'123', 'api_key'=>$this->apiKey]);
 	}
+
+	/**
+	 * @expectedException Vinelab\Auth\Exception\AuthenticationException
+	 */
+	public function testAuthenticationCallbackWithInexistingState()
+	{
+		$state = 'aFakeState';
+		$this->mCache->shouldReceive('has')->andReturn(false);
+		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient);
+		$s->authenticationCallback($this->service, ['state'=>$state, 'code'=>'123', 'api_key'=>$this->apiKey]);
+	}
+
 }
