@@ -99,14 +99,18 @@ Class Social {
 		$cachedStateData['access_token'] = $accessToken;
 		$this->cache->put($state, $cachedStateData, 5);
 
-		$this->saveUserProfile();
+		$this->saveUser($this->network->profile());
 	}
 
-	protected function saveUserProfile()
+	protected function saveUser($profile)
 	{
-		$profile = $this->network->profile();
-		$user = new UserEntity((array)$profile);
-		$user->save();
+		$userFound = UserEntity::where('email', '=', $profile->email)->take(1)->get();
+
+		if (!$userFound)
+		{
+			$user = new UserEntity((array)$profile);
+			$user->save();
+		}
 	}
 
 	public function makeState()
