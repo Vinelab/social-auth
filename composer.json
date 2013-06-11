@@ -20,10 +20,12 @@
     "autoload": {
         "classmap": [
             "src/migrations",
-            "src/controllers"
+            "src/controllers",
+            "src/models"
         ],
         "psr-0": {
-            "Vinelab\\Auth": "src/"
+            "Vinelab\\Auth": "src/",
+            "Vinelab\\Auth\\Models": "models/"
         }
     },
     "minimum-stability": "dev"
