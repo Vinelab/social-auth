@@ -3,7 +3,7 @@
 use Vinelab\Auth\Contracts\SocialNetworkInterface;
 use Vinelab\Auth\Exception\AuthenticationException;
 use Vinelab\Auth\Social\AccessToken;
-use Vinelab\Auth\Exception\FacebookException;
+use Vinelab\Auth\Exception\SocialNetworkException;
 
 use Illuminate\Config\Repository as Config;
 
@@ -118,6 +118,38 @@ Class Facebook extends SocialNetwork {
 
 			} else {
 				throw new AuthenticationException('access token response', 'Access Token not found');
+			}
+		}
+	}
+
+	public function profile()
+	{
+		if(!isset($this->accessToken))
+		{
+			throw new SocialNetworkException('Facebook Access Token', 'Missing while fetching profile');
+		}
+
+		$profileRequest = [
+			'url' => sprintf('%s%s', $this->settings['api_url'], $this->settings['profile_uri']),
+			'params' => ['access_token'=>$this->accessToken->token]
+		];
+
+		$response = $this->httpClient->get($profileRequest);
+		return $this->parseProfileResponse($response);
+	}
+
+	protected function parseProfileResponse(\Vinelab\Http\Response $response)
+	{
+		$profile = $response->json();
+
+		if(!is_null($profile))
+		{
+			if(isset($profile->error))
+			{
+				$error = $profile->error;
+				throw new SocialNetworkException($error->type, $error->message, $error->code);
+			} else {
+				return $profile;
 			}
 		}
 	}
