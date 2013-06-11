@@ -23,7 +23,9 @@ Class AuthenticationController extends BaseController {
 	public function callback($service)
 	{
 		try {
-			return $this->auth->authenticationCallback($service, Input::get());
+
+			$accessToken = $this->auth->authenticationCallback($service, Input::get());
+
 		} catch (\Exception $e) {
 			var_dump($e->getMessage());
 		}

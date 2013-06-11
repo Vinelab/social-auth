@@ -3,6 +3,7 @@
 use Vinelab\Auth\Social\Network as SocialNetwork;
 use Vinelab\Auth\Exception\AuthenticationException;
 use Vinelab\Http\Client as HttpClient;
+use Vinelab\Auth\Models\Entities\User as UserEntity;
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Cache\CacheManager as Cache;
@@ -42,13 +43,8 @@ Class Social {
 	 */
 	public $state;
 
-	function __construct(
-		Config $config,
-		Cache $cache,
-		Redirector $redirector,
-		HttpClient $httpClient
-	) {
-
+	function __construct(Config $config, Cache $cache, Redirector $redirector, HttpClient $httpClient)
+	{
 		$this->config   = $config;
 		$this->cache    = $cache;
 		$this->redirect = $redirector;
@@ -102,6 +98,15 @@ Class Social {
 		$cachedStateData = $this->cache->get($state);
 		$cachedStateData['access_token'] = $accessToken;
 		$this->cache->put($state, $cachedStateData, 5);
+
+		$this->saveUserProfile();
+	}
+
+	protected function saveUserProfile()
+	{
+		$profile = $this->network->profile();
+		$user = new UserEntity((array)$profile);
+		$user->save();
 	}
 
 	public function makeState()
