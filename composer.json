@@ -24,8 +24,7 @@
             "src/models"
         ],
         "psr-0": {
-            "Vinelab\\Auth": "src/",
-            "Vinelab\\Auth\\Models": "models/"
+            "Vinelab\\Auth": "src/"
         }
     },
     "minimum-stability": "dev"
