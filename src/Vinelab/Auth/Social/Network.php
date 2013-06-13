@@ -8,7 +8,7 @@ use Illuminate\Config\Repository as Config;
 Class Network {
 
 	protected $supported = ['facebook'];
-	protected $name;
+	public $name;
 	public $service;
 
 	function __construct($name, Config $config, HttpCLient $httpClient)
