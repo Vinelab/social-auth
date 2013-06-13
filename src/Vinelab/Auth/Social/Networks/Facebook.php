@@ -9,7 +9,17 @@ use Illuminate\Config\Repository as Config;
 
 Class Facebook extends SocialNetwork {
 
+	/**
+	 * Service Name
+	 * @var string
+	 */
 	protected $name = 'facebook';
+
+	/**
+	 * The acquired Access Token
+	 * @var Vinelab\Auth\AccessToken
+	 */
+	public $accessToken;
 
 	public function authenticationURL()
 	{
@@ -149,6 +159,7 @@ Class Facebook extends SocialNetwork {
 				$error = $profile->error;
 				throw new SocialNetworkException($error->type, $error->message, $error->code);
 			} else {
+				$profile->access_token = $this->accessToken->token;
 				return $profile;
 			}
 		}
