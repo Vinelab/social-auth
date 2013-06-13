@@ -4,6 +4,7 @@ use Vinelab\Auth\Social\Network as SocialNetwork;
 use Vinelab\Auth\Exception\AuthenticationException;
 use Vinelab\Http\Client as HttpClient;
 use Vinelab\Auth\Models\Entities\User as UserEntity;
+use Vinelab\Auth\Models\Entities\SocialAccount;
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Cache\CacheManager as Cache;
@@ -43,6 +44,8 @@ Class Social {
 	 */
 	public $state;
 
+	protected $stateCacheKeyPrefix = 'auth_social_state_';
+
 	function __construct(Config $config, Cache $cache, Redirector $redirector, HttpClient $httpClient)
 	{
 		$this->config   = $config;
@@ -65,7 +68,7 @@ Class Social {
 		$apiKey = $this->network->settings('api_key');
 		$redirectURI = $this->network->settings('redirect_uri');
 
-		$this->cache->put($this->state, ['api_key'=>$apiKey, 'redirect_uri'=>$redirectURI], 5);
+		$this->cache->put($this->stateCacheKey($this->state), ['api_key'=>$apiKey, 'redirect_uri'=>$redirectURI], 5);
 
 		$url = $this->network->authenticationURL();
 
@@ -87,29 +90,38 @@ Class Social {
 		$state = $input['state'];
 
 		// verify state existance
-		if(!$this->cache->has($state))
+		if(!$this->cache->has($this->stateCacheKey($state)))
 		{
-			throw new AuthenticationException('CSRF', 'You might be a victim');
+			throw new AuthenticationException('Timeout', 'Authentication has taken too long, please try again.');
 		}
 
 		$accessToken = $this->network->authenticationCallback($input);
 
 		// add access token to cached data and extend to another 5 min
-		$cachedStateData = $this->cache->get($state);
+		$cachedStateData = $this->cache->get($this->stateCacheKey($state));
 		$cachedStateData['access_token'] = $accessToken;
-		$this->cache->put($state, $cachedStateData, 5);
+		$this->cache->put($this->stateCacheKey($state), $cachedStateData, 5);
 
 		$this->saveUser($this->network->profile());
+		return ['state'=>$state];
 	}
 
 	protected function saveUser($profile)
 	{
 		$userFound = UserEntity::where('email', '=', $profile->email)->take(1)->get();
 
-		if (!$userFound)
+		if (count($userFound) === 0)
 		{
 			$user = new UserEntity((array)$profile);
 			$user->save();
+
+			$socialAccount = [
+				'network'      => $this->network->name,
+				'account_id'   => $profile->id,
+				'access_token' => $profile->access_token
+			];
+
+			$user->socialAccounts()->create($socialAccount);
 		}
 	}
 
@@ -121,5 +133,10 @@ Class Social {
 	protected function networkInstance($service)
 	{
 		return new SocialNetwork($service, $this->config, $this->httpClient);
+	}
+
+	protected function stateCacheKey($state)
+	{
+		return $this->stateCacheKeyPrefix.$state;
 	}
 }
