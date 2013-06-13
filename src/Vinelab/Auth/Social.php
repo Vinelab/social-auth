@@ -46,12 +46,15 @@ Class Social {
 
 	protected $stateCacheKeyPrefix = 'auth_social_state_';
 
-	function __construct(Config $config, Cache $cache, Redirector $redirector, HttpClient $httpClient)
+	function __construct(Config $config,
+						 Cache $cache,
+						 Redirector $redirector,
+						 HttpClient $httpClient)
 	{
-		$this->config   = $config;
-		$this->cache    = $cache;
-		$this->redirect = $redirector;
-		$this->httpClient = $httpClient;
+		$this->config              = $config;
+		$this->cache               = $cache;
+		$this->redirect            = $redirector;
+		$this->httpClient          = $httpClient;
 	}
 
 	/**
