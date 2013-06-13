@@ -12,6 +12,11 @@ Class User extends Eloquent {
 	protected $fillable   = ['name', 'email'];
 	protected $guarded	  = ['id', 'guid', 'password'];
 
+	public function socialAccounts()
+	{
+		return $this->hasMany('Vinelab\Auth\Models\Entities\SocialAccount', 'user_id');
+	}
+
 }
 
 User::observe(new UserObserver);
