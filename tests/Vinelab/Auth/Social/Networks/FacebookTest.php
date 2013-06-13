@@ -9,6 +9,8 @@ Class FacebookTest extends TestCase {
 
 	public function setUp()
 	{
+		$this->samplesDir = './tests/samples';
+
 		$this->settings = [
 
 			'api_key'            => '1235oME4P17EY',
@@ -26,6 +28,7 @@ Class FacebookTest extends TestCase {
 			->once('auth::social.facebook')
 			->andReturn($this->settings);
 
+		$this->mResponse = M::mock('Vinelab\Http\Response');
 		$this->mHttpClient = M::mock('Vinelab\Http\Client[get]');
 	}
 
@@ -119,12 +122,68 @@ Class FacebookTest extends TestCase {
 	{
 		$f = new Facebook($this->mConfig, $this->mHttpClient);
 
-		$mResponse = M::mock('Vinelab\Http\Response');
-		$mResponse->shouldReceive('json')->once()->andReturn(false);
-		$mResponse->shouldReceive('content')->once()->andReturn('access_token=123&expires=1234');
+		$this->mResponse->shouldReceive('json')->once()->andReturn(false);
+		$this->mResponse->shouldReceive('content')->once()->andReturn('access_token=123&expires=1234');
 
 		$parseAccessTokenResponse = static::getProtectedMethod('parseAccessTokenResponse', $f);
-		$parseAccessTokenResponse->invokeArgs($f, [$mResponse]);
+		$parseAccessTokenResponse->invokeArgs($f, [$this->mResponse]);
+	}
+
+	public function testProfileParser()
+	{
+		$file = file($this->samplesDir.'/profile.json');
+		$profileSample = json_decode(array_pop($file));
+
+		$this->mResponse->shouldReceive('json')->andReturn($profileSample);
+		$this->mHttpClient->shouldReceive('get')->with([])->once()
+			->andReturn($this->mResponse);
+
+		$f = new Facebook($this->mConfig, $this->mHttpClient);
+
+		$accessToken = M::mock('Vinelab\Auth\AccessToken');
+		$accessToken->token = '123';
+
+		$f->accessToken = $accessToken;
+
+		$parseProfileResponse = static::getProtectedMethod('parseProfileResponse', $f);
+		$profile = $parseProfileResponse->invokeArgs($f, [$this->mResponse]);
+		$this->assertNotNull($profile);
+	}
+
+	/**
+	 * @expectedException Vinelab\Auth\Exception\SocialNetworkException
+	 */
+	public function testProfileParserWithError()
+	{
+		$profileSample = json_decode(json_encode([
+			'error' => [
+				'message'=>'some error here',
+				'type'=>'err type',
+				'code'=>'123'
+			]
+		]));
+
+		$this->mResponse->shouldReceive('json')->andReturn($profileSample);
+		$this->mHttpClient->shouldReceive('get')->with([])->once()
+			->andReturn($this->mResponse);
+
+		$f = new Facebook($this->mConfig, $this->mHttpClient);
+
+		$accessToken = M::mock('Vinelab\Auth\AccessToken');
+		$accessToken->token = '123';
+
+		$f->accessToken = $accessToken;
+
+		$parseProfileResponse = static::getProtectedMethod('parseProfileResponse', $f);
+		$parseProfileResponse->invokeArgs($f, [$this->mResponse]);
+	}
+
+	public function testProfile()
+	{
+		$file = file($this->samplesDir.'/profile.json');
+		$profileSample = json_decode(array_pop($file));
+
+		$this->mHttpClient->shouldReceive('get')->andReturn();
 	}
 
 	protected static function getProtectedMethod($name, $class)
