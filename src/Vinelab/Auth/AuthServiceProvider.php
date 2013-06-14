@@ -2,6 +2,9 @@
 
 use Illuminate\Support\ServiceProvider;
 
+use Najem\Models\Entities\User as UserEntity;
+use Najem\Models\Entities\SocialAccount as SocialAccountEntity;
+
 class AuthServiceProvider extends ServiceProvider {
 
 	/**
@@ -31,7 +34,10 @@ class AuthServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->app['vinelab.social.auth'] = $this->app->share(function($app){
-			return new Social($app['config'], $app['cache'], $app['redirect'], $app['vinelab.httpclient']);
+			return new Social($app['config'],
+							  $app['cache'],
+							  $app['redirect'],
+							  $app['vinelab.httpclient']);
 		});
 
 		$this->app->booting(function(){
