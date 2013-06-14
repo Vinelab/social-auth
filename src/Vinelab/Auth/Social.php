@@ -3,9 +3,10 @@
 use Vinelab\Auth\Social\Network as SocialNetwork;
 use Vinelab\Auth\Exception\AuthenticationException;
 use Vinelab\Http\Client as HttpClient;
-use Vinelab\Auth\Models\Entities\User as UserEntity;
-use Vinelab\Auth\Models\Entities\SocialAccount;
 
+use Najem\Models\Entities\User as UserEntity;
+
+use Eloquent;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Cache\CacheManager as Cache;
 use Illuminate\Http\Response as Response;
@@ -39,6 +40,11 @@ Class Social {
 	protected $redirect;
 
 	/**
+	 * @var Eloquent
+	 */
+	protected $userEntity;
+
+	/**
 	 * Keeps track of the request
 	 * @var string
 	 */
@@ -49,12 +55,14 @@ Class Social {
 	function __construct(Config $config,
 						 Cache $cache,
 						 Redirector $redirector,
-						 HttpClient $httpClient)
+						 HttpClient $httpClient,
+						 Eloquent $userEntity = null)
 	{
 		$this->config              = $config;
 		$this->cache               = $cache;
 		$this->redirect            = $redirector;
 		$this->httpClient          = $httpClient;
+		$this->userEntity 		   = $userEntity ?: new UserEntity;
 	}
 
 	/**
@@ -111,20 +119,23 @@ Class Social {
 
 	protected function saveUser($profile)
 	{
-		$userFound = UserEntity::where('email', '=', $profile->email)->take(1)->get();
-
-		if (count($userFound) === 0)
+		if ($profile and isset($profile->email))
 		{
-			$user = new UserEntity((array)$profile);
-			$user->save();
+			$userFound = $this->userEntity->where('email', '=', $profile->email)->take(1)->get();
 
-			$socialAccount = [
-				'network'      => $this->network->name,
-				'account_id'   => $profile->id,
-				'access_token' => $profile->access_token
-			];
+			if (count($userFound) === 0)
+			{
+				$user = $this->userEntity->fill((array) $profile);
+				$user->save();
 
-			$user->socialAccounts()->create($socialAccount);
+				$socialAccount = [
+					'network'      => $this->network->name,
+					'account_id'   => $profile->id,
+					'access_token' => $profile->access_token
+				];
+
+				$user->socialAccounts()->create($socialAccount);
+			}
 		}
 	}
 
