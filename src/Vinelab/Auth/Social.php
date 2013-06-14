@@ -2,6 +2,7 @@
 
 use Vinelab\Auth\Social\Network as SocialNetwork;
 use Vinelab\Auth\Exception\AuthenticationException;
+use Vinelab\Auth\Exception\SocialAccountException;
 use Vinelab\Http\Client as HttpClient;
 
 use Najem\Models\Entities\User as UserEntity;
@@ -136,6 +137,8 @@ Class Social {
 
 				$user->socialAccounts()->create($socialAccount);
 			}
+		} else {
+			throw new SocialAccountException('Profile', 'Invalid type or structure');
 		}
 	}
 

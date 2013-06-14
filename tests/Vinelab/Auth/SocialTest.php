@@ -99,6 +99,9 @@ Class SocialTest extends TestCase {
 		$s->authenticationCallback($this->service, ['api_key'=>'something']);
 	}
 
+	/**
+	 * @expectedException Vinelab\Auth\Exception\SocialAccountException
+	 */
 	public function testAuthenticationCallback()
 	{
 		$state = 'aFakeState';
@@ -115,6 +118,53 @@ Class SocialTest extends TestCase {
 
 		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
 		$this->assertEquals(['state'=>$state], $s->authenticationCallback($this->service, ['state'=>$state, 'code'=>'123', 'api_key'=>$this->apiKey]));
+	}
+
+	public function testSaveUser()
+	{
+		$this->mEloquent->shouldReceive('save')->andReturn(true);
+		$this->mEloquent->shouldReceive('get')->andReturn([]);
+		$this->mEloquent->shouldReceive('socialAccounts')->once()->andReturn($this->mEloquent);
+		$this->mEloquent->shouldReceive('create')->once();
+
+		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
+
+		$saveUser = static::getProtectedMethod('saveUser', $s);
+
+		$profile = (object) [
+			'id' => 'serviceIdHere',
+			'email' => 'some@mail.com',
+			'access_token'=> M::mock('Vinelab\Auth\AccessToken')
+		];
+
+		$network = M::mock('Vinelab\Auth\Social\Network');
+		$network->name = $this->service;
+		$s->network = $network;
+		$saveUser->invokeArgs($s, [$profile]);
+	}
+
+	/**
+	 * @expectedException Vinelab\Auth\Exception\SocialAccountException
+	 */
+	public function testSaveUserWithIdioticProfile()
+	{
+		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
+
+		$saveUser = static::getProtectedMethod('saveUser', $s);
+
+		$profile = (object) [];
+		$saveUser->invokeArgs($s, [$profile]);
+	}
+
+	/**
+	 * @expectedException Vinelab\Auth\Exception\SocialAccountException
+	 */
+	public function testSaveUserWithNoProfile()
+	{
+		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
+
+		$saveUser = static::getProtectedMethod('saveUser', $s);
+		$saveUser->invokeArgs($s, [null]);
 	}
 
 	/**
