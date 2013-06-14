@@ -15,6 +15,8 @@ Class SocialTest extends TestCase {
 		$this->authenticationUrl = '123';
 		$this->permissions = 'permissions';
 
+		$this->stateCachePrefix = 'auth_social_state_';
+
 		$this->settings = [
 			'api_key'            => $this->apiKey,
 			'redirect_uri'       => $this->redirectURI,
@@ -39,17 +41,22 @@ Class SocialTest extends TestCase {
 
 		$this->mHttpClient = M::mock('\Vinelab\Http\Client');
 		$this->mHttpClient->shouldReceive('get')->andReturn($this->mResponse);
+
+		$this->mEloquent = M::mock('Eloquent');
+		$this->mEloquent->shouldReceive('take')->andReturn($this->mEloquent);
+		$this->mEloquent->shouldReceive('where')->andReturn($this->mEloquent);
+		$this->mEloquent->shouldReceive('fill')->andReturn($this->mEloquent);
 	}
 
 	public function testInstantiation()
 	{
-		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient);
+		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
 		$this->assertInstanceOf('Vinelab\Auth\Social', $social);
 	}
 
 	public function testMakeState()
 	{
-		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient);
+		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
 		$this->assertNotNull($social->makeState());
 	}
 
@@ -60,7 +67,7 @@ Class SocialTest extends TestCase {
 		$state       = 'aFakeState';
 
 		$this->mCache->shouldReceive('put')->once();
-		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient);
+		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
 		$social->authenticate($this->service, $apiKey, $redirectURI);
 
 		$this->assertNotNull($social->state);
@@ -74,7 +81,7 @@ Class SocialTest extends TestCase {
 			->with($state, ['api_key'=>$this->apiKey, 'redirect_uri'=>$this->redirectURI], 5)
 			->once();
 
-		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient);
+		$social = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
 		// IMPORTANT! This is put here for testing purposes ONLY, though should never be done this way
 		$social->state = $state;
 		$authenticate = $social->authenticate($this->service);
@@ -88,29 +95,26 @@ Class SocialTest extends TestCase {
 	 */
 	public function testAuthenticationCallbackWithoutState()
 	{
-		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient);
+		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
 		$s->authenticationCallback($this->service, ['api_key'=>'something']);
 	}
 
 	public function testAuthenticationCallback()
 	{
-		$this->markTestSkipped(
-			'Eloquent Class not found when saving using the User Entity..
-			kept till package unit testing is improved in laravel'
-		);
-
 		$state = 'aFakeState';
 
 		$this->mCache->shouldReceive('get')
-			->with($state)
+			->with($this->stateCachePrefix.$state)
 			->andReturn(['api_key'=>$this->apiKey, 'redirect_uri'=>$this->redirectURI]);
 		$this->mCache->shouldReceive('has')->andReturn(true);
 
-		$this->mResponse->shouldReceive('json')->andReturn(null);
+		$this->mResponse->shouldReceive('json')->andReturn();
 		$this->mResponse->shouldReceive('content')->andReturn('access_token=123&expires=1234');
 
-		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient);
-		$s->authenticationCallback($this->service, ['state'=>$state, 'code'=>'123', 'api_key'=>$this->apiKey]);
+		$this->mEloquent->shouldReceive('get')->andReturn([]);
+
+		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
+		$this->assertEquals(['state'=>$state], $s->authenticationCallback($this->service, ['state'=>$state, 'code'=>'123', 'api_key'=>$this->apiKey]));
 	}
 
 	/**
@@ -120,8 +124,16 @@ Class SocialTest extends TestCase {
 	{
 		$state = 'aFakeState';
 		$this->mCache->shouldReceive('has')->andReturn(false);
-		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient);
+		$s = new Social($this->mConfig, $this->mCache, $this->mRedirector, $this->mHttpClient, $this->mEloquent);
 		$s->authenticationCallback($this->service, ['state'=>$state, 'code'=>'123', 'api_key'=>$this->apiKey]);
+	}
+
+	protected static function getProtectedMethod($name, $class)
+	{
+		$class = new \ReflectionClass(get_class($class));
+		$method = $class->getMethod($name);
+		$method->setAccessible(true);
+		return $method;
 	}
 
 }
