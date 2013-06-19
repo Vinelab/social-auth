@@ -8,3 +8,12 @@ Route::group(['prefix' => 'auth'], function(){
 		Route::get('{service}/callback', 'Vinelab\Auth\Controllers\AuthenticationController@callback');
 	});
 });
+
+Route::group(['prefix'=>'user'], function(){
+
+	Route::group(['prefix'=>'profile'], function(){
+		Route::get('', 'Vinelab\Auth\Controllers\ProfileController@basic');
+		Route::get('full', 'Vinelab\Auth\Controllers\ProfileController@full');
+	});
+
+});
