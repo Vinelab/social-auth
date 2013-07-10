@@ -5,7 +5,7 @@ use Vinelab\Http\Client as HttpClient;
 
 use Illuminate\Config\Repository as Config;
 
-Class Network {
+class Network {
 
 	/**
 	 * States the supported social networks

@@ -1,6 +1,6 @@
 <?php namespace Vinelab\Auth\Exception;
 
-Class SocialNetworkException extends \Exception {
+class SocialNetworkException extends \Exception {
 
 	function __construct($error, $message, $code = 5, $previous = null)
 	{

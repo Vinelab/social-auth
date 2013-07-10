@@ -13,7 +13,7 @@ use Illuminate\Cache\CacheManager as Cache;
 use Illuminate\Http\Response as Response;
 use Illuminate\Routing\Redirector as Redirector;
 
-Class Social {
+class Social {
 
 	/**
 	 * Instance

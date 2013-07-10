@@ -7,7 +7,7 @@ use Vinelab\Auth\Exception\SocialNetworkException;
 
 use Illuminate\Config\Repository as Config;
 
-Class Facebook extends SocialNetwork {
+class Facebook extends SocialNetwork {
 
 	/**
 	 * Service Name

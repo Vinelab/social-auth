@@ -1,6 +1,6 @@
 <?php namespace Vinelab\Auth\Contracts;
 
-Interface SocialNetworkInterface {
+interface SocialNetworkInterface {
 
 	public function authenticationURL();
 	public function settings($setting = null);

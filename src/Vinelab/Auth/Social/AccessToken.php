@@ -2,7 +2,7 @@
 
 use Vinelab\Auth\Exception\AccessTokenException;
 
-Class AccessToken {
+class AccessToken {
 
 	/**
 	 * Expiry date
