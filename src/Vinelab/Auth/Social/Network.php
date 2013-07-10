@@ -7,9 +7,40 @@ use Illuminate\Config\Repository as Config;
 
 Class Network {
 
+	/**
+	 * States the supported social networks
+	 *
+	 * @var array
+	 */
 	protected $supported = ['facebook'];
+
+	/**
+	 * Social Network Name
+	 *
+	 * @var string
+	 */
 	public $name;
-	public $service;
+
+	/**
+	 * Instance
+	 *
+	 * @var Vinelab\Auth\Social\Netowks\{service name}
+	 */
+	protected $_Service;
+
+	/**
+	 * Instance
+	 *
+	 * @var Illuminate\Config\Repository
+	 */
+	protected $_Config;
+
+	/**
+	 * Instance
+	 *
+	 * @var Vinelab\Http\Client
+	 */
+	protected $_HttpClient;
 
 	function __construct($name, Config $config, HttpCLient $httpClient)
 	{
@@ -18,24 +49,25 @@ Class Network {
 			throw new SocialNetworkNotSupportedException($name);
 		}
 
-		$this->config = $config;
-		$this->httpClient = $httpClient;
+		$this->_Config = $config;
+		$this->_HttpClient = $httpClient;
 
 		$this->name = $name;
 
 		// instantiate the service
 		$class = sprintf('Vinelab\Auth\Social\Networks\%s', ucfirst($name));
-		$this->service = new $class($this->config, $this->httpClient);
+		$this->_Service = new $class($this->_Config, $this->_HttpClient);
 	}
 
 	/**
 	 * A way to proxy methods to the service
+	 *
 	 * @param  string $name
 	 * @param  array $arguments
 	 */
 	function __call($name, $arguments)
 	{
-		return call_user_func_array([$this->service, $name], $arguments);
+		return call_user_func_array([$this->_Service, $name], $arguments);
 	}
 
 }

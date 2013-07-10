@@ -13,10 +13,24 @@ Abstract Class SocialNetwork implements SocialNetworkInterface {
 	 */
 	protected $name;
 
+	/**
+	 * Social network settings brought from the configuration
+	 *
+	 * @var array
+	 */
+	protected $settings;
+
+	/**
+	 * Instance
+	 *
+	 * @var Vinelab\Http\Client
+	 */
+	protected $_HttpClient;
+
 	function __construct(Config $config, HttpClient $httpClient)
 	{
 		$this->settings = $config->get("auth::social.{$this->name}");
-		$this->httpClient = $httpClient;
+		$this->_HttpClient = $httpClient;
 	}
 
 	public function settings($setting = null)

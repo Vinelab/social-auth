@@ -16,37 +16,50 @@ use Illuminate\Routing\Redirector as Redirector;
 Class Social {
 
 	/**
+	 * Instance
+	 *
 	 * @var Vinelab\Auth\Social\Network
 	 */
-	public $network;
+	public $_Network;
 
 	/**
+	 * Instance
+	 *
 	 * @var Illuminate\Config\Repository
 	 */
-	protected $config;
+	protected $_Config;
 
 	/**
+	 * Instance
+	 *
 	 * @var Illuminate\Cache\CacheManager
 	 */
-	protected $cache;
+	protected $_Cache;
 
 	/**
-	 * @var Illuminate\Http\Response
-	 */
-	protected $response;
-
-	/**
+	 * Instance
+	 *
 	 * @var  Illuminate\Routing\Redirector
 	 */
-	protected $redirect;
+	protected $_Redirect;
 
 	/**
-	 * @var Eloquent
+	 * Instance
+	 *
+	 * @var Vinelab\Http\Client
 	 */
-	protected $userEntity;
+	protected $_HttpClient;
+
+	/**
+	 * Instance
+	 *
+	 * @var Illuminate\Database\Eloquent\Model
+	 */
+	protected $_UserEntity;
 
 	/**
 	 * Keeps track of the request
+	 *
 	 * @var string
 	 */
 	public $state;
@@ -59,11 +72,11 @@ Class Social {
 						 HttpClient $httpClient,
 						 Eloquent $userEntity = null)
 	{
-		$this->config              = $config;
-		$this->cache               = $cache;
-		$this->redirect            = $redirector;
-		$this->httpClient          = $httpClient;
-		$this->userEntity 		   = $userEntity ?: new UserEntity;
+		$this->_Config              = $config;
+		$this->_Cache               = $cache;
+		$this->_Redirect            = $redirector;
+		$this->_HttpClient          = $httpClient;
+		$this->_UserEntity 		    = $userEntity ?: new UserEntity;
 	}
 
 	/**
@@ -73,25 +86,25 @@ Class Social {
 	 */
 	public function authenticate($service)
 	{
-		$this->network = $this->networkInstance($service);
+		$this->_Network = $this->networkInstance($service);
 
 		$this->state = $this->state ?: $this->makeState();
 
-		$apiKey = $this->network->settings('api_key');
-		$redirectURI = $this->network->settings('redirect_uri');
+		$apiKey = $this->_Network->settings('api_key');
+		$redirectURI = $this->_Network->settings('redirect_uri');
 
-		$this->cache->put($this->stateCacheKey($this->state), ['api_key'=>$apiKey, 'redirect_uri'=>$redirectURI], 5);
+		$this->_Cache->put($this->stateCacheKey($this->state), ['api_key'=>$apiKey, 'redirect_uri'=>$redirectURI], 5);
 
-		$url = $this->network->authenticationURL();
+		$url = $this->_Network->authenticationURL();
 
 		$url = $url.'&'.http_build_query(['state' => $this->state]);
 
-		return $this->redirect->to($url);
+		return $this->_Redirect->to($url);
 	}
 
 	public function authenticationCallback($service, $input)
 	{
-		$this->network = $this->networkInstance($service);
+		$this->_Network = $this->networkInstance($service);
 
 		// check for state
 		if (!isset($input['state']) or empty($input['state']))
@@ -102,19 +115,19 @@ Class Social {
 		$state = $input['state'];
 
 		// verify state existance
-		if(!$this->cache->has($this->stateCacheKey($state)))
+		if(!$this->_Cache->has($this->stateCacheKey($state)))
 		{
 			throw new AuthenticationException('Timeout', 'Authentication has taken too long, please try again.');
 		}
 
-		$accessToken = $this->network->authenticationCallback($input);
+		$accessToken = $this->_Network->authenticationCallback($input);
 
 		// add access token to cached data and extend to another 5 min
-		$cachedStateData = $this->cache->get($this->stateCacheKey($state));
+		$cachedStateData = $this->_Cache->get($this->stateCacheKey($state));
 		$cachedStateData['access_token'] = $accessToken;
-		$this->cache->put($this->stateCacheKey($state), $cachedStateData, 5);
+		$this->_Cache->put($this->stateCacheKey($state), $cachedStateData, 5);
 
-		$this->saveUser($this->network->profile());
+		$this->saveUser($this->_Network->profile());
 		return ['state'=>$state];
 	}
 
@@ -130,7 +143,7 @@ Class Social {
 				$user->save();
 
 				$socialAccount = [
-					'network'      => $this->network->name,
+					'network'      => $this->_Network->name,
 					'account_id'   => $profile->id,
 					'access_token' => $profile->access_token
 				];
@@ -149,7 +162,7 @@ Class Social {
 
 	protected function networkInstance($service)
 	{
-		return new SocialNetwork($service, $this->config, $this->httpClient);
+		return new SocialNetwork($service, $this->_Config, $this->_HttpClient);
 	}
 
 	protected function stateCacheKey($state)

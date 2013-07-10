@@ -74,7 +74,7 @@ Class Facebook extends SocialNetwork {
 			]
 		];
 
-		$this->accessToken = new AccessToken($this->parseAccessTokenResponse($this->httpClient->get($request)));
+		$this->accessToken = new AccessToken($this->parseAccessTokenResponse($this->_HttpClient->get($request)));
 		return $this->accessToken;
 	}
 
@@ -97,7 +97,7 @@ Class Facebook extends SocialNetwork {
 			]
 		];
 
-		$exchangeResponse = $this->httpClient->get($exchangeRequest);
+		$exchangeResponse = $this->_HttpClient->get($exchangeRequest);
 		return $this->parseAccessTokenResponse($exchangeResponse);
 	}
 
@@ -144,7 +144,7 @@ Class Facebook extends SocialNetwork {
 			'params' => ['access_token'=>$this->accessToken->token]
 		];
 
-		$response = $this->httpClient->get($profileRequest);
+		$response = $this->_HttpClient->get($profileRequest);
 		return $this->parseProfileResponse($response);
 	}
 
