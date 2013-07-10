@@ -44,19 +44,12 @@ class Network {
 
 	function __construct($name, Config $config, HttpCLient $httpClient)
 	{
-		if (!in_array($name, $this->supported))
-		{
-			throw new SocialNetworkNotSupportedException($name);
-		}
-
-		$this->_Config = $config;
-		$this->_HttpClient = $httpClient;
+		if (!$this->supportedService($name)) throw new SocialNetworkNotSupportedException($name);
 
 		$this->name = $name;
-
-		// instantiate the service
-		$class = sprintf('Vinelab\Auth\Social\Networks\%s', ucfirst($name));
-		$this->_Service = new $class($this->_Config, $this->_HttpClient);
+		$this->_Config = $config;
+		$this->_HttpClient = $httpClient;
+		$this->_Service = $this->instanceForService($name);
 	}
 
 	/**
@@ -67,6 +60,29 @@ class Network {
 	public function service()
 	{
 		return $this->_Service;
+	}
+
+	/**
+	 * Verifies whether a service is supported or not
+	 *
+	 * @param  string $service
+	 * @return boolean
+	 */
+	public function supportedService($service)
+	{
+		return in_array($service, $this->supported);
+	}
+
+	/**
+	 * Instantiates a social network service
+	 *
+	 * @param  string $service
+	 * @return Vinelab\Auth\Social\Netowks\{service}
+	 */
+	public function instanceForService($service)
+	{
+		$class = sprintf('Vinelab\Auth\Social\Networks\%s', ucfirst($service));
+		return new $class($this->_Config, $this->_HttpClient);
 	}
 
 	/**
