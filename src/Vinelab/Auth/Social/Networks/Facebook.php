@@ -9,6 +9,17 @@ use Illuminate\Config\Repository as Config;
 
 class Facebook extends SocialNetwork {
 
+	protected $mandatory = [
+		'api_key',
+		'secret',
+		'redirect_uri',
+		'permissions',
+		'api_url',
+		'authentication_url',
+		'token_url',
+		'profile_uri'
+	];
+
 	/**
 	 * Service Name
 	 * @var string

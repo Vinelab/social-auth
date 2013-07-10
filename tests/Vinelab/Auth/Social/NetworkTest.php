@@ -10,11 +10,15 @@ Class NetworkTest extends TestCase {
 	public function setUp()
 	{
 		$this->settings = [
-			'api_key'=>'someApiKey',
+			'api_key'            =>'someApiKey',
+			'secret'             => 'someSecret',
 			'authentication_url' =>'http:://some.url.com',
-			'client_id'    => 'hullaHoop',
-			'redirect_uri' => 'somewhere over the rainbow',
+			'client_id'          => 'hullaHoop',
+			'redirect_uri'       => 'somewhere over the rainbow',
 			'permissions'        => 'up and down',
+			'profile_uri'        => '/me',
+			'token_url'          => 'https://graph.facebook.com/oath/access_token',
+			'api_url'          	 => 'https://graph.facebook.com/'
 		];
 
 		$this->mConfig = M::mock('Illuminate\Config\Repository');
