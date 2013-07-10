@@ -30,7 +30,7 @@ Class NetworkTest extends TestCase {
 	{
 		$network = new SocialNetwork('facebook', $this->mConfig, $this->mHttpClient);
 		$this->assertInstanceOf('Vinelab\Auth\Social\Network', $network);
-		$this->assertInstanceOf('Vinelab\Auth\Social\Networks\Facebook', $network->service, 'Should have instantiated a Facebook instance as a service');
+		$this->assertInstanceOf('Vinelab\Auth\Social\Networks\Facebook', $network->service(), 'Should have instantiated a Facebook instance as a service');
 	}
 
 	/**

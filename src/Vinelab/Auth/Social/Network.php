@@ -60,6 +60,16 @@ class Network {
 	}
 
 	/**
+	 * Getter method for @var $_Service
+	 *
+	 * @return Vinelab\Auth\Social\Networks\{service name}
+	 */
+	public function service()
+	{
+		return $this->_Service;
+	}
+
+	/**
 	 * A way to proxy methods to the service
 	 *
 	 * @param  string $name
