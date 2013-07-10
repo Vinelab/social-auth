@@ -13,18 +13,14 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::create('users', function($table){
 
-			$table->increments('id');
-
-			$table->string('guid')->unique();
+			$table->string('id', 30)->primary();
 			$table->string('name');
 			$table->string('email')->unique();
 			$table->string('password')->nullable();
 
 			$table->timestamps();
 
-			$table->index('guid');
 			$table->index('email');
-
 		});
 	}
 
