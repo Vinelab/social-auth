@@ -5,9 +5,9 @@ use Vinelab\Auth\Exception\AuthenticationException;
 use Vinelab\Auth\Exception\SocialAccountException;
 use Vinelab\Http\Client as HttpClient;
 
-use Najem\Models\Entities\User as UserEntity;
+use Vinelab\Auth\Contracts\UserInterface;
+use Vinelab\Auth\Contracts\SocialAccountInterface;
 
-use Eloquent;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Cache\CacheManager as Cache;
 use Illuminate\Http\Response as Response;
@@ -53,9 +53,16 @@ class Social {
 	/**
 	 * Instance
 	 *
-	 * @var Illuminate\Database\Eloquent\Model
+	 * @var Vinelab\Auth\Contracts\UserInterface
 	 */
-	protected $_UserEntity;
+	protected $_users;
+
+	/**
+	 * Instance
+	 *
+	 * @var Vinelab\Auth\Contracts\SocialAccountInterface
+	 */
+	protected $_socialAccounts;
 
 	/**
 	 * Keeps track of the request
@@ -70,13 +77,15 @@ class Social {
 						 Cache $cache,
 						 Redirector $redirector,
 						 HttpClient $httpClient,
-						 Eloquent $userEntity = null)
+						 UserInterface $userRepository,
+						 SocialAccountInterface $socialAccountRepository)
 	{
 		$this->_Config              = $config;
 		$this->_Cache               = $cache;
 		$this->_Redirect            = $redirector;
 		$this->_HttpClient          = $httpClient;
-		$this->_UserEntity 		    = $userEntity ?: new UserEntity;
+		$this->_users 		    	= $userRepository;
+		$this->_socialAccounts		= $socialAccountRepository;
 	}
 
 	/**
@@ -113,9 +122,10 @@ class Social {
 		}
 
 		$state = $input['state'];
+		$stateCacheKey = $this->stateCacheKey($state);
 
 		// verify state existance
-		if(!$this->_Cache->has($this->stateCacheKey($state)))
+		if(!$this->_Cache->has($stateCacheKey))
 		{
 			throw new AuthenticationException('Timeout', 'Authentication has taken too long, please try again.');
 		}
@@ -125,7 +135,7 @@ class Social {
 		// add access token to cached data and extend to another 5 min
 		$cachedStateData = $this->_Cache->get($this->stateCacheKey($state));
 		$cachedStateData['access_token'] = $accessToken;
-		$this->_Cache->put($this->stateCacheKey($state), $cachedStateData, 5);
+		$this->_Cache->put($stateCacheKey, $cachedStateData, 5);
 
 		$this->saveUser($this->_Network->profile());
 		return ['state'=>$state];
@@ -135,20 +145,13 @@ class Social {
 	{
 		if ($profile and isset($profile->email))
 		{
-			$userFound = $this->userEntity->where('email', '=', $profile->email)->take(1)->get();
+			$userFound = $this->_users->findByEmail($profile->email);
 
 			if (count($userFound) === 0)
 			{
-				$user = $this->userEntity->fill((array) $profile);
-				$user->save();
-
-				$socialAccount = [
-					'network'      => $this->_Network->name,
-					'account_id'   => $profile->id,
-					'access_token' => $profile->access_token
-				];
-
-				$user->socialAccounts()->create($socialAccount);
+				$user = $this->_users->fillAndSave((array) $profile);
+				return $this->_Network->name;
+				$socialAccount = $this->_socialAccounts->create($this->_Network->name, $profile->id, $user->id, $profile->access_token);
 			}
 		} else {
 			throw new SocialAccountException('Profile', 'Invalid type or structure');

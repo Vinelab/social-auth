@@ -2,7 +2,9 @@ Network Class:
  ☐ Add @method supportedService()
  ☐ Add @method to verify that all required settings exist, as defined in the social network's $required_settings (throw SettingMissingException when not found)
 Social:
- ☐ Revamp User dependency by creating a UserEntity and a Repository for that.
- ☐ Add SocialAccount instance as a dependency
+ ✔ Revamp User dependency by creating a UserEntity and a Repository for that. @done (13-07-10 13:15)
+ ✔ Write tests for revamp Repositories @done (13-07-10 18:33)
+ ✔ Add SocialAccount instance as a dependency @done (13-07-10 18:33)
+ ☐ Fix @method saveUser where when a user is found, we should check for the social account and add it if not found
  Facebook:
  ☐ Access token methods should throw AccessTokenException instead of AuthenticationException
