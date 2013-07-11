@@ -126,7 +126,7 @@ class Facebook extends SocialNetwork {
 			if(isset($jsonResponse->error))
 			{
 				$error = $jsonResponse->error;
-				throw new AuthenticationException($error->type, $error->message, $error->code);
+				throw new AccessTokenException($error->type, $error->message, $error->code);
 			}
 		} else {
 
@@ -138,7 +138,7 @@ class Facebook extends SocialNetwork {
 				return $params;
 
 			} else {
-				throw new AuthenticationException('access token response', 'Access Token not found');
+				throw new AccessTokenException('access token response', 'Access Token not found');
 			}
 		}
 	}
