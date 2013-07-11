@@ -7,4 +7,4 @@ Social:
  ✔ Add SocialAccount instance as a dependency @done (13-07-10 18:33)
  ✔ Fix @method saveUser where when a user is found, we should check for the social account and add it if not found @done (13-07-11 01:59)
  Facebook:
- ☐ Access token methods should throw AccessTokenException instead of AuthenticationException
+ ✔ Access token methods should throw AccessTokenException instead of AuthenticationException @done (13-07-11 10:48)
