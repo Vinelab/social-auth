@@ -11,6 +11,8 @@ class UserEntity extends Model {
 	protected $fillable = ['name', 'email'];
 
 	protected $hidden = ['password'];
+
+	public $incrementing = false;
 }
 
 UserEntity::observe(new EloquentObserver);
