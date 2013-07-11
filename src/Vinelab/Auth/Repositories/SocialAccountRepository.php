@@ -38,6 +38,16 @@ class SocialAccountRepository implements SocialAccountInterface {
 		return $this->_SocialAccount->where('user_id', $user_id)->get();
 	}
 
+	public function userAccount($user_id, $account_id)
+	{
+		return $this->_SocialAccount->where('user_id')->first();
+	}
+
+	public function exist($user_id, $account_id)
+	{
+		return !is_null($this->_SocialAccount->where('user_id', $user_id)->where('account_id', $account_id)->first());
+	}
+
 	public function __call($method, $arguments)
 	{
 		/**
