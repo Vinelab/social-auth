@@ -10,8 +10,7 @@ use Vinelab\Auth\Contracts\SocialAccountInterface;
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Cache\CacheManager as Cache;
-use Illuminate\Http\Response as Response;
-use Illuminate\Routing\Redirector as Redirector;
+use Illuminate\Routing\Redirector;
 
 class Social {
 
@@ -138,21 +137,33 @@ class Social {
 		$this->_Cache->put($stateCacheKey, $cachedStateData, 5);
 
 		$this->saveUser($this->_Network->profile());
-		return ['state'=>$state];
 	}
 
 	protected function saveUser($profile)
 	{
 		if ($profile and isset($profile->email))
 		{
-			$userFound = $this->_users->findByEmail($profile->email);
 
-			if (count($userFound) === 0)
+			if (!$userFound = $this->_users->findByEmail($profile->email))
 			{
+				// proceeding with a new user
+
 				$user = $this->_users->fillAndSave((array) $profile);
-				return $this->_Network->name;
 				$socialAccount = $this->_socialAccounts->create($this->_Network->name, $profile->id, $user->id, $profile->access_token);
+
+			} else {
+
+				// user is already registered,
+				// now we just check for the social account, if found we do nother
+				// otherwise we add it
+
+				if (!$socialAccountFound = $this->_socialAccounts->userAccount($userFound->id, $profile->id))
+				{
+					$socialAccount = $this->_socialAccounts->create($this->_Network->name, $profile->id, $userFound->id, $profile->access_token);
+				}
 			}
+
+
 		} else {
 			throw new SocialAccountException('Profile', 'Invalid type or structure');
 		}
