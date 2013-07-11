@@ -4,15 +4,26 @@ use App;
 use Response;
 use Input;
 
-use Illuminate\Config\Repository as Config;
-use Illuminate\Cache\CacheManager as Cache;
-use Illuminate\Routing\Redirector as Redirector;
+use Vinelab\Auth\Social as SocialAuth;
+use Vinelab\Auth\Repositories\UserRepository;
+use Vinelab\Auth\Repositories\SocialAccountRepository;
+use Vinelab\Auth\Models\Entities\UserEntity as User;
+use Vinelab\Auth\Models\Entities\SocialAccountEntity as SocialAccount;
+
+// use Illuminate\Config\Repository as Config;
+// use Illuminate\Cache\CacheManager as Cache;
+// use Illuminate\Routing\Redirector as Redirector;
 
 Class AuthenticationController extends BaseController {
 
 	public function __construct()
 	{
-		$this->auth = App::make('vinelab.social.auth');
+		$this->auth = new SocialAuth(App::make('config'),
+									 App::make('cache'),
+									 App::make('redirect'),
+									 App::make('vinelab.httpclient'),
+									 new UserRepository(new User),
+									 new SocialAccountRepository(new SocialAccount));
 	}
 
 	public function index($service)
