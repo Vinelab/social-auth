@@ -1,5 +1,6 @@
 {
     "name": "vinelab/social-auth",
+    "license": "MIT",
     "description": "",
     "keywords": ["laravel", "authentication", "oauth", "social authentication"],
     "authors": [
