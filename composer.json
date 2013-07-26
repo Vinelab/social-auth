@@ -1,7 +1,7 @@
 {
-    "name": "vinelab/auth",
+    "name": "vinelab/social-auth",
     "description": "",
-    "keywords": ["laravel", "authentication", "oauth"],
+    "keywords": ["laravel", "authentication", "oauth", "social authentication"],
     "authors": [
         {
             "name": "Abed Halawi",
