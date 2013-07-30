@@ -18,7 +18,7 @@ class UserRepository implements UserInterface {
 		$this->_User = $user;
 	}
 
-	public function create($name, $email)
+	public function create($name, $email, $avatar = '')
 	{
 		return $this->_User->create(compact('name', 'email'));
 	}
