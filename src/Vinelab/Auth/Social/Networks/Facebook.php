@@ -2,6 +2,7 @@
 
 use Vinelab\Auth\Contracts\SocialNetworkInterface;
 use Vinelab\Auth\Exception\AuthenticationException;
+use Vinelab\Auth\Exception\AccessTokenException;
 use Vinelab\Auth\Social\AccessToken;
 use Vinelab\Auth\Exception\SocialNetworkException;
 
