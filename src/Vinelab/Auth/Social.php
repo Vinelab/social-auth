@@ -110,7 +110,7 @@ class Social {
 		return $this->_Redirect->to($url);
 	}
 
-	public function authenticationCallback($service, $input)
+	public function authenticationCallback($service, $input, $save_profile = true)
 	{
 		$this->_Network = $this->networkInstance($service);
 
@@ -135,6 +135,9 @@ class Social {
 		$cachedStateData = $this->_Cache->get($this->stateCacheKey($state));
 		$cachedStateData['access_token'] = $accessToken;
 		$this->_Cache->put($stateCacheKey, $cachedStateData, 5);
+
+		if (!$save_profile)
+			return $this->_Network->profile();
 
 		$this->saveUser($this->_Network->profile());
 	}
