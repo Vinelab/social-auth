@@ -9,7 +9,7 @@ interface UserInterface {
 	 * @param  string $email
 	 * @return UserEntity
 	 */
-	public function create($name, $email);
+	public function create($name, $email, $avatar);
 
 	/**
 	 * Find a user record by id
