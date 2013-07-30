@@ -39,7 +39,7 @@ abstract class SocialNetwork implements SocialNetworkInterface {
 
 	function __construct(Config $config, HttpClient $httpClient)
 	{
-		$this->settings = $config->get("auth::social.{$this->name}");
+		$this->settings = $config->get("social.{$this->name}");
 
 		if (!$this->settingsConfirmed($this->settings)) throw new SocialNetworkSettingsInvalidException;
 
