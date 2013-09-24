@@ -15,7 +15,7 @@ Class SocialTest extends TestCase {
 		$this->authenticationUrl = '123';
 		$this->permissions = 'permissions';
 
-		$this->stateCachePrefix = 'auth_social_state_';
+		$this->stateCachePrefix = 'social:auth:state:';
 
 		$this->settings = [
 			'api_key'            => $this->apiKey,

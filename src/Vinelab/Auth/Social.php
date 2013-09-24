@@ -70,7 +70,7 @@ class Social {
 	 */
 	public $state;
 
-	protected $stateCacheKeyPrefix = 'auth_social_state_';
+	protected $stateCacheKeyPrefix = 'social:auth:state:';
 
 	function __construct(Config $config,
 						 Cache $cache,
