@@ -30,7 +30,8 @@ class AuthServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-
+		$this->app->register('Vinelab\Http\HttpServiceProvider');
+		$this->app->register('Vinelab\Assistant\AssistantServiceProvider');
 	}
 
 	/**
