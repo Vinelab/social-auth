@@ -5,11 +5,11 @@ use Mockery as M;
 
 use Vinelab\Auth\Repositories\SocialAccountRepository;
 
-class SocialAccountTest extends TestCase {
+class SocialAccountRepositoryTest extends TestCase {
 
 	public function setUp()
 	{
-		$this->mSocialAccount = M::mock('Vinelab\Auth\Models\Entities\SocialAccountEntity');
+		$this->mSocialAccount = M::mock('Vinelab\Auth\Contracts\SocialAccountEntityInterface');
 
 		$this->socialAccounts = new SocialAccountRepository($this->mSocialAccount);
 	}

@@ -1,6 +1,6 @@
 <?php namespace Vinelab\Auth\Contracts;
 
-interface SocialAccountInterface {
+interface SocialAccountRepositoryInterface {
 
 	/**
 	 * Create a new social account record

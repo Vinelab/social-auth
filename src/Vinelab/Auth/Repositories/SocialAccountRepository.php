@@ -1,10 +1,9 @@
 <?php namespace Vinelab\Auth\Repositories;
 
-use Vinelab\Auth\Contracts\SocialAccountInterface;
+use Vinelab\Auth\Contracts\SocialAccountRepositoryInterface;
+use Vinelab\Auth\Contracts\SocialAccountEntityInterface as SocialAccount;
 
-use Vinelab\Auth\Models\Entities\SocialAccountEntity as SocialAccount;
-
-class SocialAccountRepository implements SocialAccountInterface {
+class SocialAccountRepository implements SocialAccountRepositoryInterface {
 
 	/**
 	 * Instance
