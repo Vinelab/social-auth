@@ -53,6 +53,7 @@ abstract class SocialNetwork implements SocialNetworkInterface {
 
 	public function settingsConfirmed($settings)
 	{
+		if (!is_array($settings)) throw new SocialNetworkSettingsInvalidException;
 		$intersection = array_intersect(array_keys($settings), $this->mandatory);
 		return count($intersection) === count($this->mandatory);
 	}
