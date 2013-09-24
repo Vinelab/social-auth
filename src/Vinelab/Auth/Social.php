@@ -5,8 +5,8 @@ use Vinelab\Auth\Exception\AuthenticationException;
 use Vinelab\Auth\Exception\SocialAccountException;
 use Vinelab\Http\Client as HttpClient;
 
-use Vinelab\Auth\Contracts\UserInterface;
-use Vinelab\Auth\Contracts\SocialAccountInterface;
+use Vinelab\Auth\Contracts\UserRepositoryInterface;
+use Vinelab\Auth\Contracts\SocialAccountRepositoryInterface;
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Cache\CacheManager as Cache;
@@ -52,14 +52,14 @@ class Social {
 	/**
 	 * Instance
 	 *
-	 * @var Vinelab\Auth\Contracts\UserInterface
+	 * @var Vinelab\Auth\Contracts\UserRepositoryInterface
 	 */
 	protected $_users;
 
 	/**
 	 * Instance
 	 *
-	 * @var Vinelab\Auth\Contracts\SocialAccountInterface
+	 * @var Vinelab\Auth\Contracts\SocialAccountRepositoryInterface
 	 */
 	protected $_socialAccounts;
 
@@ -76,8 +76,8 @@ class Social {
 						 Cache $cache,
 						 Redirector $redirector,
 						 HttpClient $httpClient,
-						 UserInterface $userRepository,
-						 SocialAccountInterface $socialAccountRepository)
+						 UserRepositoryInterface $userRepository,
+						 SocialAccountRepositoryInterface $socialAccountRepository)
 	{
 		$this->_Config              = $config;
 		$this->_Cache               = $cache;

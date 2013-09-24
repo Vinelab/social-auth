@@ -42,8 +42,8 @@ Class SocialTest extends TestCase {
 		$this->mHttpClient = M::mock('Vinelab\Http\Client');
 		$this->mHttpClient->shouldReceive('get')->andReturn($this->mResponse);
 
-		$this->mUserInterface = M::mock('Vinelab\Auth\Contracts\UserInterface');
-		$this->mSocialAccountInterface = M::mock('Vinelab\Auth\Contracts\SocialAccountInterface');
+		$this->mUserRepositoryInterface = M::mock('Vinelab\Auth\Contracts\UserRepositoryInterface');
+		$this->mSocialAccountRepositoryInterface = M::mock('Vinelab\Auth\Contracts\SocialAccountRepositoryInterface');
 	}
 
 	public function testInstantiation()
@@ -52,8 +52,8 @@ Class SocialTest extends TestCase {
 							 $this->mCache,
 							 $this->mRedirector,
 							 $this->mHttpClient,
-							 $this->mUserInterface,
-							 $this->mSocialAccountInterface);
+							 $this->mUserRepositoryInterface,
+							 $this->mSocialAccountRepositoryInterface);
 
 		$this->assertInstanceOf('Vinelab\Auth\Social', $social);
 	}
@@ -64,8 +64,8 @@ Class SocialTest extends TestCase {
 							 $this->mCache,
 							 $this->mRedirector,
 							 $this->mHttpClient,
-							 $this->mUserInterface,
-							 $this->mSocialAccountInterface);
+							 $this->mUserRepositoryInterface,
+							 $this->mSocialAccountRepositoryInterface);
 		$this->assertNotNull($social->makeState());
 	}
 
@@ -80,8 +80,8 @@ Class SocialTest extends TestCase {
 							 $this->mCache,
 							 $this->mRedirector,
 							 $this->mHttpClient,
-							 $this->mUserInterface,
-							 $this->mSocialAccountInterface);
+							 $this->mUserRepositoryInterface,
+							 $this->mSocialAccountRepositoryInterface);
 		$social->authenticate($this->service, $apiKey, $redirectURI);
 
 		$this->assertNotNull($social->state);
@@ -99,8 +99,8 @@ Class SocialTest extends TestCase {
 							 $this->mCache,
 							 $this->mRedirector,
 							 $this->mHttpClient,
-							 $this->mUserInterface,
-							 $this->mSocialAccountInterface);
+							 $this->mUserRepositoryInterface,
+							 $this->mSocialAccountRepositoryInterface);
 		// IMPORTANT! This is put here for testing purposes ONLY, though should never be done this way
 		$social->state = $state;
 		$authenticate = $social->authenticate($this->service);
@@ -118,8 +118,8 @@ Class SocialTest extends TestCase {
 						$this->mCache,
 						$this->mRedirector,
 						$this->mHttpClient,
-						$this->mUserInterface,
-						$this->mSocialAccountInterface);
+						$this->mUserRepositoryInterface,
+						$this->mSocialAccountRepositoryInterface);
 		$s->authenticationCallback($this->service, ['api_key'=>'something']);
 	}
 
@@ -142,8 +142,8 @@ Class SocialTest extends TestCase {
 						$this->mCache,
 						$this->mRedirector,
 						$this->mHttpClient,
-						$this->mUserInterface,
-						$this->mSocialAccountInterface);
+						$this->mUserRepositoryInterface,
+						$this->mSocialAccountRepositoryInterface);
 		$this->assertEquals(['state'=>$state], $s->authenticationCallback($this->service, ['state'=>$state, 'code'=>'123', 'api_key'=>$this->apiKey]));
 	}
 
@@ -153,24 +153,26 @@ Class SocialTest extends TestCase {
 		$email = 'some@mail.net';
 		$accessToken = 'some_really_long_access_token_blah';
 
-		$mUser = M::mock('Vinelab\Auth\Models\Entities\UserEntity');
+		$mUser = M::mock('Vinelab\Auth\Contracts\UserEntityInterface');
+		$mUser->id = 'user_id';
 		$mUser->shouldReceive('getAttribute')->with('id')->andReturn('user_id');
 
-		$this->mUserInterface->shouldReceive('findByEmail')->once()->with($email)->andReturn([]);
-		$this->mUserInterface->shouldReceive('fillAndSave')->once()->andReturn($mUser);
+		$this->mUserRepositoryInterface->shouldReceive('findByEmail')->once()->with($email)->andReturn([]);
+		$this->mUserRepositoryInterface->shouldReceive('fillAndSave')->once()->andReturn($mUser);
 
-		$this->mSocialAccountInterface->shouldReceive('create')->once()
+		$this->mSocialAccountRepositoryInterface->shouldReceive('create')->once()
 										->with($this->service, $id, 'user_id', $accessToken);
 
 		$s = new Social($this->mConfig,
 						 $this->mCache,
 						 $this->mRedirector,
 						 $this->mHttpClient,
-						 $this->mUserInterface,
-						 $this->mSocialAccountInterface);
+						 $this->mUserRepositoryInterface,
+						 $this->mSocialAccountRepositoryInterface);
 
 		$mNetwork = M::mock('Vinelab\Auth\Social\Network');
 		$s->_Network = $mNetwork;
+		$s->_Network->name = $this->service;
 
 		$saveUser = static::getProtectedMethod('saveUser', $s);
 
@@ -195,8 +197,8 @@ Class SocialTest extends TestCase {
 						$this->mCache,
 						$this->mRedirector,
 						$this->mHttpClient,
-						$this->mUserInterface,
-						$this->mSocialAccountInterface);
+						$this->mUserRepositoryInterface,
+						$this->mSocialAccountRepositoryInterface);
 
 		$saveUser = static::getProtectedMethod('saveUser', $s);
 
@@ -213,8 +215,8 @@ Class SocialTest extends TestCase {
 						$this->mCache,
 						$this->mRedirector,
 						$this->mHttpClient,
-						$this->mUserInterface,
-						$this->mSocialAccountInterface);
+						$this->mUserRepositoryInterface,
+						$this->mSocialAccountRepositoryInterface);
 
 		$saveUser = static::getProtectedMethod('saveUser', $s);
 		$saveUser->invokeArgs($s, [null]);
@@ -231,8 +233,8 @@ Class SocialTest extends TestCase {
 						$this->mCache,
 						$this->mRedirector,
 						$this->mHttpClient,
-						$this->mUserInterface,
-						$this->mSocialAccountInterface);
+						$this->mUserRepositoryInterface,
+						$this->mSocialAccountRepositoryInterface);
 
 		$s->authenticationCallback($this->service, ['state'=>$state, 'code'=>'123', 'api_key'=>$this->apiKey]);
 	}
