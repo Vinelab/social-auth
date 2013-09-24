@@ -24,7 +24,7 @@ Class NetworkTest extends TestCase {
 		$this->mConfig = M::mock('Illuminate\Config\Repository');
 
 		$this->mConfig->shouldReceive('get')
-			->with('auth::social.facebook')
+			->with('social.facebook')
 			->andReturn($this->settings);
 
 		$this->mHttpClient = M::mock('Vinelab\Http\Client[get]');
