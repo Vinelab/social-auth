@@ -8,7 +8,7 @@ class UserRepositoryTest extends TestCase {
 
 	public function setUp()
 	{
-		$this->mUser = M::mock('Vinelab\Auth\Models\Entities\UserEntity');
+		$this->mUser = M::mock('Vinelab\Auth\Contracts\UserEntityInterface');
 
 		$this->users = new UserRepository($this->mUser);
 	}

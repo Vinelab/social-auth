@@ -1,10 +1,9 @@
 <?php namespace Vinelab\Auth\Repositories;
 
-use Vinelab\Auth\Contracts\UserInterface;
+use Vinelab\Auth\Contracts\UserRepositoryInterface;
+use Vinelab\Auth\Contracts\UserEntityInterface as User;
 
-use Vinelab\Auth\Models\Entities\UserEntity as User;
-
-class UserRepository implements UserInterface {
+class UserRepository implements UserRepositoryInterface {
 
 	/**
 	 * Instance

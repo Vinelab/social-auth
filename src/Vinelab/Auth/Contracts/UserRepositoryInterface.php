@@ -1,6 +1,6 @@
 <?php namespace Vinelab\Auth\Contracts;
 
-interface UserInterface {
+interface UserRepositoryInterface {
 
 	/**
 	 * Create a new User record
