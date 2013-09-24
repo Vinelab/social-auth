@@ -110,7 +110,7 @@ class Social {
 		return $this->_Redirect->to($url);
 	}
 
-	public function authenticationCallback($service, $input, $save_profile = true)
+	public function authenticationCallback($service, $input, $save_profile = false)
 	{
 		$this->_Network = $this->networkInstance($service);
 
