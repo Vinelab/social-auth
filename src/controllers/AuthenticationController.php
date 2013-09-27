@@ -7,8 +7,9 @@ use Input;
 use Vinelab\Auth\Social as SocialAuth;
 use Vinelab\Auth\Repositories\UserRepository;
 use Vinelab\Auth\Repositories\SocialAccountRepository;
-use Vinelab\Auth\Models\Entities\UserEntity as User;
-use Vinelab\Auth\Models\Entities\SocialAccountEntity as SocialAccount;
+
+use Vinelab\Auth\Contracts\UserEntityInterface as User;
+use Vinelab\Auth\Contracts\SocialAccountEntityInterface as SocialAccount;
 
 // use Illuminate\Config\Repository as Config;
 // use Illuminate\Cache\CacheManager as Cache;
@@ -35,7 +36,7 @@ Class AuthenticationController extends BaseController {
 	{
 		try {
 
-			return Response::json($this->auth->authenticationCallback($service, Input::get()));
+			return $this->auth->authenticationCallback($service, Input::get());
 
 		} catch (\Exception $e) {
 			var_dump($e->getMessage());
