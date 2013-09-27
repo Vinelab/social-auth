@@ -123,17 +123,18 @@ Class SocialTest extends TestCase {
 		$s->authenticationCallback($this->service, ['api_key'=>'something']);
 	}
 
-	/**
-	 * @expectedException Vinelab\Auth\Exception\SocialAccountException
-	 */
 	public function testAuthenticationCallback()
 	{
 		$state = 'aFakeState';
+		$input = ['state'=>$state, 'code'=>'123', 'api_key'=>$this->apiKey];
+		$cacheKey = $this->stateCachePrefix.$state;
 
 		$this->mCache->shouldReceive('get')
 			->with($this->stateCachePrefix.$state)
 			->andReturn(['api_key'=>$this->apiKey, 'redirect_uri'=>$this->redirectURI]);
 		$this->mCache->shouldReceive('has')->andReturn(true);
+
+		$this->mCache->shouldReceive('put')->with($cacheKey, $input, 5)->once()->andReturn(true);
 
 		$this->mResponse->shouldReceive('json')->andReturn();
 		$this->mResponse->shouldReceive('content')->andReturn('access_token=123&expires=1234');
@@ -144,7 +145,9 @@ Class SocialTest extends TestCase {
 						$this->mHttpClient,
 						$this->mUserRepositoryInterface,
 						$this->mSocialAccountRepositoryInterface);
-		$this->assertEquals(['state'=>$state], $s->authenticationCallback($this->service, ['state'=>$state, 'code'=>'123', 'api_key'=>$this->apiKey]));
+
+		$s->authenticationCallback($this->service, $input);
+
 	}
 
 	public function testSaveUser()
