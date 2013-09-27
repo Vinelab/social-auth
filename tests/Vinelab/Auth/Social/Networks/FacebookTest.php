@@ -1,4 +1,4 @@
-<?php namespace Vinelab\Authe\Tests;
+<?php namespace Vinelab\Auth\Tests;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Mockery as M;
