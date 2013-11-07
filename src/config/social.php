@@ -26,5 +26,19 @@ return [
 
 		'profile_uri'        => '/me'
 
+	],
+
+	'twitter' => [
+
+		'consumer_key'        => 'e9fdR2c30HdioJIkJH1cA',
+
+		'consumer_secret'     => 'ggou13Sxd2bzWhihqkLhiYLG3OFGp4Svcgbl5Knn2s',
+
+		'access_token'        => '158660252-R4Ek0afcsmRRjl8PaE9ReROC7r6vpjcaY1iUTWCo',
+
+		'access_token_secret' => '2wjSH4LPprGDih5CTad9z7sAZBTvK5pN5UEPPFGfg',
+
+		'callback_url'        => 'http://locahost:8000/auth/twitter/callback'
+
 	]
 ];
