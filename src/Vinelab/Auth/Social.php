@@ -96,6 +96,11 @@ class Social {
 	{
 		$this->_Network = $this->networkInstance($service);
 
+		if (strtolower($this->_Network->name) == 'twitter')
+		{
+			return $this->_Network->authenticate();
+		}
+
 		$this->state = $this->state ?: $this->makeState();
 
 		$apiKey = $this->_Network->settings('api_key');
@@ -113,6 +118,11 @@ class Social {
 	public function authenticationCallback($service, $input, $save_profile = false)
 	{
 		$this->_Network = $this->networkInstance($service);
+
+		if (strtolower($this->_Network->name) == 'twitter')
+		{
+			return $this->_Network->authenticationCallback($service);
+		}
 
 		// check for state
 		if (!isset($input['state']) or empty($input['state']))

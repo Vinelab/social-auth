@@ -12,7 +12,7 @@ class Network {
 	 *
 	 * @var array
 	 */
-	protected $supported = ['facebook'];
+	protected $supported = ['facebook', 'twitter'];
 
 	/**
 	 * Social Network Name

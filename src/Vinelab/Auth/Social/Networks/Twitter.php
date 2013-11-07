@@ -1,6 +1,8 @@
 <?php namespace Vinelab\Auth\Social\Networks;
 
-use Codebird\Codebird;
+use Hybrid_Auth as HybridAuth;
+use Hybrid_Endpoint as HybridEndpoint;
+use Hybrid_Error as HybridError;
 
 use Vinelab\Auth\Exception\TwitterRequestTokenException;
 
@@ -10,13 +12,7 @@ class Twitter extends SocialNetwork {
      * Required settings. Must exist in configuration
      * @var array
      */
-    protected $mandatory = [
-        'consumer_key',
-        'consumer_secret',
-        'access_token',
-        'access_token_secret',
-        'callback_url'
-    ];
+    protected $mandatory = ['base_url', 'key', 'secret', 'redirect_uri'];
 
     /**
      * Service Name
@@ -30,22 +26,54 @@ class Twitter extends SocialNetwork {
      */
     public $accessToken;
 
-    public function authenticationURL()
+    public function authenticate()
     {
-        // get Codebird instance
-        $twt = Codebird::getInstance();
-        // get request token
-        $requestTokenResponse = $twt->oauth_requestToken(['oauth_callback'=>'http://localhost:5000/callback.php']);
-        // validate required parameters
-        if (!isset($requestTokenResponse->oauth_token) or !isset($requestTokenResponse->oauth_token_secret))
+        $auth = new HybridAuth($this->hybridConfiguration());
+
+        if (!isset($_SERVER['QUERY_STRING']) or empty($_SERVER['QUERY_STRING']) or isset($_GET['denied']))
         {
-            throw new TwitterRequestTokenException($requestTokenResponse->error);
+            $auth->authenticate('twitter', ['hauth_return_to'=>$this->settings['redirect_uri']]);
         }
 
-        // set tokens
-        $twt->setToken($requestTokenResponse->oauth_token, $requestTokenResponse->oauth_token_secret);
+        HybridEndpoint::process();
+    }
 
-        return $twt->oauth_authorize();
+    public function authenticationCallback($input)
+    {
+        $auth = new HybridAuth($this->hybridConfiguration());
+        $twitter = $auth->authenticate('twitter');
+        $profile = $twitter->getUserProfile();
+        $auth->logoutAllProviders();
+
+        return $profile;
+    }
+
+    public function authorize($service)
+    {
+        HybridEndpoint::process();
+    }
+
+    public function authenticationURL()
+    {
+        return $this->settings['base_url'];
+    }
+
+    public function profile()
+    {
+        return $this->authenticate();
+    }
+
+    protected function hybridConfiguration()
+    {
+        return [
+            'base_url' => $this->settings['base_url'],
+            'providers' => [
+                'Twitter' => [
+                    'enabled' => true,
+                    'keys' => ['key' => $this->settings['key'], 'secret' => $this->settings['secret']]
+                ]
+            ]
+        ];
     }
 
 }
