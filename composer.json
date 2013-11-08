@@ -23,8 +23,7 @@
     },
     "autoload": {
         "classmap": [
-            "src/controllers",
-            "vendor/hybridauth"
+            "src/controllers"
         ],
         "psr-0": {
             "Vinelab\\Auth": "src/"
