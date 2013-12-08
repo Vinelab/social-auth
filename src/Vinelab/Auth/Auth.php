@@ -62,7 +62,7 @@ class Auth {
         return $this->provider->authenticate();
     }
 
-    public function callback($provider, $input)
+    public function profile($provider, $input)
     {
         $this->provider = $this->providerInstance($provider);
 
