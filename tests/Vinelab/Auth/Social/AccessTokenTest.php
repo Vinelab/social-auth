@@ -1,43 +1,91 @@
-<?php namespace Vinelab\Auth\Tests;
+<?php namespace Vinelab\Auth\Tests\Social;
 
 use PHPUnit_Framework_TestCase as TestCase;
-use Vinelab\Auth\Social\AccessToken;
+use Mockery as M;
 
-Class AccessTokenTest extends TestCase {
+use  Vinelab\Auth\Social\AccessToken;
 
-	public function testInstantiation()
-	{
-		$at = new AccessToken(['access_token'=>'123', 'expires'=>'12345']);
-		$this->assertInstanceOf('Vinelab\Auth\Social\AccessToken', 	$at);
-		$this->assertEquals('123', $at->token);
-		$this->assertEquals('12345', $at->expires);
-	}
+class AccessTokenTest extends TestCase {
 
-	/**
-	 * @expectedException Vinelab\Auth\Exception\AccessTokenException
-	 */
-	public function testInstantiationWithNull()
-	{
-		$at = new AccessToken(null);
+    public function setUp()
+    {
+        // a sample of the returned access token from facebook
+        $this->at_sample = 'access_token=CAAEDjtrTU0wBAEkWVZB7yDYoDyw7jFZANNuc667ZBkcXdXYZCybHgTz2PtCawKSTVcqP3C14y5dVWwpbY0VWaXe9rpalnvSCkdiyWbIq7Jz52hiWKXZBuIRLsgV7NMo9cb4kyxXPqMAQkcmRwKXTSigbTAwzBLQKtfPVszdLj7bYwMak7U3vb&expires=5183481';
+        $this->at_error_sample = '{"error": {"message": "Error validating access token: The session is invalid because the user logged out.", "type": "OAuthException", "code": 190}}';
 
-	}
+        $this->response = M::mock('Vinelab\Http\Response');
 
-	/**
-	 * @expectedException Vinelab\Auth\Exception\AccessTokenException
-	 */
-	public function testInstantiationWithString()
-	{
-		$at = new AccessToken('access_token=123&expires=1234');
-	}
+        $this->access_token = new AccessToken;
+    }
 
-	/**
-	 * @expectedException Vinelab\Auth\Exception\AccessTokenException
-	 */
-	public function testInstantiationWithObject()
-	{
-		$object = new \stdClass;
-		$object->access_token = '123';
-		$object->expires = '12345';
-		$at = new AccessToken($object);
-	}
+    public function test_instantiation()
+    {
+        $this->response->shouldReceive('json')->once()
+            ->andReturn(json_decode($this->at_sample));
+
+        $this->response->shouldReceive('content')->once()
+            ->andReturn($this->at_sample);
+
+        parse_str($this->at_sample, $sample);
+
+        $access_token = $this->access_token->make($this->response);
+        $this->assertInstanceOf('Vinelab\Auth\Social\AccessToken', $access_token);
+        $this->assertEquals($sample['access_token'], $access_token->token());
+        $this->assertEquals($sample['expires'], $access_token->expiry());
+    }
+
+    /**
+     * @expectedException Vinelab\Auth\Exceptions\AccessTokenException
+     * @expectedExceptionMessage OAuthException: Error validating access token: The session is invalid because the user logged out.
+     * @expectedExceptionCode 190
+     */
+    public function test_handling_errors()
+    {
+        $this->response->shouldReceive('json')->once()
+            ->andReturn(json_decode($this->at_error_sample));
+
+        $this->access_token->make($this->response);
+    }
+
+    /**
+     * @expectedException Vinelab\Auth\Exceptions\AccessTokenException
+     * @expectedExceptionMessage no access token received
+     */
+    public function test_null_response()
+    {
+        $this->response->shouldReceive('json')->once()
+            ->andReturn(null);
+        $this->response->shouldReceive('content')->once()
+            ->andReturn(null);
+
+        $this->access_token->make($this->response);
+    }
+
+   /**
+     * @expectedException Vinelab\Auth\Exceptions\AccessTokenException
+     * @expectedExceptionMessage no access token received
+     */
+    public function test_empty_response()
+    {
+        $this->response->shouldReceive('json')->once()
+            ->andReturn('');
+        $this->response->shouldReceive('content')->once()
+            ->andReturn('');
+
+        $this->access_token->make($this->response);
+    }
+
+    /**
+     * @expectedException Vinelab\Auth\Exceptions\AccessTokenException
+     * @expectedExceptionMessage no access token received
+     */
+    public function test_different_response()
+    {
+        $this->response->shouldReceive('json')->once()
+            ->andReturn('something else');
+        $this->response->shouldReceive('content')->once()
+            ->andReturn('another thing here');
+
+        $this->access_token->make($this->response);
+    }
 }

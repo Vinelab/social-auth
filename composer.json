@@ -14,8 +14,7 @@
         "illuminate/support": "4.0.x",
         "illuminate/database": "4.0.x",
         "vinelab/assistant": "*",
-        "vinelab/http": "*",
-        "hybridauth/hybridauth": "*"
+        "vinelab/http": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.8.x@dev",
@@ -23,8 +22,7 @@
     },
     "autoload": {
         "classmap": [
-            "src/controllers",
-            "../../hybridauth/hybridauth"
+            "src/Vinelab/Auth/Exceptions"
         ],
         "psr-0": {
             "Vinelab\\Auth": "src/"

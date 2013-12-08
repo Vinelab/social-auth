@@ -1,29 +1,90 @@
 <?php namespace Vinelab\Auth\Social;
 
-use Vinelab\Auth\Exception\AccessTokenException;
+use Vinelab\Http\Response;
+use Vinelab\Auth\Exceptions\AccessTokenException;
+use Vinelab\Auth\Contracts\AccessTokenInterface;
 
-class AccessToken {
-
-	/**
-	 * Expiry date
-	 * @var Timestamp
-	 */
-	public $expires;
+class AccessToken implements AccessTokenInterface {
 
 	/**
-	 * The actual access token
+	 * Expiry date.
+	 *
 	 * @var string
 	 */
-	public $token;
+	protected $expires;
 
-	function __construct($data)
+	/**
+	 * The actual access token.
+	 *
+	 * @var string
+	 */
+	protected $token;
+
+	public function make(Response $response)
 	{
-		if(!is_array($data))
+		$data = $this->parseResponse($response);
+
+		$this->expires    = $data['expires'] ?: 0;
+		$this->token      = $data['access_token'];
+
+		return $this;
+	}
+
+	/**
+	 * Parses an access token response.
+	 *
+	 * @param  Vinelab\Http\Response $response
+	 * @return array
+	 */
+	public function parseResponse(Response $response)
+	{
+		$json = $response->json();
+
+		/**
+		 * The returned response must not be in JSON
+		 * format, unless it is an error.
+		 */
+		if ( ! is_null($json))
 		{
-			throw new AccessTokenException('Instantiation Error', 'passed argument is not an array');
+			if (isset($json->error))
+			{
+				$error = $json->error;
+				throw new AccessTokenException($error->type . ': ' . $error->message, $error->code);
+			}
 		}
 
-		$this->expires = $data['expires'] ?: 0;
-		$this->token   = $data['access_token'] ?: null;
+		$content = $response->content();
+
+	    if(strpos($content, 'access_token') !== false)
+	    {
+	            parse_str($content, $params);
+	            return $params;
+
+	    } else {
+			throw new AccessTokenException('no access token received');
+	    }
+
+		return (array) $json;
+	}
+
+	/**
+	 * Returns the token value.
+	 *
+	 * @return string
+	 */
+	public function token()
+	{
+		return $this->token;
+	}
+
+	/**
+	 * Returns the expiry date
+	 * of the token.
+	 *
+	 * @return string
+	 */
+	public function expiry()
+	{
+		return $this->expires;
 	}
 }
