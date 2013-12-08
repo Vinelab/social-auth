@@ -19,7 +19,7 @@ class ProvidersManager implements ProvidersManagerInterface {
      *
      * @var array
      */
-    protected $supported = ['facebook', 'twitter'];
+    protected $supported = ['facebook'];
 
     /**
      * The configuration instance.
