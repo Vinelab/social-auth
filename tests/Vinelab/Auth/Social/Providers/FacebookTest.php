@@ -11,7 +11,7 @@ class FacebookTest extends TestCase {
 
     public static function setUpBeforeClass()
     {
-        $profile_file = file('./tests-new/samples/fb_profile.json');
+        $profile_file = file('./tests/samples/fb_profile.json');
         static::$fb_profile = json_decode(array_pop($profile_file));
     }
 

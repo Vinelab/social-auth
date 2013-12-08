@@ -28,7 +28,7 @@ class ProfileTest extends TestCase {
             'gender'     => 'male'
         );
 
-        $this->hup_sample = new Hybrid_User_Profile;
+        $this->hup_sample = new \stdClass;
         $this->hup_sample->identifier    = 'some-id';
         $this->hup_sample->profileURL    = 'http://my.profile.url';
         $this->hup_sample->webSiteURL    = 'http://my.website.url';
@@ -53,13 +53,6 @@ class ProfileTest extends TestCase {
 
     }
 
-    public function test_hup_instantiation()
-    {
-        $profile = $this->profile->instantiate($this->hup_sample, 'twitter');
-
-        $this->assertInstanceOf('Vinelab\Auth\Social\Profile', $profile);
-    }
-
     public function test_fb_instantiation()
     {
         $this->config->shouldReceive('get')->once()->andReturn('http://avatar.url/%s');
@@ -76,10 +69,6 @@ class ProfileTest extends TestCase {
         $fb = $this->profile->instantiate($this->fb_sample, 'facebook');
 
         $this->assertNotNull($fb->avatar);
-
-        $hup = $this->profile->instantiate($this->hup_sample, 'twitter');
-
-        $this->assertNotNull($hup->avatar);
     }
 
     public function test_generates_birthday()
@@ -89,10 +78,6 @@ class ProfileTest extends TestCase {
         $fb = $this->profile->instantiate($this->fb_sample, 'facebook');
 
         $this->assertNotNull($fb->birthday);
-
-        $hup = $this->profile->instantiate($this->hup_sample, 'twitter');
-
-        $this->assertNotNull($hup->birthday);
     }
 
     public function test_ability_to_update_profile_email()
@@ -116,14 +101,5 @@ class ProfileTest extends TestCase {
         $fb = $this->profile->instantiate($this->fb_sample, 'facebook');
 
         $this->assertEquals('facebook', $fb->provider());
-    }
-
-    public function test_twt_provider()
-    {
-        $this->config->shouldReceive('get')->once();
-
-        $fb = $this->profile->instantiate($this->hup_sample, 'twitter');
-
-        $this->assertEquals('twitter', $fb->provider());
     }
 }
