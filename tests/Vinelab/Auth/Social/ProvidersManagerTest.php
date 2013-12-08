@@ -27,7 +27,7 @@ class ProvidersManagerTest extends TestCase {
     public function test_supported()
     {
         $this->assertTrue($this->providers->supported('facebook'));
-        $this->assertTrue($this->providers->supported('twitter'));
+        $this->assertFalse($this->providers->supported('twitter'));
         $this->assertFalse($this->providers->supported('something'));
     }
 
