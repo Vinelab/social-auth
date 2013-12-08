@@ -3,7 +3,7 @@
 
 ## Installation
 Using [composer](http://getcomposer.org) require the package [vinelab/social-auth](https://packagist.org/packages/vinelab/social-auth).
-Edit **app.php** and add ```'Vinelab\ITunes\ITunesServiceProvider'``` to the ```'providers'``` array.
+Edit **app.php** and add ```'Vinelab\Auth\AuthServiceProvider'``` to the ```'providers'``` array.
 It will automatically alias itself as SocialAuth which is a Facade.
 
 ## Usage
