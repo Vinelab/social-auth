@@ -23,9 +23,7 @@ class AuthServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('vinelab/auth');
-
-		include __DIR__.'/../../routes.php';
+		$this->package('vinelab/social-auth');
 	}
 
 	/**
