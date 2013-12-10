@@ -38,7 +38,29 @@ return [
 
 		'access_token_secret' => '2wjSH4LPprGDih5CTad9z7sAZBTvK5pN5UEPPFGfg',
 
-		'callback_url'        => 'http://locahost:8000/auth/twitter/callback'
+		'callback_url'        => 'http://localhost:8000/auth/twitter/callback',
+
+		// API Settings - this should not change unless Twitter updates their API
+
+		'version'             => 1.1
+
+		'api_url'             => 'https://api.twitter.com'
+
+		'auth_api_url'        => 'https://api.twitter.com/oauth',
+
+		'access_token_uri'    => '/access_token',
+
+		'authentication_uri'  => '/authenticate',
+
+		'authorization_uri'   => '/authorize',
+
+		'request_token_uri'   => '/request_token',
+
+		'profile_uri'         => '/users/show',
+
+		'verify_credentials_uri'  => '/account/verify_credentials',
+
+		'user_agent'          => 'something about app'
 
 	]
 ];

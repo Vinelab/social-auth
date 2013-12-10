@@ -7,9 +7,13 @@ use Illuminate\Config\Repository as Config;
 
 use Vinelab\Auth\Contracts\StoreInterface;
 use Vinelab\Auth\Contracts\ProfileInterface;
-use Vinelab\Auth\Contracts\AccessTokenInterface;
 use Vinelab\Auth\Contracts\ProvidersManagerInterface;
 use Vinelab\Auth\Exceptions\ProviderNotSupportedException;
+use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface;
+use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface;
+use Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface;
+use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface;
+use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface;
 
 class ProvidersManager implements ProvidersManagerInterface {
 
@@ -19,7 +23,7 @@ class ProvidersManager implements ProvidersManagerInterface {
      *
      * @var array
      */
-    protected $supported = ['facebook'];
+    protected $supported = ['facebook', 'twitter'];
 
     /**
      * The configuration instance.
@@ -36,14 +40,18 @@ class ProvidersManager implements ProvidersManagerInterface {
      * @param Vinelab\Http\Client                       $http
      * @param Vinelab\Auth\Contracts\StoreInterface       $store
      * @param Vinelab\Auth\Contracts\ProfileInterface     $profile
-     * @param Vinelab\Auth\Contracts\AccessTokenInterface $access_token
+     * @param Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface $access_token
      */
     public function __construct(Config $config,
                                 Redirector $redirector,
                                 HttpClient $http,
                                 StoreInterface $store,
                                 ProfileInterface $profile,
-                                AccessTokenInterface $access_token)
+                                AccessTokenInterface $access_token,
+                                OAuthInterface $oauth,
+                                OAuthTokenInterface $token,
+                                OAuthSignatureInterface $signature,
+                                OAuthConsumerInterface $consumer)
     {
         $this->config       = $config;
         $this->redirector   = $redirector;
@@ -51,6 +59,10 @@ class ProvidersManager implements ProvidersManagerInterface {
         $this->store        = $store;
         $this->profile      = $profile;
         $this->access_token = $access_token;
+        $this->signature    = $signature;
+        $this->consumer     = $consumer;
+        $this->oauth        = $oauth;
+        $this->token        = $token;
     }
 
     /**
@@ -69,12 +81,31 @@ class ProvidersManager implements ProvidersManagerInterface {
 
         $class = $this->providerClass($provider);
 
-        return new $class($this->config,
+        switch($provider)
+        {
+            case 'facebook':
+                return new $class($this->config,
                         $this->redirector,
                         $this->http,
                         $this->store,
                         $this->profile,
                         $this->access_token);
+            break;
+
+            case 'twitter':
+                return new $class($this->config,
+                                $this->http,
+                                $this->redirector,
+                                $this->store,
+                                $this->profile,
+                                $this->signature,
+                                $this->consumer,
+                                $this->token,
+                                $this->oauth);
+            break;
+        }
+
+
     }
 
     /**

@@ -24,7 +24,7 @@ class Profile implements ProfileInterface {
      *
      * @var array
      */
-    protected $profile;
+    protected $info;
 
     /**
      * The social network service.
@@ -41,28 +41,24 @@ class Profile implements ProfileInterface {
     /**
      * Instantiates a profile by parsing
      * it and mapping it to commonly used
-     * values.
+     * values across the different providers.
      *
-     * @param  stdClass | Hybrid_User_Profile $profile
-     * @return Najem\Api\Social\Profile
+     * @param object $profile
+     * @param string $provider
+     * @return Vinelab\Auth\Social\Profile
      */
     public function instantiate($profile, $provider)
     {
         $this->provider = $provider;
 
-        switch (get_class($profile))
+        switch ($provider)
         {
-            case 'Hybrid_User_Profile':
-
-                $this->profile = $this->parseHUP($profile);
-
+            case 'facebook':
+                $this->info = $this->parseFb($profile);
             break;
 
-            case 'stdClass':
-            default:
-
-                $this->profile = $this->parse($profile);
-
+            case 'twitter':
+                $this->info = $this->parseTwt($profile);
             break;
         }
 
@@ -76,7 +72,7 @@ class Profile implements ProfileInterface {
      */
     public function info()
     {
-        return $this->profile;
+        return $this->info;
     }
 
     /**
@@ -90,79 +86,34 @@ class Profile implements ProfileInterface {
     }
 
     /**
-     * Parses a Hybrid_User_Profile instance
-     * into a common mapping b/w differnt provider
-     * profiles
+     * Parses a Twitter profile
      *
-     * @param  Hybrid_User_Profile $profile
+     * @param  object $profile
      * @return array
      */
-    public function parseHUP($profile)
+    public function parseTwt($profile)
     {
-        // set the birthDay to null
-        // this property doesn't exist
-        // by default from HUP
-        $profile->birthDay = isset($profile->birthDay) ? $profile->birthDay : null;
-
-        if ($profile->birthYear and $profile->birthMonth and $profile->birthDay)
-        {
-            $profile->birthDay = new DateTime(
-                sprintf('%s-%s-%s', $profile->birthYear, $profile->birthMonth, $profile->birthDay)
-            );
-        }
-
-        return [
-
-            'id'          => $profile->identifier,
-            'link'        => $profile->profileURL,
-            'website_url' => $profile->webSiteURL,
-            'avatar'      => $profile->photoURL,
-            'username'    => $profile->displayName,
-            'about'       => $profile->description,
-            'first_name'  => $profile->firstName,
-            'last_name'   => $profile->lastName,
-            'name'        => $profile->firstName . $profile->lastName,
-            'gender'      => $profile->gender,
-            'language'    => $profile->language,
-            'age'         => $profile->age,
-            'birthday'    => $profile->birthDay,
-            'email'       => $profile->email,
-            'verified'    => $profile->emailVerified,
-            'phone'       => $profile->phone,
-            'address'     => $profile->address,
-            'region'      => $profile->region,
-            'city'        => $profile->city,
-            'zip'         => $profile->zip
-
-        ];
+        // remove unecessary fields
+        unset($profile->status);
+        // stick avatar
+        $profile->avatar = $profile->profile_image_url;
+        return (array) $profile;
     }
 
     /**
-     * Parses a generic social profile,
-     * currently used for Facebook
+     * Parse a Facebook profile.
      *
-     * @param  stdClass $raw_profile
+     * @param  object $raw_profile
      * @return array
      */
-    public function parse($raw_profile)
+    public function parseFb($raw_profile)
     {
-        $profile = (array) $raw_profile;
-        $profile['avatar'] = $this->pluckAvatar($raw_profile);
+        $profile = $raw_profile;
+        $profile->avatar = sprintf(
+            $this->config->get('social.facebook.picture_url'),
+            $profile->username);
 
-        return $profile;
-    }
-
-    /**
-     * Picks an avatar out of a profile.
-     *
-     * @param  stdClass | Hybrid_User_Profile $profile
-     * @return string
-     */
-    protected function pluckAvatar($profile)
-    {
-        return isset($profile->avatar) ?
-                        $profile->avatar :
-                        sprintf($this->config->get('social.facebook.picture_url'), $profile->username);
+        return (array) $profile;
     }
 
     /**
@@ -174,7 +125,7 @@ class Profile implements ProfileInterface {
      */
     public function __get($attr)
     {
-        return isset($this->profile[$attr]) ? $this->profile[$attr] : null;
+        return isset($this->info[$attr]) ? $this->info[$attr] : null;
     }
 
     /**
@@ -187,7 +138,7 @@ class Profile implements ProfileInterface {
      */
     public function __set($attr, $val)
     {
-        $this->profile[$attr] = $val;
+        $this->info[$attr] = $val;
     }
 
     /**
@@ -200,6 +151,6 @@ class Profile implements ProfileInterface {
      */
     public function __isset($attr)
     {
-        return isset($this->profile[$attr]);
+        return isset($this->info[$attr]);
     }
 }

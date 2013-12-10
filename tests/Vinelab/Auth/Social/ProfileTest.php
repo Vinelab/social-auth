@@ -5,7 +5,7 @@
  */
 
 use PHPUnit_Framework_TestCase as TestCase;
-use Hybrid_User_Profile, Mockery as M;
+use Mockery as M;
 
 use Vinelab\Auth\Social\Profile as SocialProfile;
 

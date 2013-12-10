@@ -13,3 +13,9 @@ class InvalidProfileException extends SocialAuthException {}
 class AccessTokenException extends SocialAuthException {}
 
 class InvalidFacebookCodeException extends SocialAuthException {}
+
+class InvalidOAuthTokenException extends SocialAuthException {}
+
+class AuthenticationCanceledException extends SocialAuthException {}
+
+class TiwtterProfileException extends SocialAuthException {}
