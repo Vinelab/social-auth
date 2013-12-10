@@ -5,10 +5,10 @@ use Vinelab\Auth\Social\Provider;
 use Vinelab\Http\Client as HttpClient;
 use Vinelab\Auth\Contracts\StoreInterface;
 use Vinelab\Auth\Contracts\ProfileInterface;
-use Vinelab\Auth\Contracts\AccessTokenInterface;
 use Vinelab\Auth\Exceptions\InvalidProfileException;
 use Vinelab\Auth\Exceptions\AuthenticationException;
 use Vinelab\Auth\Exceptions\InvalidFacebookCodeException;
+use Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface;
 
 use Illuminate\Routing\Redirector;
 use Illuminate\Config\Repository as Config;
@@ -122,6 +122,9 @@ class Facebook extends Provider {
      * Returns the authentication
      * URL to which we should be
      * redirecting to.
+     *
+     * @todo  use the built-in settings() method
+     *        for retrieval.
      *
      * @return string
      */

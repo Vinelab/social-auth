@@ -6,6 +6,7 @@ use Vinelab\Auth\Auth;
 use Vinelab\Auth\Cache\Store;
 use Vinelab\Auth\Social\Profile;
 use Vinelab\Auth\Social\ProvidersManager;
+use Vinelab\Auth\Social\Providers\Twitter\OAuthConsumer;
 
 class AuthServiceProvider extends ServiceProvider {
 
@@ -40,13 +41,39 @@ class AuthServiceProvider extends ServiceProvider {
 			return new Store($app->make('cache'));
 		});
 
+		$this->app->bind(
+			'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface',
+			'Vinelab\Auth\Social\Providers\Twitter\OAuthSignature'
+		);
+
+		$this->app->bind(
+			'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface',
+			'Vinelab\Auth\Social\Providers\Twitter\OAuthConsumer'
+		);
+
+		$this->app->bind(
+			'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface',
+			'Vinelab\Auth\Social\Providers\Twitter\OAuthToken'
+		);
+
+		$this->app->bind(
+			'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface',
+			'Vinelab\Auth\Social\Providers\Twitter\OAuth'
+		);
+
 		$this->app->singleton('Vinelab\Auth\Contracts\ProvidersManagerInterface', function($app){
-			return new ProvidersManager($app->make('config'),
-										$app->make('redirect'),
-										$app->make('vinelab.httpclient'),
-										$app->make('Vinelab\Auth\Contracts\StoreInterface'),
-										$app->make('Vinelab\Auth\Contracts\ProfileInterface'),
-										$app->make('Vinelab\Auth\Contracts\AccessTokenInterface'));
+			return new ProvidersManager(
+				$app->make('config'),
+				$app->make('redirect'),
+				$app->make('vinelab.httpclient'),
+				$app->make('Vinelab\Auth\Contracts\StoreInterface'),
+				$app->make('Vinelab\Auth\Contracts\ProfileInterface'),
+				$app->make('Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface'),
+				$app->make('Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface'),
+				$app->make('Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface'),
+				$app->make('Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface'),
+				$app->make('Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface')
+			);
 		});
 
 		$this->app->bind('Vinelab\Auth\Contracts\ProfileInterface', function($app){
@@ -54,8 +81,8 @@ class AuthServiceProvider extends ServiceProvider {
 		});
 
 		$this->app->bind(
-			'Vinelab\Auth\Contracts\AccessTokenInterface',
-			'Vinelab\Auth\Social\AccessToken');
+			'Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface',
+			'Vinelab\Auth\Social\Providers\Facebook\AccessToken');
 
 		// Expose the Facade
 		$this->app->bind('vinelab.socialauth', function($app){

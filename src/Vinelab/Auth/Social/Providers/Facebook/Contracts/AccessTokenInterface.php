@@ -1,4 +1,4 @@
-<?php namespace Vinelab\Auth\Contracts;
+<?php namespace Vinelab\Auth\Social\Providers\Facebook\Contracts;
 
 use Vinelab\Http\Response;
 

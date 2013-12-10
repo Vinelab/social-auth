@@ -22,7 +22,8 @@ class FacebookTest extends TestCase {
         $this->http         = M::mock('Vinelab\Http\Client');
         $this->store        = M::mock('Vinelab\Auth\Contracts\StoreInterface');
         $this->profile      = M::mock('Vinelab\Auth\Contracts\ProfileInterface');
-        $this->access_token = M::mock('Vinelab\Auth\Contracts\AccessTokenInterface');
+        $this->access_token = M::mock(
+            'Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface');
         $this->response     = M::mock('Vinelab\Http\Response');
 
          $this->fb_settings = [
@@ -95,7 +96,7 @@ class FacebookTest extends TestCase {
         $fb = $this->fb();
 
         $token = $fb->requestAccessToken($code);
-        $this->assertInstanceOf('Vinelab\Auth\Contracts\AccessTokenInterface', $token);
+        $this->assertInstanceOf('Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface', $token);
     }
 
     /**
@@ -123,7 +124,7 @@ class FacebookTest extends TestCase {
         $fb = $this->fb();
 
         $token = $fb->requestAccessToken($code);
-        $this->assertInstanceOf('Vinelab\Auth\Contracts\AccessTokenInterface', $token);
+        $this->assertInstanceOf('Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface', $token);
     }
 
     /**
@@ -151,7 +152,7 @@ class FacebookTest extends TestCase {
         $fb = $this->fb();
 
         $token = $fb->requestAccessToken($code);
-        $this->assertInstanceOf('Vinelab\Auth\Contracts\AccessTokenInterface', $token);
+        $this->assertInstanceOf('Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface', $token);
     }
 
     public function test_parsing_profile()

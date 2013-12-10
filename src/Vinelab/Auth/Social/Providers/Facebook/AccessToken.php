@@ -1,8 +1,8 @@
-<?php namespace Vinelab\Auth\Social;
+<?php namespace Vinelab\Auth\Social\Providers\Facebook;
 
 use Vinelab\Http\Response;
 use Vinelab\Auth\Exceptions\AccessTokenException;
-use Vinelab\Auth\Contracts\AccessTokenInterface;
+use Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface;
 
 class AccessToken implements AccessTokenInterface {
 

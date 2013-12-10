@@ -1,9 +1,9 @@
-<?php namespace Vinelab\Auth\Tests\Social;
+<?php namespace Vinelab\Auth\Tests\Social\Providers\Facebook;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Mockery as M;
 
-use  Vinelab\Auth\Social\AccessToken;
+use  Vinelab\Auth\Social\Providers\Facebook\AccessToken;
 
 class AccessTokenTest extends TestCase {
 
@@ -29,7 +29,7 @@ class AccessTokenTest extends TestCase {
         parse_str($this->at_sample, $sample);
 
         $access_token = $this->access_token->make($this->response);
-        $this->assertInstanceOf('Vinelab\Auth\Social\AccessToken', $access_token);
+        $this->assertInstanceOf('Vinelab\Auth\Social\Providers\Facebook\AccessToken', $access_token);
         $this->assertEquals($sample['access_token'], $access_token->token());
         $this->assertEquals($sample['expires'], $access_token->expiry());
     }
