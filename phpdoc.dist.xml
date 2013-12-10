@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title><![CDATA[Vinelab - Social Authentication]]></title>
+  <parser>
+    <target>public/docs</target>
+  </parser>
+  <transformations>
+    <template name="responsive" />
+  </transformations>
+  <transformer>
+    <target>public/docs</target>
+  </transformer>
+  <files>
+    <directory>src</directory>
+  </files>
+</phpdoc>

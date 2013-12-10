@@ -1,0 +1,2923 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="Vinelab - Social Authentication" version="2.2.0&#10;">
+  <partials/>
+  <file path="Vinelab/Auth/Social/Providers/Twitter/OAuth.php" generated-path="Vinelab.Auth.Social.Providers.Twitter.OAuth.html" hash="a87edfa364869440f59e7009f89e85da" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Social\Providers\Twitter" line="8" package="Default">
+      <extends/>
+      <implements>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface</implements>
+      <name>OAuth</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuth</full_name>
+      <docblock line="8">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="15" namespace="Vinelab\Auth\Social\Providers\Twitter" package="Default">
+        <name>$signature</name>
+        <default></default>
+        <docblock line="15">
+          <description>The request signature interface.</description>
+          <long-description></long-description>
+          <tag name="var" line="15" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface" variable="">
+            <type link="OAuthSignatureInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="24" package="Default">
+        <name>__construct</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuth::__construct()</full_name>
+        <docblock line="24">
+          <description>Create a new OAuth instance.</description>
+          <long-description></long-description>
+          <tag name="param" line="24" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface" variable="$token">
+            <type link="OAuthTokenInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+          </tag>
+          <tag name="param" line="24" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface" variable="$signature">
+            <type link="OAuthSignatureInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface</type>
+          </tag>
+          <tag name="param" line="24" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Http\Client" variable="$http">
+            <type link="Client.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Http\Client</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$signature</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$http</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Http\Client</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="41" package="Default">
+        <name>getRequestToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuth::getRequestToken()</full_name>
+        <docblock line="41">
+          <description>Requests Twitter for a request token.</description>
+          <long-description></long-description>
+          <tag name="param" line="41" description="" type="array" variable="$settings">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="41" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface" variable="$consumer">
+            <type link="OAuthConsumerInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+          </tag>
+          <tag name="param" line="41" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface" variable="$token">
+            <type link="OAuthTokenInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+          </tag>
+          <tag name="return" line="41" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface">
+            <type link="OAuthTokenInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$settings</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$consumer</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="64" package="Default">
+        <name>getAccessToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuth::getAccessToken()</full_name>
+        <docblock line="64">
+          <description>Transforms a verifier (request) token
+into an access token.</description>
+          <long-description></long-description>
+          <tag name="param" line="64" description="" type="array" variable="$settings">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="64" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface" variable="$consumer">
+            <type link="OAuthConsumerInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+          </tag>
+          <tag name="param" line="64" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface" variable="$token">
+            <type link="OAuthTokenInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+          </tag>
+          <tag name="return" line="64" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface">
+            <type link="OAuthTokenInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$settings</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$consumer</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="83" package="Default">
+        <name>headers</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuth::headers()</full_name>
+        <docblock line="83">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$settings</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$httpverb</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$consumer</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$options</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="129" package="Default">
+        <name>normalizeHeaders</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuth::normalizeHeaders()</full_name>
+        <docblock line="129">
+          <description>Transforms a parameters array into
+a series of strings compatible to be
+embedded in a request header.</description>
+          <long-description></long-description>
+          <tag name="param" line="129" description="" type="array" variable="$params">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="129" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$params</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="146" package="Default">
+        <name>generateNonce</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuth::generateNonce()</full_name>
+        <docblock line="146">
+          <description>Generates a request nonce.</description>
+          <long-description></long-description>
+          <tag name="return" line="146" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="156" package="Default">
+        <name>generateTimestamp</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuth::generateTimestamp()</full_name>
+        <docblock line="156">
+          <description>Generates a request timestamp.</description>
+          <long-description></long-description>
+          <tag name="return" line="156" description="" type="int">
+            <type>int</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="8" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Providers\Twitter\OAuth</error>
+      <error line="83" code="PPC:ERR-50015">Argument $settings is missing from the Docblock of headers()</error>
+      <error line="83" code="PPC:ERR-50015">Argument $httpverb is missing from the Docblock of headers()</error>
+      <error line="83" code="PPC:ERR-50015">Argument $url is missing from the Docblock of headers()</error>
+      <error line="83" code="PPC:ERR-50015">Argument $options is missing from the Docblock of headers()</error>
+      <error line="83" code="PPC:ERR-50008">No summary for method headers()</error>
+    </parse_markers>
+    <source>eJztWEtv4zYQvudXsIEByoGdtIdeknXaIIdugaK7aNxe1oFAy7RFWKJUkoqbDfLfO3zJ1Mveh/dSNJdE5Mzw4/D7hsO8+alMS8RJTmVJEor+YpxmZLm4q1S6eCgSRrLFe1E8sRUVcjHfMaWouDk7q+Te9q1S5eI+Y5QrRCTSn/brpmF2MOTivuBKkETJxTttOC+2lP/KYWYNsL4iEHzKKqfiFLEe2IYTVQkaBDtLMiIlMvOI5WVGc9i5RC3X2gO9nJ0h+Lm6uDC/0QWapxQJ+ndFpULSL4GY97h0dt785yciToXfxbwyv0tRKJooukKjGsZNB+29oERRRBCnO79tLhXhPUhLIkh+CgKYgCOlx04RvJuIYMsDC4QsH6Xw0cxdtcxYgtYVTxQrOIrjBIinRJWoqG8/di8TG+PAz3G4x2PsBWmBj43HS+03UimT01uDyAzMHLybton2Rt5Ef3Qs9vydNVikTV47XPrDsl4id05oXQhglheDATFAKkSEIM+wBlWK8Y1sT5+mWKBR4oZOEr+XBHVkQSFX/BSRD1JzQ5XLu3GK6hQeZ1LNyAOJ+owovenosLMSmSGTQ/kBE3CNSclimMGP6DKcc9SJTSgwYPgx4GhR6gxICPcBFyZMQrJsSZItRrPbMI4ft2s8ujJogqSU6JMwKrGqsANBIhF+/+5hjicG/CTIjdd9DWW8R3d1hZYVy1ae/vsVvR40bI3HYNWRsVvajriPEKyjVKjw6W1OtrTJgL26p7dlIVXklxyPh6Q7F4RLkGsuQbBPVLA1A/1G3g81qA13WYEIRyRJKFyW/+v6G+n6zuT3PyhrS5wBVZuTC0Xt6Whl4VjvBwfqQWd7WJ8E3JnT+XNJrxEpS8g20fZX/0x3u91Uk38KWClPihVd4W6G6hC/Ub5R6TXCsCtoCsAl0mKLjd5jUIx4jtw2xuM6zDetOp9VdpIih9eBikz1gXV82YE/LWo8/pSi06Dnp9acNs27+z7ITNOmwNkvj5jplB20+DqBfGkPGFL0saOhPSma/PWXm4MWb+kzNhNaD350egvDkz4/XkAzj8MJoyNzYBvKqYAHwO/aJhr3+td9X5xTlRYrHPjXc0AJMzkQQzF4kiqSl3gYw9zbDMSAY5eQvGAnEOP8h8vvz3s1BkpIUppsXRdq+2G4uJbw2lmBwmtDtkYR+g4xGfMqyyJfYSCdgXpfGoj8UfkSZVygys1Q4L2vTK8NVHBYG4o8E+CiSL0K+qhgLtDY+ER+eFD6sDHUevn0oK0tHOL2ScLVE/WVm1p7viS5uCGIaisLoQKkGCpkAufeQsqh3JKMfeyi3EOqbd76ItGzoCtPLcVofRaCfTQV/to9bHW9roE17f+UoKA7YKKyZT24rCqYiomewo8h0YKDHWqkTDWlSm/K9kG6c/KWBEFgRiUq1voW0YvZyqzYMqOWqd6W5kuqOQsBggeV3cqRzstW9Hb3Yhc82IB0s++utHbZKip9qWAcHAokgJIk9S76/0gjUIQRvRkaFJYOdjmz1pcIz871aQiyq2/mCJDnLvB4rG3OJ7hXam6rwjpAYCDjBDevo/roLtAvrgzJIMOmdNoEe7OeDA52cI3a2kqbC5OvfoxylohCV8hI7ydXMXAICulgs96HtC6wHTq4hYB6R/rNThXuR2yBemyv/wJ2pB6E</source>
+  </file>
+  <file path="config/social.php" generated-path="config.social.html" hash="5ec1978c5b897bb01ce6f690bad1aa9a" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+    </parse_markers>
+    <source>eJyFVNty2jAQfQ5foT75JcXcDCa9DaEJIUkTBshk0k6GkeW1rWBbjiTjkq+vZBsw5FK/yTq7e3T27H79kQRJrWaaaPxrcjudD27mn9ApZJgD4hCxFSAcrxHzkAwAERZ71E85lpTFKMEcRyCBC5SxNHSRwwEvkZfGRN/jkMp1rcZBpjxGf2q1I8PDBBzGlgb69j3/c6QKD5IEDauJ9X8DJ3SxhLWB8k/BjZZtte1eo2u32i2r1TGOc5wAoiqUsBzXdTwbk67VdHtWr9XtNizHdogD2Op3Ola/WQZycCkHIhcppzkfI5AyOTHNkBEcBkzIE7vRaJg4lYEpGKE4NDf8TYUIHUyWZa4EeESFUNyFUZCACNPwOBXAF9hhqVxEUJwcymXg4nVxCpgSkGVxcaKxEhOEFMVRE9F6FKcMHEElFBWVbCOOkwDNQEoa+wJ9Vl2TKhzFTCIS4NgH1TIqkJCp56E0DkEIdF4+AKWJiyUI3VXK0WAy3oqe8nCj5lZSrYxQ0vi6Zn2jQp2wqBRAiwSxpAXhIkc1MMuyvTDTVXIy32S5umUSyZYQH9T/uHoZjwlRj1vk8ZuOcObREIrmVnKZERgK8KhRhsyolmznRkMZXKSRUntnvbKffc+dtki7ceFSdjleXl40yaCstQ2qelEH+T5Lm+3ZX7flvNwHNHheXgf04XrUvj0fJZ3ZivhOaF3FcUtsZKw+pFq+adnKyMr2n6eds2UDe0RE0+lTaE/wWX8K09thj3dXyRPBD016N78fsjcybvnl05Q9zS4615OEj37SwBrOsdt/6YnB79P56spKbqy7s8nkfOT5m0eWjt/rz3+mptT3YFr0yE/GVecWPg3yHVKxb+nZeZHlHcuu1PpRltuzrObVrDfftfSeqxSgXhLNDb318+Iw9IOowohvab4xYG6+N4z6anKosQHvbqACZpy+VLE7sL6B7XZ7TtUm2SeRI/duPpiWAq1XjzBVb7ISqvSm3nqhjORqcjgUe5wJYWkszdeoMrzYiL76eTDkQm/CQBkC5fsS4STJB7X2+OUfJWQItw==</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Profile.php" generated-path="Vinelab.Auth.Social.Profile.html" hash="a68f4c61161a3dd4a11f235904e2c03b" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Social" line="13" package="Default">
+      <extends/>
+      <implements>\Vinelab\Auth\Contracts\ProfileInterface</implements>
+      <name>Profile</name>
+      <full_name>\Vinelab\Auth\Social\Profile</full_name>
+      <docblock line="13">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="20" namespace="Vinelab\Auth\Social" package="Default">
+        <name>$config</name>
+        <default></default>
+        <docblock line="20">
+          <description>The configuration instance</description>
+          <long-description></long-description>
+          <tag name="var" line="20" description="" type="\Vinelab\Auth\Social\Illuminate\Config\Repository" variable="">
+            <type link="Repository.html">\Vinelab\Auth\Social\Illuminate\Config\Repository</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="27" namespace="Vinelab\Auth\Social" package="Default">
+        <name>$info</name>
+        <default></default>
+        <docblock line="27">
+          <description>The profile info;</description>
+          <long-description></long-description>
+          <tag name="var" line="27" description="" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="34" namespace="Vinelab\Auth\Social" package="Default">
+        <name>$provider</name>
+        <default></default>
+        <docblock line="34">
+          <description>The social network service.</description>
+          <long-description></long-description>
+          <tag name="var" line="34" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="36" package="Default">
+        <name>__construct</name>
+        <full_name>\Vinelab\Auth\Social\Profile::__construct()</full_name>
+        <docblock line="36">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$config</name>
+          <default></default>
+          <type>\Illuminate\Config\Repository</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="50" package="Default">
+        <name>instantiate</name>
+        <full_name>\Vinelab\Auth\Social\Profile::instantiate()</full_name>
+        <docblock line="50">
+          <description>Instantiates a profile by parsing
+it and mapping it to commonly used
+values across the different providers.</description>
+          <long-description></long-description>
+          <tag name="param" line="50" description="" type="object" variable="$profile">
+            <type>object</type>
+          </tag>
+          <tag name="param" line="50" description="" type="string" variable="$provider">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="50" description="" type="\Vinelab\Auth\Social\Vinelab\Auth\Social\Profile">
+            <type link="Profile.html">\Vinelab\Auth\Social\Vinelab\Auth\Social\Profile</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$profile</name>
+          <default></default>
+          <type>object</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$provider</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="73" package="Default">
+        <name>info</name>
+        <full_name>\Vinelab\Auth\Social\Profile::info()</full_name>
+        <docblock line="73">
+          <description>Returns the profile.</description>
+          <long-description></long-description>
+          <tag name="return" line="73" description="" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="83" package="Default">
+        <name>provider</name>
+        <full_name>\Vinelab\Auth\Social\Profile::provider()</full_name>
+        <docblock line="83">
+          <description>Returns the provider.</description>
+          <long-description></long-description>
+          <tag name="return" line="83" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="94" package="Default">
+        <name>parseTwt</name>
+        <full_name>\Vinelab\Auth\Social\Profile::parseTwt()</full_name>
+        <docblock line="94">
+          <description>Parses a Twitter profile</description>
+          <long-description></long-description>
+          <tag name="param" line="94" description="" type="object" variable="$profile">
+            <type>object</type>
+          </tag>
+          <tag name="return" line="94" description="" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$profile</name>
+          <default></default>
+          <type>object</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="109" package="Default">
+        <name>parseFb</name>
+        <full_name>\Vinelab\Auth\Social\Profile::parseFb()</full_name>
+        <docblock line="109">
+          <description>Parse a Facebook profile.</description>
+          <long-description></long-description>
+          <tag name="param" line="109" description="" type="object" variable="$raw_profile">
+            <type>object</type>
+          </tag>
+          <tag name="return" line="109" description="" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$raw_profile</name>
+          <default></default>
+          <type>object</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="126" package="Default">
+        <name>__get</name>
+        <full_name>\Vinelab\Auth\Social\Profile::__get()</full_name>
+        <docblock line="126">
+          <description>Implement the __get Magic method
+to return profile attributes directly.</description>
+          <long-description></long-description>
+          <tag name="param" line="126" description="" type="string" variable="$attr">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="126" description="" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$attr</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="139" package="Default">
+        <name>__set</name>
+        <full_name>\Vinelab\Auth\Social\Profile::__set()</full_name>
+        <docblock line="139">
+          <description>Implement the __set Magic method
+to open the ability to assign
+values to the profile.</description>
+          <long-description></long-description>
+          <tag name="param" line="139" description="" type="string" variable="$attr">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="139" description="" type="mixed" variable="$val">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$attr</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$val</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="152" package="Default">
+        <name>__isset</name>
+        <full_name>\Vinelab\Auth\Social\Profile::__isset()</full_name>
+        <docblock line="152">
+          <description>Implement the __isset Magic method
+to bypass issues when checking for
+empty attributes of this class.</description>
+          <long-description></long-description>
+          <tag name="param" line="152" description="" type="string" variable="$attr">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="152" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$attr</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="13" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Profile</error>
+      <error line="36" code="PPC:ERR-50008">No summary for method __construct()</error>
+    </parse_markers>
+    <source>eJylllFv0zAQgN/7K+5h0tppa98pG0MgxB6QEEy8MFRdXKc1dezIdloqtP/O2YmTJk3WAnlpbZ/vzt/d+fz6Tb7OQWHGbY6MwzehuMTk6W3h1k9fNRMo56PR7OpqBFdwjzSrDcDbhC/hI0rcCXiNNJiuw+B+W26fMp3d0Y7ZaFRYDu/R8UeR8Xk5bNl4p5UzyJx9+mx0KiR/UI6blHyppB+kLDKhSIWXTcXq6QvPtRVOmz2ghXKShJlEa6HSAiLLJc+4cvVUrRh+j0ZAXziV/67gcc2BBUWFQSe0AqGsQ8V4JREF77doXnSpEpyF39xox5kjWBcsutljOY8+q1TP+wyiMTioudzVp9eG+IHibqfNBiw3W8H4tM+CdUao1ZAJ+rsVS24qM3mRSMEgLRQLrBYLOh1pKJgbl0DieSdB/nepl74Ltxb25q5chNsGi198PjrEQwiCE0TaAtackj3kaGzjMAgHqJaQYZ7TrB86TQHNMq3kHiiNllFyi7LwypjRlC2OKC1FmnJDmQLxmPYIEZnDDHTyk4AEHN6PzmqJsIFVLxvuCqP6SivmfJt7h65oIIyj6evGzADiuOwhd8LnP7sTjq1h3FHTVuU/hlSDl75sEq03l69aiwf2fBZ6W5V1Cg//kNT+TuatfYnhuDnwpjHkyC8q07+y87hzJwzF4XNjsgpK0DOUfl+CTJkllf6jzKj09FToURhTPe4G69CL8mxn+hJiNuRMXzF3vIkqTnjUZE6/V589f1+aj2XcoF0anQoZLKCzIR7Hu+P+bEYnyPSWQ6E449YidYlUcLm0tUyhLG803NxRebnCHmQOKbFOsA3gFh2aprTqLeVCVVvlVPVnITJc8UVh5LzLdBzON6n3vAiVmH6oim4w9zpUDe4W/0fWV+yBlqOrJV7Aty1j85cA2Zxy0aXjVlm22sDN3YrCcVk2q2m8aaa5YOR6IHk5uW5vr83QzW7842UyP6rsc2k/xIdCKK3FgpyBT7giNhmn107dOKihVJojBXRUZ0nhe9NSGAqB3A+FKPYGv6Ubm0z8qttTf2yCU+OweaBchQ0p3Vwj34P0jwm8geNZeAWqkPJcInaYiM65ClKYCCnc3s/RK0ysVKff0vxLt2i7g7YolUsBElyQthOkbCR1HaQHuuMhjNsgeC6MQHoIR7LP/RuUZPyZd2uCw9acbfypUl2fiWc5oTpIH52C9wvCE/ZEDvUnEZWM5KhOwKnS5F8SKfJ5/gNiqoS0</source>
+  </file>
+  <file path="Vinelab/Auth/Contracts/ProvidersManagerInterface.php" generated-path="Vinelab.Auth.Contracts.ProvidersManagerInterface.html" hash="8007d99ef632b2de76e1da725bed793a" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <interface namespace="Vinelab\Auth\Contracts" line="6" package="Default">
+      <name>ProvidersManagerInterface</name>
+      <full_name>\Vinelab\Auth\Contracts\ProvidersManagerInterface</full_name>
+      <docblock line="6">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Contracts" line="8" package="Default">
+        <name>instantiate</name>
+        <full_name>\Vinelab\Auth\Contracts\ProvidersManagerInterface::instantiate()</full_name>
+        <docblock line="8">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$provider</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="6" code="PPC:ERR-50009">No summary for interface \Vinelab\Auth\Contracts\ProvidersManagerInterface</error>
+      <error line="8" code="PPC:ERR-50015">Argument $provider is missing from the Docblock of instantiate()</error>
+      <error line="8" code="PPC:ERR-50008">No summary for method instantiate()</error>
+    </parse_markers>
+    <source>eJw9TjsOwjAM3XMKDwxwhiIh1IUOSKhDpyxu6raWUidKHBbE3Wn5ve3pfY+nOEcQXChHdAQdC3ns7bnobOsgmtBprowpmaDxviwsqGTbUJRlsi0NnMhpSNXb8stfVKOtPZMoYIaNfthaxaKUxm3tlsKdB0r5ioITpeavPIyBFbH0nh2MRZxyEGDJiqK8Xtjv4jd9qMzzBeq+SPE=</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Facebook.php" generated-path="Vinelab.Auth.Social.Providers.Facebook.html" hash="9783cc9bf97982f59ec237472df961f1" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Social\Providers" line="16" package="Default">
+      <extends>\Vinelab\Auth\Social\Provider</extends>
+      <name>Facebook</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Facebook</full_name>
+      <docblock line="16">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="18" namespace="Vinelab\Auth\Social\Providers" package="Default">
+        <name>$name</name>
+        <default>'facebook'</default>
+        <docblock line="18">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="20" namespace="Vinelab\Auth\Social\Providers" package="Default">
+        <name>$mandatory</name>
+        <default>array('api_key', 'secret', 'redirect_uri', 'permissions', 'api_url', 'authentication_url', 'token_url', 'profile_uri')</default>
+        <docblock line="20">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="36" namespace="Vinelab\Auth\Social\Providers" package="Default">
+        <name>$redirect</name>
+        <default></default>
+        <docblock line="36">
+          <description>The redirector instance.</description>
+          <long-description></long-description>
+          <tag name="var" line="36" description="" type="\Vinelab\Auth\Social\Providers\Illuminate\Routing\Redirector" variable="">
+            <type link="Redirector.html">\Vinelab\Auth\Social\Providers\Illuminate\Routing\Redirector</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="44" namespace="Vinelab\Auth\Social\Providers" package="Default">
+        <name>$prefix</name>
+        <default>'social:auth:state:'</default>
+        <docblock line="44">
+          <description>The prefix to use when storing
+keys in the store.</description>
+          <long-description></long-description>
+          <tag name="var" line="44" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="55" package="Default">
+        <name>__construct</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook::__construct()</full_name>
+        <docblock line="55">
+          <description>Create a new Facebook instance.</description>
+          <long-description></long-description>
+          <tag name="param" line="55" description="" type="\Vinelab\Auth\Social\Providers\Illuminate\Config\Repository" variable="$config">
+            <type link="Repository.html">\Vinelab\Auth\Social\Providers\Illuminate\Config\Repository</type>
+          </tag>
+          <tag name="param" line="55" description="" type="\Vinelab\Auth\Social\Providers\Illuminate\Routing\Redirector" variable="$redirect">
+            <type link="Redirector.html">\Vinelab\Auth\Social\Providers\Illuminate\Routing\Redirector</type>
+          </tag>
+          <tag name="param" line="55" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Http\Client" variable="$http">
+            <type link="Client.html">\Vinelab\Auth\Social\Providers\Vinelab\Http\Client</type>
+          </tag>
+          <tag name="param" line="55" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Auth\Contracts\StoreInterface" variable="$store">
+            <type link="StoreInterface.html">\Vinelab\Auth\Social\Providers\Vinelab\Auth\Contracts\StoreInterface</type>
+          </tag>
+          <tag name="param" line="55" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Auth\Contracts\ProfileInterface" variable="$profile">
+            <type link="ProfileInterface.html">\Vinelab\Auth\Social\Providers\Vinelab\Auth\Contracts\ProfileInterface</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$config</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Illuminate\Config\Repository</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$redirect</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Illuminate\Routing\Redirector</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$http</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Vinelab\Http\Client</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$store</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Vinelab\Auth\Contracts\StoreInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$profile</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Vinelab\Auth\Contracts\ProfileInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$access_token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="78" package="Default">
+        <name>authenticate</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook::authenticate()</full_name>
+        <docblock line="78">
+          <description>Redirects to the corresponding
+authentication URL</description>
+          <long-description></long-description>
+          <tag name="return" line="78" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="94" package="Default">
+        <name>callback</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook::callback()</full_name>
+        <docblock line="94">
+          <description>Handles the authentication callback
+returned from the provider.</description>
+          <long-description></long-description>
+          <tag name="param" line="94" description="" type="mixed" variable="$input">
+            <type>mixed</type>
+          </tag>
+          <tag name="return" line="94" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Auth\Contracts\ProfileInterface">
+            <type link="ProfileInterface.html">\Vinelab\Auth\Social\Providers\Vinelab\Auth\Contracts\ProfileInterface</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$input</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="121" package="Default">
+        <name>authenticateWithToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook::authenticateWithToken()</full_name>
+        <docblock line="121">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$secret</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="136" package="Default">
+        <name>authURL</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook::authURL()</full_name>
+        <docblock line="136">
+          <description>Returns the authentication
+URL to which we should be
+redirecting to.</description>
+          <long-description></long-description>
+          <tag name="todo" line="136" description="use the built-in settings() method&#10;       for retrieval."/>
+          <tag name="return" line="136" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$state</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="157" package="Default">
+        <name>requestAccessToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook::requestAccessToken()</full_name>
+        <docblock line="157">
+          <description>Requests an access token from Facebook
+according to the returned code.</description>
+          <long-description></long-description>
+          <tag name="param" line="157" description="&lt;p&gt;The code returned from Facebook after authentication&lt;/p&gt;" type="string" variable="$code">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="157" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Contracts\AccessTokenInterface">
+            <type link="AccessTokenInterface.html">\Vinelab\Auth\Social\Providers\Vinelab\Contracts\AccessTokenInterface</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$code</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="186" package="Default">
+        <name>requestProfile</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook::requestProfile()</full_name>
+        <docblock line="186">
+          <description>Sends a request for a Facebook profile
+using the acquired access token.</description>
+          <long-description></long-description>
+          <tag name="param" line="186" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Contracts\AccessTokenInterface" variable="$access_token">
+            <type link="AccessTokenInterface.html">\Vinelab\Auth\Social\Providers\Vinelab\Contracts\AccessTokenInterface</type>
+          </tag>
+          <tag name="return" line="186" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Auth\Social\Profile">
+            <type link="Profile.html">\Vinelab\Auth\Social\Providers\Vinelab\Auth\Social\Profile</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$access_token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Vinelab\Contracts\AccessTokenInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="204" package="Default">
+        <name>parseProfileResponse</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook::parseProfileResponse()</full_name>
+        <docblock line="204">
+          <description>Parses a response coming from Facebook
+containing a profile.</description>
+          <long-description></long-description>
+          <tag name="param" line="204" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Http\Response" variable="$response">
+            <type link="Response.html">\Vinelab\Auth\Social\Providers\Vinelab\Http\Response</type>
+          </tag>
+          <tag name="param" line="204" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Contracts\AccessTokenInterface" variable="$access_token">
+            <type link="AccessTokenInterface.html">\Vinelab\Auth\Social\Providers\Vinelab\Contracts\AccessTokenInterface</type>
+          </tag>
+          <tag name="return" line="204" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Auth\Social\Profile">
+            <type link="Profile.html">\Vinelab\Auth\Social\Providers\Vinelab\Auth\Social\Profile</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Vinelab\Http\Response</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$access_token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Vinelab\Contracts\AccessTokenInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Vinelab\Auth\Social\Providers" line="232" package="Default">
+        <name>makeState</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook::makeState()</full_name>
+        <docblock line="232">
+          <description>Generates an returns a random string
+to be used as authentication state.</description>
+          <long-description>Also sets the value of the $secret.</long-description>
+          <tag name="return" line="232" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <markers>
+      <todo line="136">use the built-in settings() method
+       for retrieval.</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="16" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Providers\Facebook</error>
+      <error line="18" code="PPC:ERR-50007">No summary for property $name</error>
+      <error line="20" code="PPC:ERR-50007">No summary for property $mandatory</error>
+      <error line="121" code="PPC:ERR-50015">Argument $token is missing from the Docblock of authenticateWithToken()</error>
+      <error line="121" code="PPC:ERR-50015">Argument $secret is missing from the Docblock of authenticateWithToken()</error>
+      <error line="121" code="PPC:ERR-50008">No summary for method authenticateWithToken()</error>
+      <error line="136" code="PPC:ERR-50015">Argument $state is missing from the Docblock of authURL()</error>
+    </parse_markers>
+    <source>eJzNWEtvHDcMvvtXqMACsxvYyakXu+s0MJomQA+BnbaHrLHQzmiziucVSeMHgvz3kpQ0I83LdpBD95B4JJKi+PhI6rfX9aFmJS+Ernkq2D+yFDnfbd405rC5qlLJ880HVd3KTCh9dnTU6I7mnTH15hIYq1KLs2hrjP1syHyRS1EaxjXDT/s1IuiiKo3iqdGbK1Mp8b40Qu1B21lSOHYv81niP+5TURsJ6m/el7c8l5ljajfmmfAbNJYpx+8nMrmT3oJKu6q6uaiy2eP6Pth4xuCqb9JUaP2xuhFlcF2S9T7Pm0KW3IjNZdUYWX4Gj2VSiRQsedYnAZF7iRR1pSUQPKBr7CLIS3OuNfPnM3FvRJlp5lVj346OGPxqVRkQLzK2wLhia5bsHU9yNiApeJlxOmrNPtEm/hJey+2NeEiOuyUtUiVMuKLcTbaNkuF6LVQhtUZzh8sos1F5tBR5sL9r0KL9xdqGCJ1Jq9fuUq9evLBUL9jHg2CqNTOTpTa8TMVLt+/Jfr/lat5DjvJV32pe+PjRtRJ7ec9MxdC/d3BDpkEYiPZUYFoNajG4PW2Nq6ZNwDPQwZ0C7tUUo6dozFO4qRGnyVCxCyVgh3FWirsuiCZNU3PFi/nYXKS0NM0ytGdnuR7XGCwtDvAxQTeLS2xBNn0aax+n0LC0Etu92eUyZfumTDFS2XYLlwf/NKlZWst4c3ShOvUbM8fjXB1CW8M8zjFqlMfZJg3yOOsYELIFp9UtZfOKZHxrJYFr4Eanp6E9nSFXLobxtzAHqU/O7YZbW3uLn/XJvFE9WZetPUK0Y6v82tp1QERmC4joe0DlbNRSue8BXWgMpAu/LfH3Qer6gNEIKQgZaaUU1f0swJQYS9nfl3/1cxrgu1Elu61kNhvcgSSx7HtsQQiDqtsLFfxGXBmiHDqMbAXGacCrxHfc7giD2KBDJqdfz4sn56ZaeuuBZnAxJ2y1mrLYO6hqudBkrJ5dUp7nO57eeFJ7KADqXlUFMdSuoE5gIivkPZDDHWUJF+tb94kwM+sAr+PSHtF3gdyzJdRXYdz+p0QoVankerVqaTpq/JmDqu4I+Sd6pr4k9pIlpwn8G61vM6FTJYkDTuuC+/tRpBz7hcX6pdBlAQMDyBNFbR76Gz+udyJtP8dI0jNUogga1cnv/ASlrKhZreJMOXD9M/WwuSrua8ikbEKPRR+SfPp9bYQ2AaT3nTaTucTqQn4ZF4AoZeeQ519pDu5c4gTosC0o6Fg2ed7PinkdhuhroestZH14yjSmXJL8MUzxFIBMiNB3B5ke2B10doeqyTO2azsRD2kAfEA4wBdTZRWjnhHP2DUyNyfQJHqoXK5YIcyh8uDtL76HCIbLKykg6AZCnVnGeskR4wfg2sd96MO76PA6fRpr4a/DQkCgqaPpAn9JSr3MVmYJfq7PRyS7GeQ6bjzisWOUM6Los+u0qkXiP8fYw/llwE1JGXLTSkt0PZIVaDnA09eIp9hibNG12RYCVAHqWAPNhB0FsmYcPEThy2ymUr3yjXzbBKTQG2Q2viiK2vKGSTtV0WxwYD+VCZpg6I+4MrYjA99DCZvIgH4RnJ+RZ6NxDH9QrbFiiDBKKndYTqSPI+f8a4CnD9HS6TUMaIz80XDqxlgIppjH+p7YYmm0G6fIc3KE2OM8eXaihCq42X9Uhtsb5cZC0X0jNy6NUAKGFdyEeZV80dBkRJTXs1k2hfDLoNk/Of+MLYDz4TTWX9HLCvdBSBDLuxSIJ0RAbEo4rAvp1wZLbZSpU1n3tCSJ6/Nst9m9VT06v/bK4/MHtx/IA//+g83lEHODZ50+5oZZkoRK2XNil9N/y9VTYgXkauFM4N9RZ6LlmM10MkHwfECxNnqsTIDTAiNkFLFhhjVclrjPfWA9FjHRy6/zhv34P8XYqHlbrVuVj3/g2cCP13a6t3JOzhExoikUawO40DzU4FfHsmK/rNcsqXZfAPeSJ1eI4cu0J+219G7KcKednNPgNFmJFrQdPBg4hrOj56mztIIg/OGuNLwxmt7cagGW5J9x+nYLVB7HC1yryNxTRZtn08nlxdgnRiPxiaB9SvJU+EI9mUh/ilIoYKPeR7n2G9IKhntIpKijxXZnJ7B3zvDNvDfzU4vmk4q9yXWFTbVt5cGcDTQOe/pwE8Zzmuj2QbaN++BFZHZEaaeZIvt12ZTyq8yWhUxBoCyA95gZ1QRvHN//A3ib0B4=</source>
+  </file>
+  <file path="Vinelab/Auth/Contracts/StoreInterface.php" generated-path="Vinelab.Auth.Contracts.StoreInterface.html" hash="1c704ce1ff57568aa7e44e38f74cc83e" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <interface namespace="Vinelab\Auth\Contracts" line="3" package="Default">
+      <name>StoreInterface</name>
+      <full_name>\Vinelab\Auth\Contracts\StoreInterface</full_name>
+      <docblock line="3">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Contracts" line="5" package="Default">
+        <name>put</name>
+        <full_name>\Vinelab\Auth\Contracts\StoreInterface::put()</full_name>
+        <docblock line="5">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Contracts" line="7" package="Default">
+        <name>has</name>
+        <full_name>\Vinelab\Auth\Contracts\StoreInterface::has()</full_name>
+        <docblock line="7">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Contracts" line="9" package="Default">
+        <name>get</name>
+        <full_name>\Vinelab\Auth\Contracts\StoreInterface::get()</full_name>
+        <docblock line="9">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="3" code="PPC:ERR-50009">No summary for interface \Vinelab\Auth\Contracts\StoreInterface</error>
+      <error line="5" code="PPC:ERR-50015">Argument $key is missing from the Docblock of put()</error>
+      <error line="5" code="PPC:ERR-50015">Argument $value is missing from the Docblock of put()</error>
+      <error line="5" code="PPC:ERR-50008">No summary for method put()</error>
+      <error line="7" code="PPC:ERR-50015">Argument $key is missing from the Docblock of has()</error>
+      <error line="7" code="PPC:ERR-50008">No summary for method has()</error>
+      <error line="9" code="PPC:ERR-50015">Argument $key is missing from the Docblock of get()</error>
+      <error line="9" code="PPC:ERR-50008">No summary for method get()</error>
+    </parse_markers>
+    <source>eJyzsS/IKFDIS8xNLS5ITE5VCMvMS81JTIpxLC3JiHHOzyspSkwuKbbm4srMK0ktSgMpCS7JL0r1hHOrubgUgKCgNCknM1khrTQvuSQzPw/IL9FQyU6t1FFQKUvMKU3VtMauLiOxGKwOl3x6aglMvhYATfQ5xQ==</source>
+  </file>
+  <file path="Vinelab/Auth/Contracts/ProfileInterface.php" generated-path="Vinelab.Auth.Contracts.ProfileInterface.html" hash="6662cb7b9cacb693fe0fe62c31190668" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <interface namespace="Vinelab\Auth\Contracts" line="3" package="Default">
+      <name>ProfileInterface</name>
+      <full_name>\Vinelab\Auth\Contracts\ProfileInterface</full_name>
+      <docblock line="3">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Contracts" line="5" package="Default">
+        <name>instantiate</name>
+        <full_name>\Vinelab\Auth\Contracts\ProfileInterface::instantiate()</full_name>
+        <docblock line="5">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$profile</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$provider</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Contracts" line="7" package="Default">
+        <name>info</name>
+        <full_name>\Vinelab\Auth\Contracts\ProfileInterface::info()</full_name>
+        <docblock line="7">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Contracts" line="9" package="Default">
+        <name>provider</name>
+        <full_name>\Vinelab\Auth\Contracts\ProfileInterface::provider()</full_name>
+        <docblock line="9">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="3" code="PPC:ERR-50009">No summary for interface \Vinelab\Auth\Contracts\ProfileInterface</error>
+      <error line="5" code="PPC:ERR-50015">Argument $profile is missing from the Docblock of instantiate()</error>
+      <error line="5" code="PPC:ERR-50015">Argument $provider is missing from the Docblock of instantiate()</error>
+      <error line="5" code="PPC:ERR-50008">No summary for method instantiate()</error>
+      <error line="7" code="PPC:ERR-50008">No summary for method info()</error>
+      <error line="9" code="PPC:ERR-50008">No summary for method provider()</error>
+    </parse_markers>
+    <source>eJx1i7EOwjAMRPd8hQeGVuIPioSqTmxMTF3c4KiWUsdKHBbEv0OEYOtNp7v3TmddFQQ3Koqe4MZCEZd5rLbOUxLL6K0MzrEY5dCQa06BI13+w9M5+ETrEtlDqOKNkwBLMRRjNOoO+pWO0NqD75T7YU8Lqds7f3IDXm9yHUCL</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Twitter/OAuthSignature.php" generated-path="Vinelab.Auth.Social.Providers.Twitter.OAuthSignature.html" hash="1433e57a6ecbb109098b872a257d695d" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Social\Providers\Twitter" line="6" package="Default">
+      <extends/>
+      <implements>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface</implements>
+      <name>OAuthSignature</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthSignature</full_name>
+      <docblock line="6">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="8" namespace="Vinelab\Auth\Social\Providers\Twitter" package="Default">
+        <name>$method</name>
+        <default>'HMAC-SHA1'</default>
+        <docblock line="8">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="15" package="Default">
+        <name>method</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthSignature::method()</full_name>
+        <docblock line="15">
+          <description>Returns the signing method name used.</description>
+          <long-description></long-description>
+          <tag name="return" line="15" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="30" package="Default">
+        <name>get</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthSignature::get()</full_name>
+        <docblock line="30">
+          <description>Get a signature for the request.</description>
+          <long-description></long-description>
+          <tag name="param" line="30" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface" variable="$consumer">
+            <type link="OAuthConsumerInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+          </tag>
+          <tag name="param" line="30" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface" variable="$token">
+            <type link="OAuthTokenInterface.html">\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+          </tag>
+          <tag name="param" line="30" description="" type="string" variable="$httpverb">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="30" description="" type="string" variable="$url">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="30" description="" type="array" variable="$params">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="30" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$consumer</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$httpverb</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$url</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$params</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="52" package="Default">
+        <name>baseURL</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthSignature::baseURL()</full_name>
+        <docblock line="52">
+          <description>Build the signature base url.</description>
+          <long-description></long-description>
+          <tag name="param" line="52" description="" type="string" variable="$httpverb">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="52" description="" type="string" variable="$url">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="52" description="" type="array" variable="$params">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="52" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$httpverb</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$url</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$params</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="6" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Providers\Twitter\OAuthSignature</error>
+      <error line="8" code="PPC:ERR-50007">No summary for property $method</error>
+    </parse_markers>
+    <source>eJydVNFu0zAUfc9X3IeKJFW7aRLiJTBW9sCQQKB18EJQ5Tq3TdTECfb1pmnqv+PYTjvSdi34IVF9zz33+Pikb983eQOCVagaxhF+FAJLNk8nmvJ0WvOClek3Wd8XGUqV3j0URCiTINDqRGx6XQuSjJNKv7bAu3qF4pMwlYWZl/w/kfmpdIXyGVfAS6YU2PK0WApGWiIUVVNihYIU9Cg2mA0HPAUBmNXImpATZgCDCimvM3gH4c2XyfV4ejO5CBMHOx8O7RuGcIuGSCigHEEZ3kIswXe27oI5Z3bmwV3PlbRNoEgauN89dwL0vCw4LLTgVNTCU0WxLT45qFmeYEB5ocaXDpTY6toq7AQO4SMSMKvMubKopdUq8bdGRU5aB75qmGQVwH6jYcD91j743xfcAgbUbvWw7szQX4OcqLlHOT8RrmXZQzIp2eMu0FZVh901/oDvS6TomAujYGecX/sMcW4c7tk48ALEnPqFqjuqCezPX/286JWqJUUeMoLQOMCrJox9oG3/nCmcmRGGwQer3fl++znaanMaullxsu1e4WPb2JkzvlTIjd1wBuGr0Dzd+bvtZ3P9nbSz3ryeoeB1hlHOVD7LK8ajUOXsIhxt5Y3srBGQ1BjH+1P/QRdltvkmXfLbfjD9+yPvg3Ykhwdzd2LO+jE7anDwz9e4HU21bhqUW/K4u4ydDEn2YMZ671sFJ0Jb5tm8NXtm/k7kYyfN38s6WCd/AGvl4WE=</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Provider.php" generated-path="Vinelab.Auth.Social.Provider.html" hash="0273cbf03bbd350ad2a3d1aedeca171b" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="true" namespace="Vinelab\Auth\Social" line="8" package="Default">
+      <extends/>
+      <implements>\Vinelab\Auth\Contracts\ProviderInterface</implements>
+      <name>Provider</name>
+      <full_name>\Vinelab\Auth\Social\Provider</full_name>
+      <docblock line="8">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="19" namespace="Vinelab\Auth\Social" package="Default">
+        <name>$name</name>
+        <default></default>
+        <docblock line="19">
+          <description>The name of the provider,
+i.e. facebook, twitter, etc.</description>
+          <long-description>NOTE: This will be used to load the configuration
+        so it must match the key.</long-description>
+          <tag name="var" line="19" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="27" namespace="Vinelab\Auth\Social" package="Default">
+        <name>$mandatory</name>
+        <default></default>
+        <docblock line="27">
+          <description>The mandatory settings
+that should be existing.</description>
+          <long-description></long-description>
+          <tag name="var" line="27" description="" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="35" namespace="Vinelab\Auth\Social" package="Default">
+        <name>$settings</name>
+        <default></default>
+        <docblock line="35">
+          <description>Social network provider settings
+brought from the configuration.</description>
+          <long-description></long-description>
+          <tag name="var" line="35" description="" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="42" namespace="Vinelab\Auth\Social" package="Default">
+        <name>$config</name>
+        <default></default>
+        <docblock line="42">
+          <description>The configuration instance.</description>
+          <long-description></long-description>
+          <tag name="var" line="42" description="" type="\Vinelab\Auth\Social\Illuminate\Config\Repository" variable="">
+            <type link="Repository.html">\Vinelab\Auth\Social\Illuminate\Config\Repository</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="44" package="Default">
+        <name>__construct</name>
+        <full_name>\Vinelab\Auth\Social\Provider::__construct()</full_name>
+        <docblock line="44">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$config</name>
+          <default></default>
+          <type>\Illuminate\Config\Repository</type>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="58" package="Default">
+        <name>authenticate</name>
+        <full_name>\Vinelab\Auth\Social\Provider::authenticate()</full_name>
+        <docblock line="58">
+          <description>Handles the authentication process.</description>
+          <long-description></long-description>
+          <tag name="return" line="58" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="66" package="Default">
+        <name>callback</name>
+        <full_name>\Vinelab\Auth\Social\Provider::callback()</full_name>
+        <docblock line="66">
+          <description>Handles the provider's authentication
+callback.</description>
+          <long-description></long-description>
+          <tag name="return" line="66" description="" type="\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface">
+            <type link="ProfileInterface.html">\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$input</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="75" package="Default">
+        <name>authenticateWithToken</name>
+        <full_name>\Vinelab\Auth\Social\Provider::authenticateWithToken()</full_name>
+        <docblock line="75">
+          <description>Authenticate a user using an already
+acquired access token.</description>
+          <long-description></long-description>
+          <tag name="param" line="75" description="" type="string" variable="$token">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="75" description="" type="\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface">
+            <type link="ProfileInterface.html">\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$secret</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="86" package="Default">
+        <name>settings</name>
+        <full_name>\Vinelab\Auth\Social\Provider::settings()</full_name>
+        <docblock line="86">
+          <description>Returns settings values,
+when no setting is specified all the settings
+are returned, otherwise it returns the specified
+settings or null.</description>
+          <long-description></long-description>
+          <tag name="param" line="86" description="" type="\Vinelab\Auth\Social\setting" variable="$setting">
+            <type link="setting.html">\Vinelab\Auth\Social\setting</type>
+          </tag>
+          <tag name="return" line="86" description="" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$setting</name>
+          <default>null</default>
+          <type>\Vinelab\Auth\Social\setting</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Vinelab\Auth\Social" line="103" package="Default">
+        <name>validateSettings</name>
+        <full_name>\Vinelab\Auth\Social\Provider::validateSettings()</full_name>
+        <docblock line="103">
+          <description>Determines whether the assigned
+settings for a social network
+are valid.</description>
+          <long-description></long-description>
+          <tag name="return" line="103" description="" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$settings</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="8" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Provider</error>
+      <error line="44" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="66" code="PPC:ERR-50015">Argument $input is missing from the Docblock of callback()</error>
+      <error line="75" code="PPC:ERR-50015">Argument $secret is missing from the Docblock of authenticateWithToken()</error>
+      <error line="103" code="PPC:ERR-50015">Argument $settings is missing from the Docblock of validateSettings()</error>
+    </parse_markers>
+    <source>eJy1Vt9v0zAQfu9fcUiTlk5deWcUmACJvQCCCR4omlzn0lh17GA76ya0/52zE3tp0vDjgTy0W3w/vvvu7nOfv6zLGhSr0NaMI3wRCiXbrC8bV64/ay6YvJjNGjs4ea2VM4w7u/5o9K3I0Vwph6agEBdj67d3HGsntLLrK3XLpMij12d0TqitTRZdsispm0oo5tCnKsR2/QlrbYXT5h6YhfYlGbONDUCAS2YtxLggqlpihco9vksI4edsBvQ8PTsL33AG1yUGEkAX4OjvuvNZRAOxxCV4543WuwW4vXAUbQHo+LKziabvP1y/fUYRhYW9kBI2CFRSDk6D1CwP8XnA3xjma46O8bEahIOqsfTBHC+Dxw7vh4le3TIDVD4R2L16Gr4JvEPuKOWJr+niaLUVUzkLdNquB/HUlcyBLXUjc48d74T150ezM2PY/VTylGKMoJ0sUOj22uwS3SMsG6ObbemgMLoaE/fvkGL8DtGQlIPoIJR1THE8muZ3EzqVncepDe+bjRQcikbxkO3mho6pmw13WRsxOsyD/c9ZnI8TR7N1/qI9hNUgbs8iVutt+j7nL7boslMbmrA8hWU89uMyH8cJK0uVxm3NBvHJxVs/jNr8jiZAog2dY6QEtI+Ct+QSLRytHXFr0DVGwa0W+QGNadGHvPXiYjYfj1ofQ5yzUzuAE405k3LD+G4K1rQIFkJiUpi/Qx6TZSdC1Y07gv2yVxswLyOGPohyYFS4NMjyOGzA+I9GGBozxj2xJDc7HG9IzQyroFMN6q83+q9F9tvzVbjy2mfM2sQLv5CcstKAqkbKIwx8CpBsEgagWWzQJl3eU3BQOp4Dia6tkYtCeCZIfX3bh6rCDEJbK+YL0GRi9oJuHVJd0+ULbjFQ9EsgtAl4J9ntwES5GRJciTs8nO4hazZtWozVMTSQAlFABk+o6ht/mqznME8mj8b+6RAIS5bDNf4W3b/P4eVQQx4P4VmAcpHiPjwKRhd+4DslD2+QRolElLaT+ujb0CqFtWKrjtBeEO8M7MHd0e9p0Kmp1T1CelLmxPtY6ZLGTTIfLpye4RT1rjR6T7D38OcfQUeoJZEgtmhfAtBVe8/dpJdZ+z/9TOiDXsRWpLu4L+8dM1w3ymUH8eewWq3iwThCC+3hF/xQHoA=</source>
+  </file>
+  <file path="Vinelab/Auth/Exceptions/Exceptions.php" generated-path="Vinelab.Auth.Exceptions.Exceptions.html" hash="aa2e6aced843f5ad0be3e105e904a093" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Exceptions" line="3" package="Default">
+      <extends>\RuntimeException</extends>
+      <name>SocialAuthException</name>
+      <full_name>\Vinelab\Auth\Exceptions\SocialAuthException</full_name>
+      <docblock line="3">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </class>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Exceptions" line="5" package="Default">
+      <extends>\Vinelab\Auth\Exceptions\SocialAuthException</extends>
+      <name>ProviderNotSupportedException</name>
+      <full_name>\Vinelab\Auth\Exceptions\ProviderNotSupportedException</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </class>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Exceptions" line="7" package="Default">
+      <extends>\Vinelab\Auth\Exceptions\SocialAuthException</extends>
+      <name>InvalidProviderSettingsException</name>
+      <full_name>\Vinelab\Auth\Exceptions\InvalidProviderSettingsException</full_name>
+      <docblock line="7">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </class>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Exceptions" line="9" package="Default">
+      <extends>\Vinelab\Auth\Exceptions\SocialAuthException</extends>
+      <name>AuthenticationException</name>
+      <full_name>\Vinelab\Auth\Exceptions\AuthenticationException</full_name>
+      <docblock line="9">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </class>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Exceptions" line="11" package="Default">
+      <extends>\Vinelab\Auth\Exceptions\SocialAuthException</extends>
+      <name>InvalidProfileException</name>
+      <full_name>\Vinelab\Auth\Exceptions\InvalidProfileException</full_name>
+      <docblock line="11">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </class>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Exceptions" line="13" package="Default">
+      <extends>\Vinelab\Auth\Exceptions\SocialAuthException</extends>
+      <name>AccessTokenException</name>
+      <full_name>\Vinelab\Auth\Exceptions\AccessTokenException</full_name>
+      <docblock line="13">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </class>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Exceptions" line="15" package="Default">
+      <extends>\Vinelab\Auth\Exceptions\SocialAuthException</extends>
+      <name>InvalidFacebookCodeException</name>
+      <full_name>\Vinelab\Auth\Exceptions\InvalidFacebookCodeException</full_name>
+      <docblock line="15">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </class>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Exceptions" line="17" package="Default">
+      <extends>\Vinelab\Auth\Exceptions\SocialAuthException</extends>
+      <name>InvalidOAuthTokenException</name>
+      <full_name>\Vinelab\Auth\Exceptions\InvalidOAuthTokenException</full_name>
+      <docblock line="17">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </class>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Exceptions" line="19" package="Default">
+      <extends>\Vinelab\Auth\Exceptions\SocialAuthException</extends>
+      <name>AuthenticationCanceledException</name>
+      <full_name>\Vinelab\Auth\Exceptions\AuthenticationCanceledException</full_name>
+      <docblock line="19">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </class>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Exceptions" line="21" package="Default">
+      <extends>\Vinelab\Auth\Exceptions\SocialAuthException</extends>
+      <name>TwitterProfileException</name>
+      <full_name>\Vinelab\Auth\Exceptions\TwitterProfileException</full_name>
+      <docblock line="21">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="3" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Exceptions\SocialAuthException</error>
+      <error line="5" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Exceptions\ProviderNotSupportedException</error>
+      <error line="7" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Exceptions\InvalidProviderSettingsException</error>
+      <error line="9" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Exceptions\AuthenticationException</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Exceptions\InvalidProfileException</error>
+      <error line="13" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Exceptions\AccessTokenException</error>
+      <error line="15" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Exceptions\InvalidFacebookCodeException</error>
+      <error line="17" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Exceptions\InvalidOAuthTokenException</error>
+      <error line="19" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Exceptions\AuthenticationCanceledException</error>
+      <error line="21" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Exceptions\TwitterProfileException</error>
+    </parse_markers>
+    <source>eJydkcEKwjAMhu8+Rd9DQWQoeFFxw9MuXRtdWNeUNZsD8d1dwTlEL901H/n+n2S1dqUTVtbgnVQgLmjByCLftFzm216BYyTrl4uFMtJ7kZJCaQL9QAE9g9Ve5OfWMtYwkcdz3Ds11KGG5kCcts5Rw6B/Df/sk2NvO2lQj6oUmNHefKwmzGEoqmQA80tc0UB0tlLgfUYVzA3eDV8qiKqEdHT6W3EMfFaH79Ml0iow8X/M7sgMTeQJXy2yA2A=</source>
+  </file>
+  <file path="Vinelab/Auth/Cache/Store.php" generated-path="Vinelab.Auth.Cache.Store.html" hash="beedc552e22a5aedd8e725a7844e9a97" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Cache" line="7" package="Default">
+      <extends/>
+      <implements>\Vinelab\Auth\Contracts\StoreInterface</implements>
+      <name>Store</name>
+      <full_name>\Vinelab\Auth\Cache\Store</full_name>
+      <docblock line="7">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="16" namespace="Vinelab\Auth\Cache" package="Default">
+        <name>$duration</name>
+        <default>2</default>
+        <docblock line="16">
+          <description>The duration to keep the
+state storage available
+in minutes.</description>
+          <long-description></long-description>
+          <tag name="var" line="16" description="" type="integer" variable="">
+            <type>integer</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Cache" line="23" package="Default">
+        <name>__construct</name>
+        <full_name>\Vinelab\Auth\Cache\Store::__construct()</full_name>
+        <docblock line="23">
+          <description>Create a new store instance.</description>
+          <long-description></long-description>
+          <tag name="param" line="23" description="" type="\Vinelab\Auth\Cache\Illuminate\Cache\CacheManager" variable="$cache">
+            <type link="CacheManager.html">\Vinelab\Auth\Cache\Illuminate\Cache\CacheManager</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$cache</name>
+          <default></default>
+          <type>\Vinelab\Auth\Cache\Illuminate\Cache\CacheManager</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Cache" line="37" package="Default">
+        <name>put</name>
+        <full_name>\Vinelab\Auth\Cache\Store::put()</full_name>
+        <docblock line="37">
+          <description>Put the data in the cache
+and return the generated
+key.</description>
+          <long-description></long-description>
+          <tag name="param" line="37" description="" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="37" description="" type="mixed" variable="$data">
+            <type>mixed</type>
+          </tag>
+          <tag name="return" line="37" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$data</name>
+          <default></default>
+          <type>mixed</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$duration</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Cache" line="52" package="Default">
+        <name>has</name>
+        <full_name>\Vinelab\Auth\Cache\Store::has()</full_name>
+        <docblock line="52">
+          <description>Determines whether a key exists in the cache</description>
+          <long-description></long-description>
+          <tag name="param" line="52" description="" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="52" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Cache" line="63" package="Default">
+        <name>get</name>
+        <full_name>\Vinelab\Auth\Cache\Store::get()</full_name>
+        <docblock line="63">
+          <description>Retrieve a value from the cache.</description>
+          <long-description></long-description>
+          <tag name="param" line="63" description="" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="63" description="" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="7" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Cache\Store</error>
+      <error line="37" code="PPC:ERR-50015">Argument $duration is missing from the Docblock of put()</error>
+    </parse_markers>
+    <source>eJyVU01v2zAMvedX8JBDEvQD2HHZ+oH20sOAYRt2ClAwMhMLlSVDotIORf/7KFn2mmTJMh8sm498fHySPl23dQsWGwotKoKf2pLB5eI2cr24Q1XTfDSKYRdwlj0qDovv7Dw9WCa/kvKS+2BMbLRFpo6ie39Bi2vygAF6YmUwBMgcoJvWUEOWS2AghdfRCOS5nM3yCjP4URNU0SNrZ4EdPBG1wDX1eGDpLW/npSPgBrVINwOsLYi8yBQuSqhHbjboBWYSoSV2mdfWOybFVMF4aPwZPsz3pN15Sr0RLD1nBTKZFT1W0V6zFj02/3BrrNLftpa4NFrBKlqVdTw+KictfFQ8ybWlaJqzX7taecZc63B+lTER3yXNM/y2N8fXyMlRqJAxGZa+30sBtBV44ug7bE2WxBeqevyJfh0YWGzx2q5hLCm7UKNfssfSdYBKl67qqBNt5EliPesYzrY2y0Zjdi0p1O+dOb9KLENGNi5Rbkcy/VZoMvSawvXHnrKPDanTQ4bfk5x3OQcU4LkmsVRuSjIR6EUHuRR/2YNTfC0TLp0zhPaoezWG7N5JJg3Jh+b5RqKGNukqbNBEgpV3zZ8R/udsFAH5bBydYE18+gRDcj/B228fiG51</source>
+  </file>
+  <file path="Vinelab/Auth/Facades/Auth.php" generated-path="Vinelab.Auth.Facades.Auth.html" hash="53dcff7ab80b5045addd9b1ed9c69a11" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Facades" line="5" package="Default">
+      <extends>\Illuminate\Support\Facades\Facade</extends>
+      <name>Auth</name>
+      <full_name>\Vinelab\Auth\Facades\Auth</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="protected" namespace="Vinelab\Auth\Facades" line="7" package="Default">
+        <name>getFacadeAccessor</name>
+        <full_name>\Vinelab\Auth\Facades\Auth::getFacadeAccessor()</full_name>
+        <docblock line="7">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="5" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Facades\Auth</error>
+      <error line="7" code="PPC:ERR-50008">No summary for method getFacadeAccessor()</error>
+    </parse_markers>
+    <source>eJw1jrEKwkAQRPv7iumijT8QQdII1oJVmnWzmoPL3XG7J0LIvxuJTjPFvGHmeMpjRqRJNBMLbj5KoHvfVRv7MzENoq1zVQWXEOrkI5n015pzKvYHfr5yHEgV3zLkbRIHxZZhdg6rckkmbDJAjcwzHjWy+RTxFNvQjllUU9ntMaOI1RLRvLZfB03sKdA60LRY3PIB4AFESA==</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Twitter/Contracts/OAuthTokenInterface.php" generated-path="Vinelab.Auth.Social.Providers.Twitter.Contracts.OAuthTokenInterface.html" hash="e361d5cda81f0affd781f7847b88f256" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <interface namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="5" package="Default">
+      <name>OAuthTokenInterface</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="7" package="Default">
+        <name>make</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface::make()</full_name>
+        <docblock line="7">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$secret</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="9" package="Default">
+        <name>verifier</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface::verifier()</full_name>
+        <docblock line="9">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$verifier</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="11" package="Default">
+        <name>makeRequestToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface::makeRequestToken()</full_name>
+        <docblock line="11">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>\Vinelab\Http\Response</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="13" package="Default">
+        <name>makeAccessToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface::makeAccessToken()</full_name>
+        <docblock line="13">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>\Vinelab\Http\Response</type>
+        </argument>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="5" code="PPC:ERR-50009">No summary for interface \Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</error>
+      <error line="7" code="PPC:ERR-50015">Argument $key is missing from the Docblock of make()</error>
+      <error line="7" code="PPC:ERR-50015">Argument $secret is missing from the Docblock of make()</error>
+      <error line="7" code="PPC:ERR-50008">No summary for method make()</error>
+      <error line="9" code="PPC:ERR-50015">Argument $key is missing from the Docblock of verifier()</error>
+      <error line="9" code="PPC:ERR-50015">Argument $verifier is missing from the Docblock of verifier()</error>
+      <error line="9" code="PPC:ERR-50008">No summary for method verifier()</error>
+      <error line="11" code="PPC:ERR-50008">No summary for method makeRequestToken()</error>
+      <error line="13" code="PPC:ERR-50008">No summary for method makeAccessToken()</error>
+    </parse_markers>
+    <source>eJx9jr8OgjAQh3eeogMDJr4BJoa46KRB4tSl1CNcgLb2rhhjfHfBiC7KTffn+3251drVThjVATmlQZzQQKtKmQWu5dFqVK08eNvjGTzJ4orM4OXGGvZKM6VRFOib2jI7mQ8qawiGG5qBrkbvfhQWtgGz++zuUSSGcqFsUYsqGM1ojehUA0ncwG0pYgLtgRfpb7IHjxWCn+hp/seP5hwuAYhfryTTqyL2724ummkNRDPJxxPn63WN</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Twitter/OAuthConsumer.php" generated-path="Vinelab.Auth.Social.Providers.Twitter.OAuthConsumer.html" hash="4e83f298d4f9cb63f8cb7d267aae5fa9" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Social\Providers\Twitter" line="3" package="Default">
+      <extends/>
+      <implements>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</implements>
+      <name>OAuthConsumer</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthConsumer</full_name>
+      <docblock line="3">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="10" namespace="Vinelab\Auth\Social\Providers\Twitter" package="Default">
+        <name>$credentials</name>
+        <default>array()</default>
+        <docblock line="10">
+          <description>The consumer credentials.</description>
+          <long-description></long-description>
+          <tag name="var" line="10" description="" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="12" package="Default">
+        <name>make</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthConsumer::make()</full_name>
+        <docblock line="12">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$secret</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$redirect_url</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="21" package="Default">
+        <name>__get</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthConsumer::__get()</full_name>
+        <docblock line="21">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$attr</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="3" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Providers\Twitter\OAuthConsumer</error>
+      <error line="12" code="PPC:ERR-50015">Argument $key is missing from the Docblock of make()</error>
+      <error line="12" code="PPC:ERR-50015">Argument $secret is missing from the Docblock of make()</error>
+      <error line="12" code="PPC:ERR-50015">Argument $redirect_url is missing from the Docblock of make()</error>
+      <error line="12" code="PPC:ERR-50008">No summary for method make()</error>
+      <error line="21" code="PPC:ERR-50015">Argument $attr is missing from the Docblock of __get()</error>
+      <error line="21" code="PPC:ERR-50008">No summary for method __get()</error>
+    </parse_markers>
+    <source>eJx9kEFPwzAMhe/9FT5UWjsBuzNgIE6cQGLiQqcpyzwaLU0rxxmapv133KaTCkzzJZHz3vfs3M2asgGnKvSN0ggfxqFVq+IpcFm819ooW7xRvTNrJF/Mvw0z0jRJtFXew2sre66dDxUSmKqxWKFjD9JjUpp98Uvy4sS9aXMOSQJSk/G4O2EM8xJBn1CacC0gSfc3veCke9wpAkWk9n1n0p0N1YyacQ3pwAz3UZrl0xjYhJU1GjbBaTa1g0ptMUu3uL+C1KM4WS7iNySwZSArBBeszTv3IUZKpVwaf/0wiPocCWW0EH2Lm15UxqQojvfL+uFA0TXs9Ku1JaRALjIi8nh+7+XyCzlLFTP9Xa1nZMb7VvJ/nM61yHOYnRs2vsJt922nGY4/4G3B9w==</source>
+  </file>
+  <file path="Vinelab/Auth/Auth.php" generated-path="Vinelab.Auth.Auth.html" hash="1a15e22ba8ce968f088abd2577d794f8" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth" line="10" package="Default">
+      <extends/>
+      <name>Auth</name>
+      <full_name>\Vinelab\Auth\Auth</full_name>
+      <docblock line="10">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="17" namespace="Vinelab\Auth" package="Default">
+        <name>$config</name>
+        <default></default>
+        <docblock line="17">
+          <description>The configuration instance.</description>
+          <long-description></long-description>
+          <tag name="var" line="17" description="" type="\Vinelab\Auth\Illuminate\Config\Repository" variable="">
+            <type link="Repository.html">\Vinelab\Auth\Illuminate\Config\Repository</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="24" namespace="Vinelab\Auth" package="Default">
+        <name>$cache</name>
+        <default></default>
+        <docblock line="24">
+          <description>The cache instance.</description>
+          <long-description></long-description>
+          <tag name="var" line="24" description="" type="\Vinelab\Auth\Illuminate\Cache\CacheManager" variable="">
+            <type link="CacheManager.html">\Vinelab\Auth\Illuminate\Cache\CacheManager</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="31" namespace="Vinelab\Auth" package="Default">
+        <name>$redirect</name>
+        <default></default>
+        <docblock line="31">
+          <description>The redirector instance.</description>
+          <long-description></long-description>
+          <tag name="var" line="31" description="" type="\Vinelab\Auth\Illuminate\Routing\Redirector" variable="">
+            <type link="Redirector.html">\Vinelab\Auth\Illuminate\Routing\Redirector</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="38" namespace="Vinelab\Auth" package="Default">
+        <name>$http</name>
+        <default></default>
+        <docblock line="38">
+          <description>The HTTP client instance.</description>
+          <long-description></long-description>
+          <tag name="var" line="38" description="" type="\Vinelab\Auth\Vinelab\Http\Client" variable="">
+            <type link="Client.html">\Vinelab\Auth\Vinelab\Http\Client</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="45" namespace="Vinelab\Auth" package="Default">
+        <name>$provider</name>
+        <default></default>
+        <docblock line="45">
+          <description>The network provider instance.</description>
+          <long-description></long-description>
+          <tag name="var" line="45" description="" type="\Vinelab\Auth\Vinelab\Auth\Social\Provider" variable="">
+            <type link="Provider.html">\Vinelab\Auth\Vinelab\Auth\Social\Provider</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth" line="47" package="Default">
+        <name>__construct</name>
+        <full_name>\Vinelab\Auth\Auth::__construct()</full_name>
+        <docblock line="47">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$config</name>
+          <default></default>
+          <type>\Illuminate\Config\Repository</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$redirector</name>
+          <default></default>
+          <type>\Illuminate\Routing\Redirector</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$http</name>
+          <default></default>
+          <type>\Vinelab\Http\Client</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$manager</name>
+          <default></default>
+          <type>\Vinelab\Auth\Contracts\ProvidersManagerInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth" line="58" package="Default">
+        <name>authenticate</name>
+        <full_name>\Vinelab\Auth\Auth::authenticate()</full_name>
+        <docblock line="58">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$provider</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth" line="65" package="Default">
+        <name>profile</name>
+        <full_name>\Vinelab\Auth\Auth::profile()</full_name>
+        <docblock line="65">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$provider</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$input</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth" line="72" package="Default">
+        <name>authenticateWithToken</name>
+        <full_name>\Vinelab\Auth\Auth::authenticateWithToken()</full_name>
+        <docblock line="72">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$provider</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$secret</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Vinelab\Auth" line="79" package="Default">
+        <name>providerInstance</name>
+        <full_name>\Vinelab\Auth\Auth::providerInstance()</full_name>
+        <docblock line="79">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$provider</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="10" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Auth</error>
+      <error line="47" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="58" code="PPC:ERR-50015">Argument $provider is missing from the Docblock of authenticate()</error>
+      <error line="58" code="PPC:ERR-50008">No summary for method authenticate()</error>
+      <error line="65" code="PPC:ERR-50015">Argument $provider is missing from the Docblock of profile()</error>
+      <error line="65" code="PPC:ERR-50015">Argument $input is missing from the Docblock of profile()</error>
+      <error line="65" code="PPC:ERR-50008">No summary for method profile()</error>
+      <error line="72" code="PPC:ERR-50015">Argument $provider is missing from the Docblock of authenticateWithToken()</error>
+      <error line="72" code="PPC:ERR-50015">Argument $token is missing from the Docblock of authenticateWithToken()</error>
+      <error line="72" code="PPC:ERR-50015">Argument $secret is missing from the Docblock of authenticateWithToken()</error>
+      <error line="72" code="PPC:ERR-50008">No summary for method authenticateWithToken()</error>
+      <error line="79" code="PPC:ERR-50015">Argument $provider is missing from the Docblock of providerInstance()</error>
+      <error line="79" code="PPC:ERR-50008">No summary for method providerInstance()</error>
+    </parse_markers>
+    <source>eJzFVMFu4yAQvecrOOSQRsn2A7LJ7qqX5rBS1Y26F0sVIZN6FAIWDF2tqv57wWDHdu00p5aDEfgx783Mg+8/irxgih/BFlwAe0AFkm+zX47yxWjkLLC1lO6IihNkN1rt8Sm7h0JbJG3+M25Z3Fx0sffaEaoA3qEB4dEpXkVxS1RkNxJBUQgTlnG1aMGCkuyPFshldmf0M+7A2N9c8ScwPUivhgwXZN+B14rA7H2SXoeQ3FoWDrCX0Yj5cT2dljObsk0OTJRJOcMJtWKoLHEl4FuCVMifz9ycrU8CXpdzYTT5QsCOjUWqWS81F/57MWVAx2/Kc5AzYPopTd2ji3nft3eItwreT3272dwxEV1wlrvHNkOMuYf0symgf9ocArj0xmWUfRYc4q4iJ/7CbSUKtndKlE56fPStt2ScoEl0S2WGWYx4ZpxKfSqqNh+fO92sWJqPTwxeHTY+xp2rMsZLHWlMOdr5Kqbi18uTxzuQSnmAmMbb0IEFoeV6WfWzA0hCSsCxeg7C/9f+ynPfRF8CFN69k7pNA3nU/lh2d9bJMI0QqdVhGCBnVPfMfNUivzqr0x/ao2zEn7ExqsLRJ0kVXMotF4dJYr24qH+R8o0+gGpJp7DjZwvCM3qRykn5BVVvqGtL6iRY3+RmQ4Y0dNJo60imnK/iG0PYMt6safRZ93LUol7fAH8QUjg=</source>
+  </file>
+  <file path="Vinelab/Auth/AuthServiceProvider.php" generated-path="Vinelab.Auth.AuthServiceProvider.html" hash="beeecdef8e84f7d0fa4e913d31a21476" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth" line="11" package="Default">
+      <extends>\Illuminate\Support\ServiceProvider</extends>
+      <name>AuthServiceProvider</name>
+      <full_name>\Vinelab\Auth\AuthServiceProvider</full_name>
+      <docblock line="11">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="18" namespace="Vinelab\Auth" package="Default">
+        <name>$defer</name>
+        <default>false</default>
+        <docblock line="18">
+          <description>Indicates if loading of the provider is deferred.</description>
+          <long-description></long-description>
+          <tag name="var" line="18" description="" type="bool" variable="">
+            <type>bool</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth" line="25" package="Default">
+        <name>boot</name>
+        <full_name>\Vinelab\Auth\AuthServiceProvider::boot()</full_name>
+        <docblock line="25">
+          <description>Bootstrap the application events.</description>
+          <long-description></long-description>
+          <tag name="return" line="25" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth" line="35" package="Default">
+        <name>register</name>
+        <full_name>\Vinelab\Auth\AuthServiceProvider::register()</full_name>
+        <docblock line="35">
+          <description>Register the service provider.</description>
+          <long-description></long-description>
+          <tag name="return" line="35" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth" line="106" package="Default">
+        <name>provides</name>
+        <full_name>\Vinelab\Auth\AuthServiceProvider::provides()</full_name>
+        <docblock line="106">
+          <description>Get the services provided by the provider.</description>
+          <long-description></long-description>
+          <tag name="return" line="106" description="" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\AuthServiceProvider</error>
+    </parse_markers>
+    <source>eJy1Vl1v2jAUfaZS/4MfkBKqUt7brRur1g1p06pR7SkvxrkBC2NHtkNbTf3vu3E+SEJYglpeIoh9js+9vvfmfPgUr2Ii6QZMTBmQP1yCoItgmtjVzfnZ+VligMyESDZcUgvBPIljpW0wB73lDB602vIQdLm1ii9I9t7fUbZCKqs0tC3PFeNUBMgdcdGxw51uflJJl05F59bg8YlbCzr4lS7fKWmSTa6fCWoMSV83oiPwbEGGhjTf/01hg8nFBT7JBZnJkDPMkiE8IkLRkMslURGxKyBxgeGGhBCB1hBeOViG/bylmiyUEu7vBJ+IsMAshGToAOQjiagwcFM/9ItS1lhNY3cMjWORauBKEtiCtKZ2iAabaEm2ioe7c5IFQkiUSOZgKML6I1zA6AaDoV1xM77F4lhjin1vmyV3YlxexxSz5Y1Q0uC1Lus3LLnBPDtVJstbmYSjNemcbU8Xxju+LVe94uq/Wxu7R+PGMqkd4Kkx+IZKu/vVRtMkWnAZVkhcoSuJN8OsyYp9JvGcCNvMuyxD84cIHrmQBnkmJDwRt9+tjW83dI2JZ2nTeKMsgNeDAhyR168FdvJcM8z5Ens8qek8hq5O4qXQU8gsevYtKguOk4l8VGuQb1HoCE4m7y3KDooyOO4EWKzpQ13QHNhHNEQTmkU/qHWIkhFfeqPL/SUctlzjMG1dzEfa1QrnBRMch2brtn6dfQQy/8Adgd27mHuE4bxeV1injIExjfo7nrmzcN6N8lRSW8bZu3Hvz6CRY+6azr1LoU8/pAi/rQHe4xvRt7J6zY+SrEJRfkMnE/L1OVZo3FKrgFtpCO3JKxo18x7OenTmKRXUmqS8FLoGRf9Z0bvpD4zA/14bejKcrn4ZbB7oMHWZzhoGFZN+rxIZOg8YTAWn5ofbdH29BDuTqZ9h4GeHFQR4TLrR97Krm2aprceQ3Yxxf7yK1qbz+wa2avpM4fpCsnipWeE2F0i1pi8HbWCONDsbWIX5OzWv/wA3xC+k</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Twitter/OAuthToken.php" generated-path="Vinelab.Auth.Social.Providers.Twitter.OAuthToken.html" hash="f5c33ab93a7448f6d49daa7fe42f734c" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Social\Providers\Twitter" line="15" package="Default">
+      <extends/>
+      <implements>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</implements>
+      <name>OAuthToken</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthToken</full_name>
+      <docblock line="15">
+        <description></description>
+        <long-description></long-description>
+        <tag name="todo" line="15" description="Methods parsing responses to take into consideration&#10;       the HTTP status code as well."/>
+      </docblock>
+      <property static="false" visibility="protected" line="22" namespace="Vinelab\Auth\Social\Providers\Twitter" package="Default">
+        <name>$credentials</name>
+        <default>array()</default>
+        <docblock line="22">
+          <description>The token credentials holder.</description>
+          <long-description></long-description>
+          <tag name="var" line="22" description="" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="32" package="Default">
+        <name>make</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthToken::make()</full_name>
+        <docblock line="32">
+          <description>Creates and returns an OAuthToken instance
+setting the token key and secret.</description>
+          <long-description></long-description>
+          <tag name="param" line="32" description="" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="32" description="" type="string" variable="$secret">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="32" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\OAuthToken">
+            <type link="OAuthToken.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\OAuthToken</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$secret</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="40" package="Default">
+        <name>verifier</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthToken::verifier()</full_name>
+        <docblock line="40">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$verifier</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="55" package="Default">
+        <name>makeRequestToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthToken::makeRequestToken()</full_name>
+        <docblock line="55">
+          <description>Creates and returns an OAuthToken instance
+parsing values from the Twitter API Response.</description>
+          <long-description></long-description>
+          <tag name="param" line="55" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Http\Response" variable="$response">
+            <type link="Response.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Http\Response</type>
+          </tag>
+          <tag name="return" line="55" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\OAuthToken">
+            <type link="OAuthToken.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\OAuthToken</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Http\Response</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="75" package="Default">
+        <name>makeAccessToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthToken::makeAccessToken()</full_name>
+        <docblock line="75">
+          <description>Parse an access token response and assign
+credential values.</description>
+          <long-description></long-description>
+          <tag name="param" line="75" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Http\Response" variable="$response">
+            <type link="Response.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Http\Response</type>
+          </tag>
+          <tag name="return" line="75" description="" type="\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\OAuthToken">
+            <type link="OAuthToken.html">\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Auth\Social\Providers\Twitter\OAuthToken</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Vinelab\Http\Response</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="95" package="Default">
+        <name>validateRequestTokenResponse</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthToken::validateRequestTokenResponse()</full_name>
+        <docblock line="95">
+          <description>Validates the received data for a request token.</description>
+          <long-description></long-description>
+          <tag name="param" line="95" description="" type="array" variable="$params">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="95" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$params</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="114" package="Default">
+        <name>validateAccessTokenResponse</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthToken::validateAccessTokenResponse()</full_name>
+        <docblock line="114">
+          <description>Validates the received data for an access token.</description>
+          <long-description></long-description>
+          <tag name="param" line="114" description="" type="array" variable="$params">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="114" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$params</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter" line="127" package="Default">
+        <name>__get</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\OAuthToken::__get()</full_name>
+        <docblock line="127">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$attr</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <todo line="15">Methods parsing responses to take into consideration
+       the HTTP status code as well.</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="15" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Providers\Twitter\OAuthToken</error>
+      <error line="40" code="PPC:ERR-50015">Argument $key is missing from the Docblock of verifier()</error>
+      <error line="40" code="PPC:ERR-50015">Argument $verifier is missing from the Docblock of verifier()</error>
+      <error line="40" code="PPC:ERR-50008">No summary for method verifier()</error>
+      <error line="127" code="PPC:ERR-50015">Argument $attr is missing from the Docblock of __get()</error>
+      <error line="127" code="PPC:ERR-50008">No summary for method __get()</error>
+    </parse_markers>
+    <source>eJztVktvGjEQvu+vmEpILKgl96ZJQFGl5FAVpSiXECHjHYLFrr21vdAoyn/v2LuG5VmSKFUP9QXsec/3edZfLvJpDpJlaHLGEW6FxJSNh73CToc/FBcsHfa1mosEtRkOFsJa1KdRdNJuR9CGLiM9paE3xgSuWMoWAr4w2nSmftOdl/46XGXnZHASRYVZRbmyNh/eUGglDZ6uiXwCX39xzK0g6fBazlkqku/ufKBmKJeyWjZWJQrgG1JOiYGcaSPkA+gqgAGrwLIZgpD0j9OZK4s5J868WnaKcDUY9MFYZgtDegkCM7DANO2UNfCUGQOrXEBkeYoZSmvgUkmrGbdmuJJfS+raxPX3KYpcDJ+wW20YUDjrnXCNCbmglhuYqpRS61RKQbc7ZxqY1uyxOjnxv7lWFrklCBp1H2dwd3+6Fe9SI7PUCyYT6owttHT/14qRVLnkGCwMWuv6aJeZzvDR2xukeHYrS2o8y4D6p51Zg7T3iUoHS2mZz3EkrLV3vRnFOBUcJoXkDljICPDY5fAxhGt5vacoAN6wU2E+nddad9ck/ea9E575/E8PKpduSf8shKja7lZVk7cr3TxHOxOdoxYTgTokG/bHp3tMrsFrqR52x+T7Jg6Fu0iXuCDDiVaZ51MFJvT61xAGwT4+7Zwa0AjX+91ZdIM/KXfrlePt+Js4uZJxREyPlyqEBU0HwiJuEcC+LNOq9b4CzE86anA9YIgX7zfbzYhS/a6p3Kge+fvbvD+ezzvMR0F+2AtnaTpmfDaimidCZ5h4j/FYqRSZbEF3w/lOA/q4yCJNX0jQvuu9oyTjHI2pxlaAwfOWJrh4CKDXZm9F0X+VhD1f0N/jYC3e6ygY1hupeMDHkXyk14UeiaTyVXO1FPwhFdpRMPdWWr8aa4IXEvW2arPx01AjRzGn7zgdMZgQ9xmd+SFQUngfK/2bIGS0ycG5EslBXh01bzaYJSYQwwcQhl4H8W5kW3R5l/p+HdJforhlhlluH4+NsV95FaC1tHhas7VTrRYgcQH7X5txcw2QZmtFmuct6K0u8NXIrw+v90X+0C3/D3wFfB2OF+K+2ffR6MF1g1m79byrXMRVw7YHkbeiWuBi15gqpfC5+mqWOTz/BinVTGQ=</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Twitter.php" generated-path="Vinelab.Auth.Social.Providers.Twitter.html" hash="8bcd749a248ffd4a4dfaaa52936cdf69" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Social\Providers" line="19" package="Default">
+      <extends>\Vinelab\Auth\Social\Provider</extends>
+      <name>Twitter</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Twitter</full_name>
+      <docblock line="19">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="21" namespace="Vinelab\Auth\Social\Providers" package="Default">
+        <name>$name</name>
+        <default>'twitter'</default>
+        <docblock line="21">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="23" namespace="Vinelab\Auth\Social\Providers" package="Default">
+        <name>$mandatory</name>
+        <default>array('version', 'consumer_key', 'consumer_secret', 'auth_api_url', 'access_token_uri', 'authentication_uri', 'authorization_uri', 'request_token_uri')</default>
+        <docblock line="23">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="39" namespace="Vinelab\Auth\Social\Providers" package="Default">
+        <name>$format</name>
+        <default>'json'</default>
+        <docblock line="39">
+          <description>The data exchange format.</description>
+          <long-description></long-description>
+          <tag name="var" line="39" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="46" namespace="Vinelab\Auth\Social\Providers" package="Default">
+        <name>$signature</name>
+        <default></default>
+        <docblock line="46">
+          <description>The OAuth signature instance.</description>
+          <long-description></long-description>
+          <tag name="var" line="46" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface" variable="">
+            <type link="OAuthSignatureInterface.html">\Vinelab\Auth\Social\Providers\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="53" namespace="Vinelab\Auth\Social\Providers" package="Default">
+        <name>$consumer</name>
+        <default></default>
+        <docblock line="53">
+          <description>The consumer instance.</description>
+          <long-description></long-description>
+          <tag name="var" line="53" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface" variable="">
+            <type link="OAuthConsumerInterface.html">\Vinelab\Auth\Social\Providers\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="60" namespace="Vinelab\Auth\Social\Providers" package="Default">
+        <name>$prefix</name>
+        <default>'social:auth:twitter:token:'</default>
+        <docblock line="60">
+          <description>The prefix of the store keys.</description>
+          <long-description></long-description>
+          <tag name="var" line="60" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="62" package="Default">
+        <name>__construct</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter::__construct()</full_name>
+        <docblock line="62">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$config</name>
+          <default></default>
+          <type>\Illuminate\Config\Repository</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$http</name>
+          <default></default>
+          <type>\Vinelab\Http\Client</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$redirect</name>
+          <default></default>
+          <type>\Illuminate\Routing\Redirector</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$store</name>
+          <default></default>
+          <type>\Vinelab\Auth\Contracts\StoreInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$profile</name>
+          <default></default>
+          <type>\Vinelab\Auth\Contracts\ProfileInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$signature</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$consumer</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$oauth</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="94" package="Default">
+        <name>authenticate</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter::authenticate()</full_name>
+        <docblock line="94">
+          <description>Authenticate with Twitter.</description>
+          <long-description></long-description>
+          <tag name="return" line="94" description="" type="void">
+            <type>void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="111" package="Default">
+        <name>callback</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter::callback()</full_name>
+        <docblock line="111">
+          <description>Handle the callback from a previous
+authentication request.</description>
+          <long-description></long-description>
+          <tag name="param" line="111" description="" type="array" variable="$input">
+            <type>array</type>
+          </tag>
+          <tag name="return" line="111" description="" type="\Vinelab\Auth\Social\Providers\Vinelab\Auth\Contracts\ProfileInterface">
+            <type link="ProfileInterface.html">\Vinelab\Auth\Social\Providers\Vinelab\Auth\Contracts\ProfileInterface</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$input</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="132" package="Default">
+        <name>authenticateWithToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter::authenticateWithToken()</full_name>
+        <docblock line="132">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$secret</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="137" package="Default">
+        <name>getProfile</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter::getProfile()</full_name>
+        <docblock line="137">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers" line="155" package="Default">
+        <name>api</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter::api()</full_name>
+        <docblock line="155">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$uri</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Vinelab\Auth\Social\Providers" line="166" package="Default">
+        <name>storeKey</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter::storeKey()</full_name>
+        <docblock line="166">
+          <description>Generates a key to be used in the store.</description>
+          <long-description></long-description>
+          <tag name="param" line="166" description="" type="string" variable="$key">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="166" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="19" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Providers\Twitter</error>
+      <error line="21" code="PPC:ERR-50007">No summary for property $name</error>
+      <error line="23" code="PPC:ERR-50007">No summary for property $mandatory</error>
+      <error line="62" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="132" code="PPC:ERR-50015">Argument $token is missing from the Docblock of authenticateWithToken()</error>
+      <error line="132" code="PPC:ERR-50015">Argument $secret is missing from the Docblock of authenticateWithToken()</error>
+      <error line="132" code="PPC:ERR-50008">No summary for method authenticateWithToken()</error>
+      <error line="137" code="PPC:ERR-50008">No summary for method getProfile()</error>
+      <error line="155" code="PPC:ERR-50015">Argument $uri is missing from the Docblock of api()</error>
+      <error line="155" code="PPC:ERR-50008">No summary for method api()</error>
+    </parse_markers>
+    <source>eJy1WEtv4zYQvvtXTAEDkgI7LtqbXXu7CBa7QQ8tEqM9xIHBSHTMRpZUkrLjDfLfO6QoidTDNopUl5jkx+E8vpkh88unbJtBQnZUZCSk8CdLaEyeVp9zuV3dpyEj8eoPnu5ZRLmYDQa5OI2ZOYhvUmarm5jRRAIRoIbFqIDdxnG+YwmRdHWTJhv2vLqjWSqYTPlR4YvJFvYuzSVLFDhinIaI7lIMN0tOQilW94igt4mkfIMmzk5B0YwNi0+Cm05ZLQ9MItyS8rsCfoSMZfpCk48QhEOR7yj/CFn37BnDkDsubUv78hrSTDI8t5RjfFstdKhgbbpN9iRmUe2GC/epMRKMhUSNb0gS0phG1uZBGBMhwCgF9FXSJBJQmg1vgwHgl/FUIrdoBEOVHTAHTxZbvFkLsSNJRDRr5/CgF9Xn7dGLeKY3qqdCE4j1Cz12zgsacirtJYIWrUnG1jmPnfkwpEKspXIOrrHmntoLXaspZ987Fzn9J6dCWnL12qOxenJ1VWCvYLmlgGYT9GG4JckzhU3Kd0ReG0CJ+3VPOAjJMWfN1KTpwGKjcvLfAh3WfZbmAoiSfsASIVV8O8/7IGr3KVxp0a1qGc7/QcdWKvepWOrQrWHG6Ya9QroBZApGB0skICfFfwieEYXBE9qGqeLX1GTLVPNoWiVN/hSzEDZ5EirywXqt1JQ8D6VflHutOP6tKdn31e0Ehlv8fX5H3TFgyM3v87vc/oGxV+Pz25q9RDlKz5zf2kNGi3YXymiRpabFhRLcFgRDHc4L91rbUsWJQG97qzZnhGPwplObBCb6geGL+oZyy8R4oUJcTMyLeM+aiLo0zJ0MbcCq5FSwOksaKK1xeZwetCDaFyVED1qQkmUaUg7aiuv0M4L0oAUx3CkgZtD2UWnNeLEjL9R3wlSeRaW6PQnf7UXB6EKwaVBBBQ8KXd9bZcZqxRSwGmzLptuqMSgw5wnsUxa5RaZRLay2Rv0mm4ZO59IhqQM5XjxTeVcANKX9hoWjpgtHTpQdPuqOjN24PqP2k9OtA7juRjR6czDrEH6NBfWThxIU19dPOYujNerPj/6Dp20qDPXmC9fy8QLj+WgrbNzboKSyzK+O643iN7zbIO9UlwhJHD+R8AU2PN0BUT1kz9JclFDXMjBataKNaU92AIRzclQWsyTLZZMLF17QT9Kl1NcvjmgShm3AZwIDY9YfvIgmjEbeY1Cz+81JC7nl6QESeoCz98xyy/vAORB+APdMO5SPAWBr6kbgZZJtGF4/L9Gu//bsezuUjkwE62B1auOUoNOCYbneTDLDvHK527oR9JpkJ4B1r+3K4s96/eIkdjW202IyQYaE24LbxamgQTbCrtBYhXPp2zO/0aPvKDxe4OOEr1kUjFxLRvDzj/j1pyVaZsjtSnQT81RF/IuZYPumS2Mv0cUavZjkcdzkf//5Tkx1J2lIDE5rZcnqv0S06rdTUbGENqPrezqWxzVqECmjSSyK8mnTJy0eguol5qm6gcDx8pjRKZAsi02+Tl7Hh8NhrJ4dYzyWJmEaqcS3q/yWEnUPb1HQzLe55339svRG2o7ObmJFs3GALoVrhD2jp830qDLF6T2cigznaK2Wag86fH6Y7jKskr6nX4rgGUnaP04RqqQoGuMlSdyg+X4A8zn8hBztKS8uX8wdZLwonjgYDezJlmD1kPMxC6pnc3dFqWtWz78JfI8VxQxK2d6ZlFDMQVqcprvVj+tm7U28joZdPuN1N0fBiLuuccXTta97fqUJ5egZge0S2zLWF3iigDUiwqdh/fTq65HFwwuGuLXZIE++ySpn1FUKRZz2iHnGXevTSnve/wWiVy9E</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Twitter/Contracts/OAuthInterface.php" generated-path="Vinelab.Auth.Social.Providers.Twitter.Contracts.OAuthInterface.html" hash="d092a01825832cc164178a8047e90806" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <interface namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="6" package="Default">
+      <name>OAuthInterface</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface</full_name>
+      <docblock line="6">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="8" package="Default">
+        <name>getRequestToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface::getRequestToken()</full_name>
+        <docblock line="8">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$settings</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$consumer</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="12" package="Default">
+        <name>getAccessToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface::getAccessToken()</full_name>
+        <docblock line="12">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$settings</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$consumer</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="6" code="PPC:ERR-50009">No summary for interface \Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface</error>
+      <error line="8" code="PPC:ERR-50015">Argument $settings is missing from the Docblock of getRequestToken()</error>
+      <error line="8" code="PPC:ERR-50008">No summary for method getRequestToken()</error>
+      <error line="12" code="PPC:ERR-50015">Argument $settings is missing from the Docblock of getAccessToken()</error>
+      <error line="12" code="PPC:ERR-50008">No summary for method getAccessToken()</error>
+    </parse_markers>
+    <source>eJzNUDEOwjAM3PMKDx1A4gdFQhUTEwgqpixpcNuINimxAwPi77QVIJBAqEx48vnO55Ons6ZswKoaqVEaYWssViqTSeBSbpw2qpIr745mh55kejLM6OXcWfZKM8VCBBq8JZedMHV7tAvbMnl7Of7dqIUUavRPXsLce+glDwrOQkBbTcgqoyEPVrNxFgrkNR4CEvexRhEhs7EFTXr5t3qfAyJ9Gw1weX0LRNzhcfwxdqI1Ev1r6ssV4Om+JQ==</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Twitter/Contracts/OAuthSignatureInterface.php" generated-path="Vinelab.Auth.Social.Providers.Twitter.Contracts.OAuthSignatureInterface.html" hash="e0fe791043f025a2a1fca34d0a37531c" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <interface namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="10" package="Default">
+      <name>OAuthSignatureInterface</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface</full_name>
+      <docblock line="10">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="12" package="Default">
+        <name>method</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface::method()</full_name>
+        <docblock line="12">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="14" package="Default">
+        <name>get</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface::get()</full_name>
+        <docblock line="14">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$consumer</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$httpverb</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$params</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="10" code="PPC:ERR-50009">No summary for interface \Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface</error>
+      <error line="12" code="PPC:ERR-50008">No summary for method method()</error>
+      <error line="14" code="PPC:ERR-50015">Argument $httpverb is missing from the Docblock of get()</error>
+      <error line="14" code="PPC:ERR-50015">Argument $url is missing from the Docblock of get()</error>
+      <error line="14" code="PPC:ERR-50015">Argument $params is missing from the Docblock of get()</error>
+      <error line="14" code="PPC:ERR-50008">No summary for method get()</error>
+    </parse_markers>
+    <source>eJydUDtPwzAQ3v0rbshQItT+gBRoxQITSK1YMMPFuTYWfsk+pwPiv+OGhxhCJXrTff4e57vlTegDOLSUAiqCJ+3IYCvXmXu58UqjkY/RD7qjmOT2oJkpylvvOKLi1AixqGsBNaywOHyEdUsd3KHBg4YlFjDvR7AaPpPnytvrYlgIkdO/58mHo3DrX8ndu8Lsyp+b84MKTNlS/JUl9HcPo2Sj9w45R/rRwJsQUCrk1mgFu+wUa+/AUjlAN7topuk98Wx6KFTq6+lydE7VxN5Q8RH/7al65jBQbE9IcjQn2IARbYIreH4pa71/AJ+3sQ0=</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Facebook/AccessToken.php" generated-path="Vinelab.Auth.Social.Providers.Facebook.AccessToken.html" hash="203c7f7e91d8ad5087cb73514a90cb4c" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Social\Providers\Facebook" line="7" package="Default">
+      <extends/>
+      <implements>\Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface</implements>
+      <name>AccessToken</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Facebook\AccessToken</full_name>
+      <docblock line="7">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="14" namespace="Vinelab\Auth\Social\Providers\Facebook" package="Default">
+        <name>$expires</name>
+        <default></default>
+        <docblock line="14">
+          <description>Expiry date.</description>
+          <long-description></long-description>
+          <tag name="var" line="14" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="21" namespace="Vinelab\Auth\Social\Providers\Facebook" package="Default">
+        <name>$token</name>
+        <default></default>
+        <docblock line="21">
+          <description>The actual access token.</description>
+          <long-description></long-description>
+          <tag name="var" line="21" description="" type="string" variable="">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Facebook" line="23" package="Default">
+        <name>make</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook\AccessToken::make()</full_name>
+        <docblock line="23">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>\Vinelab\Http\Response</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Facebook" line="33" package="Default">
+        <name>makeFromToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook\AccessToken::makeFromToken()</full_name>
+        <docblock line="33">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Facebook" line="45" package="Default">
+        <name>parseToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook\AccessToken::parseToken()</full_name>
+        <docblock line="45">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Facebook" line="63" package="Default">
+        <name>parseResponse</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook\AccessToken::parseResponse()</full_name>
+        <docblock line="63">
+          <description>Parses an access token response.</description>
+          <long-description></long-description>
+          <tag name="param" line="63" description="" type="\Vinelab\Auth\Social\Providers\Facebook\Vinelab\Http\Response" variable="$response">
+            <type link="Response.html">\Vinelab\Auth\Social\Providers\Facebook\Vinelab\Http\Response</type>
+          </tag>
+          <tag name="return" line="63" description="" type="array">
+            <type>array</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Facebook\Vinelab\Http\Response</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Facebook" line="90" package="Default">
+        <name>token</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook\AccessToken::token()</full_name>
+        <docblock line="90">
+          <description>Returns the token value.</description>
+          <long-description></long-description>
+          <tag name="return" line="90" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Facebook" line="101" package="Default">
+        <name>expiry</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook\AccessToken::expiry()</full_name>
+        <docblock line="101">
+          <description>Returns the expiry date
+of the token.</description>
+          <long-description></long-description>
+          <tag name="return" line="101" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="7" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Providers\Facebook\AccessToken</error>
+      <error line="23" code="PPC:ERR-50008">No summary for method make()</error>
+      <error line="33" code="PPC:ERR-50015">Argument $token is missing from the Docblock of makeFromToken()</error>
+      <error line="33" code="PPC:ERR-50008">No summary for method makeFromToken()</error>
+      <error line="45" code="PPC:ERR-50015">Argument $token is missing from the Docblock of parseToken()</error>
+      <error line="45" code="PPC:ERR-50008">No summary for method parseToken()</error>
+    </parse_markers>
+    <source>eJyVVE1v2zAMPdu/ggUC2A36sXOztCuGFtsOW9EWu8xFodhMo9WWDElOGwT976Mkf2YO1uWShHykHslHfrwoVyUIVqAuWYrwkwvM2SK5rMwquZMpZ3lyo+SaZ6h0ck2QhZTPszCsdAf+YkyZ3FIGKTTOBi6X5+o1xdJw8iaXaYpa38tnFK11JGLvy8lnKYxiqRmk+ioMqiVBiFiaM62h5wRelDkWKMzA3MbANgyD0+k0DGAKV68lVxvImMETa3DGT2umQBvFxZP9fxoGpZIGU4MZTNBGoJ71ktyvEIhixXL6sg+CsS++M6HD2nRltch5CstKpLZNULBnjJs2w0TVvw7DYBsGwYQ4M5hT/Irr4/OSKY0NOO7ANnFQY2rqQB+Ks/G/otoWPcDFGXyYdWBHC2AA9tU9Olf04FIrNJUSngVFv+2p41rJwo0h9vXWRfAlxHAAXD+KKs8bHzCRkRWL0mwaGwW4iCG9ea99f3FxZAKzUvIFBL7AmBbjiIs1y3k2mBwspSqYiQ73VOSaPVpOTFMupa7NRzBs2SEczOewZLmbom3tNoTex+V9pBRt/IRMrNB2jH1gU6n3znyud5Ur5LBShSnyNWZtrY2obywXTaPYxXth9cTtSMD4dehk67E1caYU2zSrMNbcVsn79f9bSyeAxn58bi2xV7yrotlN/yjtWgOFotIGhDSwQOACvt39+O7hfvBHUInc1swNadP2AJWS6sRhTkd0a1/uJGq9XGs03kGLZ6Od3wOCibNY9j3AzLn+MUAfSfrflAgnEJ1BRF+Nlc66Zk941BpSmdkbENhlqBdi0q5O17mUriwdTN+8vsB6x2Wg9x2x3Do4aYS67dPTUlV9kdQJh0dwZ/IuMq7nO2RQb/neR7G7484nlx2X/2ThU43TaI8/EXn7Ay2eRtY=</source>
+  </file>
+  <file path="Vinelab/Auth/Social/ProvidersManager.php" generated-path="Vinelab.Auth.Social.ProvidersManager.html" hash="aa5c7b40011ff5e19aef7d76be96c7b6" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Social" line="18" package="Default">
+      <extends/>
+      <implements>\Vinelab\Auth\Contracts\ProvidersManagerInterface</implements>
+      <name>ProvidersManager</name>
+      <full_name>\Vinelab\Auth\Social\ProvidersManager</full_name>
+      <docblock line="18">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <property static="false" visibility="protected" line="26" namespace="Vinelab\Auth\Social" package="Default">
+        <name>$supported</name>
+        <default>array('facebook', 'twitter')</default>
+        <docblock line="26">
+          <description>Lists the supported provider
+networks.</description>
+          <long-description></long-description>
+          <tag name="var" line="26" description="" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="false" visibility="protected" line="33" namespace="Vinelab\Auth\Social" package="Default">
+        <name>$config</name>
+        <default></default>
+        <docblock line="33">
+          <description>The configuration instance.</description>
+          <long-description></long-description>
+          <tag name="var" line="33" description="" type="\Vinelab\Auth\Social\Illuminate\Config\Repository" variable="">
+            <type link="Repository.html">\Vinelab\Auth\Social\Illuminate\Config\Repository</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="45" package="Default">
+        <name>__construct</name>
+        <full_name>\Vinelab\Auth\Social\ProvidersManager::__construct()</full_name>
+        <docblock line="45">
+          <description>Create a new ProvidersManager instance.</description>
+          <long-description></long-description>
+          <tag name="param" line="45" description="" type="\Vinelab\Auth\Social\Illuminate\Config\Repository" variable="$config">
+            <type link="Repository.html">\Vinelab\Auth\Social\Illuminate\Config\Repository</type>
+          </tag>
+          <tag name="param" line="45" description="" type="\Vinelab\Auth\Social\Illuminate\Routing\Redirector" variable="$redirector">
+            <type link="Redirector.html">\Vinelab\Auth\Social\Illuminate\Routing\Redirector</type>
+          </tag>
+          <tag name="param" line="45" description="" type="\Vinelab\Auth\Social\Vinelab\Http\Client" variable="$http">
+            <type link="Client.html">\Vinelab\Auth\Social\Vinelab\Http\Client</type>
+          </tag>
+          <tag name="param" line="45" description="" type="\Vinelab\Auth\Social\Vinelab\Auth\Contracts\StoreInterface" variable="$store">
+            <type link="StoreInterface.html">\Vinelab\Auth\Social\Vinelab\Auth\Contracts\StoreInterface</type>
+          </tag>
+          <tag name="param" line="45" description="" type="\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface" variable="$profile">
+            <type link="ProfileInterface.html">\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface</type>
+          </tag>
+          <tag name="param" line="45" description="" type="\Vinelab\Auth\Social\Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface" variable="$access_token">
+            <type link="AccessTokenInterface.html">\Vinelab\Auth\Social\Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$config</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Illuminate\Config\Repository</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$redirector</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Illuminate\Routing\Redirector</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$http</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Vinelab\Http\Client</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$store</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Vinelab\Auth\Contracts\StoreInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$profile</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$access_token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$oauth</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$signature</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$consumer</name>
+          <default></default>
+          <type>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="75" package="Default">
+        <name>instantiate</name>
+        <full_name>\Vinelab\Auth\Social\ProvidersManager::instantiate()</full_name>
+        <docblock line="75">
+          <description>Instantiates and returns a
+social provider instance.</description>
+          <long-description></long-description>
+          <tag name="param" line="75" description="" type="string" variable="$provider">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="75" description="" type="\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProviderInterface">
+            <type link="ProviderInterface.html">\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProviderInterface</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$provider</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="118" package="Default">
+        <name>supported</name>
+        <full_name>\Vinelab\Auth\Social\ProvidersManager::supported()</full_name>
+        <docblock line="118">
+          <description>Determines whether an authentication
+provider is supported.</description>
+          <long-description></long-description>
+          <tag name="param" line="118" description="" type="string" variable="$provider">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="118" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$provider</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Vinelab\Auth\Social" line="130" package="Default">
+        <name>providerClass</name>
+        <full_name>\Vinelab\Auth\Social\ProvidersManager::providerClass()</full_name>
+        <docblock line="130">
+          <description>Returns the class name of
+a provider network.</description>
+          <long-description></long-description>
+          <tag name="param" line="130" description="" type="string" variable="$provider">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="130" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$provider</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="18" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\ProvidersManager</error>
+    </parse_markers>
+    <source>eJytV9tuGyEQffdXUMmSnShN3pu6TZS2aqTeFEd9qauIYByjrGEFbNwqyr93gGWXhb0l6r7YzJ4ZhrkcZt++z7c54nhHVY4JRT8Zpxm+XZ0XertaCsJwdjqZFKp+81nrfHWRMco1wgqZpVuVuMssK3aMY01XV6LQjN+truiaSUq0kKcx5ELwDTOIXCgGgL/GphNG+1qP4I2WmGi1WgKYXnJN5Qb8Pu2D/pBiw7Lx4Ae2plJ9xRzfUdmn9fEPoblmgtdq34ReFnkupKbr6nWLqgttvdvqes807BR48t0A+7Yfa+Na3FP+LEOfAHcrxH1g6ZwQqtTzTXX4BEtV7PrDO9bWkt1BLRWNcpiQDCuF4mwitsszuoNqTd9V2uhxMkHwnBwe2l90iL4wBRp6S5Hy2UV5qe8xnOq9kPfquBR4+dkDlghLif+WkhP7C+oaegIMTWubC/RrtimDPztCM+1OPPt9mrh0Dc4Q2yiFxKbKEONKY05oqwN9PdflF/F9GG19ISnYQRiOvG8JcZcbOZZ419/8zad0oNtASjChtqykkYU2Kmt/pluAdGj3EpLXV0Y6zkBMU85A7qR9Jl7avmiKrfRGG3GzCIrbjBG0KTixpXVzA6lQWhZEz13WfHKOJh2hq54gOUFKhvXqm8WlYVgjSoEL/rBaEngf9GHV4bAO22jyPJoKDOuRavHOz9kypU2ImJeNtJHQuC0LKzqwFh4rO1O9Zer1O1c1pWxRc0wEk2FHL8LCSaCmNiqvFq5WEpAthQBk1wmqzHuFKtcJLkywwYXrdGsfU7+1XydIH7ogNnadAG2JBKex6wTl3KtRgXtPCadfWtbWDGhVIczXSFLwkcN/j1CWZqprb4jnEdAFcLMNYuOePHOWhwawqqR6iYnVbs+rneLSYxs0R6+qfPjbNlA4qLCPjcLXWyn2jWuudcALLNVZKGNsE+KmkUVQZxZ9YcQN5UpFwc1PtvGZUg8JhrGpnhneJH1bRtucwbkxb3Rid6MnnTgI7WfpsBMHUYMM3NKJQezNcwtTyn0QUfO4aPmp6j8GK3Jr3H31jAhHKiNvtrHBjK2PvwUi5hqtMPKiCvmuPb1+Cd3WwWwfKOQaBkbgtf2WwgwP0zhHxiKMFozY2dlja3JT9aT/UoKDhswo7h+s2sgoYq/SGuM39iOiBh4ljHbQxe5XJZmbLxjHReaTH4mNB+D66OV3zEtP7d5HnxTswXwwVKfu4r/2k8/6p93VDB2jgoDPazWH3bXIxJ7KkN19WJ7+Acl5494=</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Twitter/Contracts/OAuthConsumerInterface.php" generated-path="Vinelab.Auth.Social.Providers.Twitter.Contracts.OAuthConsumerInterface.html" hash="83e0183533758e6539b513c5b5fd086c" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <interface namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="3" package="Default">
+      <name>OAuthConsumerInterface</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</full_name>
+      <docblock line="3">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Twitter\Contracts" line="5" package="Default">
+        <name>make</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface::make()</full_name>
+        <docblock line="5">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$secret</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$redirect_url</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="3" code="PPC:ERR-50009">No summary for interface \Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface</error>
+      <error line="5" code="PPC:ERR-50015">Argument $key is missing from the Docblock of make()</error>
+      <error line="5" code="PPC:ERR-50015">Argument $secret is missing from the Docblock of make()</error>
+      <error line="5" code="PPC:ERR-50015">Argument $redirect_url is missing from the Docblock of make()</error>
+      <error line="5" code="PPC:ERR-50008">No summary for method make()</error>
+    </parse_markers>
+    <source>eJw9i0EKwjAQRfc5xSy6UPAGVURcuVJQXAUkTad0aDoJk4ki4t1NN/7V5z3edp/GBOxmzMl5hDsxBtfZQ9HRXqMnF+xF4pN6lGxvL1JFscfIKs5rbo0hrmRY2vMSVZXLjHL6448xUJdKF8jDUNgrRYbZTbhqJnxvoMnoBbUewZ4EvT6KBNgBlxDWrfn+APzNO38=</source>
+  </file>
+  <file path="Vinelab/Auth/Contracts/ProviderInterface.php" generated-path="Vinelab.Auth.Contracts.ProviderInterface.html" hash="00f2f6a44e3d831c28bf2e0d711f60d5" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <interface namespace="Vinelab\Auth\Contracts" line="3" package="Default">
+      <name>ProviderInterface</name>
+      <full_name>\Vinelab\Auth\Contracts\ProviderInterface</full_name>
+      <docblock line="3">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Contracts" line="5" package="Default">
+        <name>authenticate</name>
+        <full_name>\Vinelab\Auth\Contracts\ProviderInterface::authenticate()</full_name>
+        <docblock line="5">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Contracts" line="7" package="Default">
+        <name>callback</name>
+        <full_name>\Vinelab\Auth\Contracts\ProviderInterface::callback()</full_name>
+        <docblock line="7">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$input</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Contracts" line="9" package="Default">
+        <name>authenticateWithToken</name>
+        <full_name>\Vinelab\Auth\Contracts\ProviderInterface::authenticateWithToken()</full_name>
+        <docblock line="9">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$secret</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="3" code="PPC:ERR-50009">No summary for interface \Vinelab\Auth\Contracts\ProviderInterface</error>
+      <error line="5" code="PPC:ERR-50008">No summary for method authenticate()</error>
+      <error line="7" code="PPC:ERR-50015">Argument $input is missing from the Docblock of callback()</error>
+      <error line="7" code="PPC:ERR-50008">No summary for method callback()</error>
+      <error line="9" code="PPC:ERR-50015">Argument $token is missing from the Docblock of authenticateWithToken()</error>
+      <error line="9" code="PPC:ERR-50015">Argument $secret is missing from the Docblock of authenticateWithToken()</error>
+      <error line="9" code="PPC:ERR-50008">No summary for method authenticateWithToken()</error>
+    </parse_markers>
+    <source>eJx1jDEOwjAMRfecwkOGInGDghBiYmNAsHRxjatYDU6UOiyIu9MuiAH+8qSvp7fZ5ZBB8c5TRmK4iHLEvttXC90hqRUkm1rnRI3LsCinkh5y43L8PE/nYF6ufRSCoSqZJAWcG6wmhMbNqv0tEcbYI42NF83V/mnfratYOKeRtfG2YA1+YipssAWtMc6N1xsnFErp</source>
+  </file>
+  <file path="Vinelab/Auth/Social/Providers/Facebook/Contracts/AccessTokenInterface.php" generated-path="Vinelab.Auth.Social.Providers.Facebook.Contracts.AccessTokenInterface.html" hash="20a5c623bc8d827356c6cec232c4c4e3" package="Default">
+    <docblock line="0">
+      <description></description>
+      <long-description></long-description>
+    </docblock>
+    <interface namespace="Vinelab\Auth\Social\Providers\Facebook\Contracts" line="5" package="Default">
+      <name>AccessTokenInterface</name>
+      <full_name>\Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface</full_name>
+      <docblock line="5">
+        <description></description>
+        <long-description></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Facebook\Contracts" line="7" package="Default">
+        <name>make</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface::make()</full_name>
+        <docblock line="7">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$response</name>
+          <default></default>
+          <type>\Vinelab\Http\Response</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Facebook\Contracts" line="9" package="Default">
+        <name>makeFromToken</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface::makeFromToken()</full_name>
+        <docblock line="9">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$token</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Facebook\Contracts" line="11" package="Default">
+        <name>token</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface::token()</full_name>
+        <docblock line="11">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social\Providers\Facebook\Contracts" line="13" package="Default">
+        <name>expiry</name>
+        <full_name>\Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface::expiry()</full_name>
+        <docblock line="13">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
+      <error line="5" code="PPC:ERR-50009">No summary for interface \Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface</error>
+      <error line="7" code="PPC:ERR-50008">No summary for method make()</error>
+      <error line="9" code="PPC:ERR-50015">Argument $token is missing from the Docblock of makeFromToken()</error>
+      <error line="9" code="PPC:ERR-50008">No summary for method makeFromToken()</error>
+      <error line="11" code="PPC:ERR-50008">No summary for method token()</error>
+      <error line="13" code="PPC:ERR-50008">No summary for method expiry()</error>
+    </parse_markers>
+    <source>eJx1jMsKwjAQRff5iiy6iN9QQYpQdCcqrrJJ45SGtjMhmYgi/rtp8bHqbGa4585Zb3znJZoRojcW5MUhDKbRVeJOn8g6M+hDoJu7Qoi6zpWGqNdbQg7GciyFSPH/tmP2+phdhBEyc8gQ2klcWQsxnqkH3P/CpxAyj0/N4KxsE1p2hHI0PaivRRbhc63K5XodaJzlquBpLXVnqJYo3L0Ljwm/3q2DYew=</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Vinelab" full_name="Vinelab">
+    <namespace name="Auth" full_name="Vinelab\Auth">
+      <namespace name="Cache" full_name="Vinelab\Auth\Cache"/>
+      <namespace name="Contracts" full_name="Vinelab\Auth\Contracts"/>
+      <namespace name="Exceptions" full_name="Vinelab\Auth\Exceptions"/>
+      <namespace name="Facades" full_name="Vinelab\Auth\Facades"/>
+      <namespace name="Social" full_name="Vinelab\Auth\Social">
+        <namespace name="Providers" full_name="Vinelab\Auth\Social\Providers">
+          <namespace name="Facebook" full_name="Vinelab\Auth\Social\Providers\Facebook">
+            <namespace name="Contracts" full_name="Vinelab\Auth\Social\Providers\Facebook\Contracts"/>
+          </namespace>
+          <namespace name="Twitter" full_name="Vinelab\Auth\Social\Providers\Twitter">
+            <namespace name="Contracts" full_name="Vinelab\Auth\Social\Providers\Twitter\Contracts"/>
+          </namespace>
+        </namespace>
+      </namespace>
+    </namespace>
+  </namespace>
+  <deprecated count="0"/>
+</project>

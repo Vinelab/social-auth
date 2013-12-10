@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Vinelab - Social Authentication » \Vinelab\Auth\Social\Provider</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Vinelab - Social Authentication</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Vinelab.html"><i class="icon-th"></i> Vinelab</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">160</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<div class="btn-toolbar">
+<div class="btn-group visibility" data-toggle="buttons-checkbox">
+<button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button>
+</div>
+<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i title="Methods" class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct() :: "><span class="description">__construct()
+        </span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_authenticate" title="authenticate() :: Handles the authentication process."><span class="description">Handles the authentication process.</span><pre>authenticate()</pre></a></li>
+<li class="method public "><a href="#method_authenticateWithToken" title="authenticateWithToken() :: Authenticate a user using an already
+acquired access token."><span class="description">Authenticate a user using an already
+acquired access token.</span><pre>authenticateWithToken()</pre></a></li>
+<li class="method public "><a href="#method_callback" title="callback() :: Handles the provider's authentication
+callback."><span class="description">Handles the provider's authentication
+callback.</span><pre>callback()</pre></a></li>
+<li class="method public "><a href="#method_settings" title="settings() :: Returns settings values,
+when no setting is specified all the settings
+are returned, otherwise it returns the specified
+settings or null."><span class="description">Returns settings values,
+when no setting is specified all the settings
+are returned, otherwise it returns the specified
+settings or null.</span><pre>settings()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="method protected "><a href="#method_validateSettings" title="validateSettings() :: Determines whether the assigned
+settings for a social network
+are valid."><span class="description">Determines whether the assigned
+settings for a social network
+are valid.</span><pre>validateSettings()</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i title="Properties" class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected "><a href="#property_config" title="$config() :: The configuration instance."><span class="description"></span><pre>$config</pre></a></li>
+<li class="property protected "><a href="#property_mandatory" title="$mandatory() :: The mandatory settings
+that should be existing."><span class="description"></span><pre>$mandatory</pre></a></li>
+<li class="property protected "><a href="#property_name" title="$name() :: The name of the provider,
+i.e. facebook, twitter, etc."><span class="description"></span><pre>$name</pre></a></li>
+<li class="property protected "><a href="#property_settings" title="$settings() :: Social network provider settings
+brought from the configuration."><span class="description"></span><pre>$settings</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\Vinelab\Auth\Social\Provider"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i title="Classes" class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Vinelab.html">Vinelab</a></li>
+<li>
+<span class="divider">\</span><a href="../namespaces/Vinelab.Auth.html">Auth</a>
+</li>
+<li>
+<span class="divider">\</span><a href="../namespaces/Vinelab.Auth.Social.html">Social</a>
+</li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Vinelab.Auth.Social.Provider.html">Provider</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description"></p>
+<div class="details">
+<div class="long_description"></div>
+<h3>
+<i title="Methods" class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse" title="public">
+<h2>__construct()
+        </h2>
+<pre>__construct(\Illuminate\Config\Repository $config) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$config</h4></div>
+</div></div>
+</div>
+<a id="method_authenticate"></a><div class="element clickable method public method_authenticate" data-toggle="collapse" data-target=".method_authenticate .collapse" title="public">
+<h2>Handles the authentication process.</h2>
+<pre>authenticate() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_authenticateWithToken"></a><div class="element clickable method public method_authenticateWithToken" data-toggle="collapse" data-target=".method_authenticateWithToken .collapse" title="public">
+<h2>Authenticate a user using an already
+acquired access token.</h2>
+<pre>authenticateWithToken(string $token, $secret<code> = null</code>) : <a href="ProfileInterface.html">\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$token</h4>
+<code>string</code>
+</div>
+<div class="subelement argument"><h4>$secret</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="ProfileInterface.html">\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface</a></code></div>
+</div></div>
+</div>
+<a id="method_callback"></a><div class="element clickable method public method_callback" data-toggle="collapse" data-target=".method_callback .collapse" title="public">
+<h2>Handles the provider's authentication
+callback.</h2>
+<pre>callback($input) : <a href="ProfileInterface.html">\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$input</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="ProfileInterface.html">\Vinelab\Auth\Social\Vinelab\Auth\Contracts\ProfileInterface</a></code></div>
+</div></div>
+</div>
+<a id="method_settings"></a><div class="element clickable method public method_settings" data-toggle="collapse" data-target=".method_settings .collapse" title="public">
+<h2>Returns settings values,
+when no setting is specified all the settings
+are returned, otherwise it returns the specified
+settings or null.</h2>
+<pre>settings(\Vinelab\Auth\Social\setting $setting<code> = null</code>) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$setting</h4>
+<code><a href="setting.html">\Vinelab\Auth\Social\setting</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_validateSettings"></a><div class="element clickable method protected method_validateSettings" data-toggle="collapse" data-target=".method_validateSettings .collapse" title="protected">
+<h2>Determines whether the assigned
+settings for a social network
+are valid.</h2>
+<pre>validateSettings($settings) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$settings</h4></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<h3>
+<i title="Properties" class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_config"> </a><div class="element clickable property protected property_config" data-toggle="collapse" data-target=".property_config .collapse" title="protected">
+<h2>The configuration instance.</h2>
+<pre>$config : <a href="Repository.html">\Vinelab\Auth\Social\Illuminate\Config\Repository</a></pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_mandatory"> </a><div class="element clickable property protected property_mandatory" data-toggle="collapse" data-target=".property_mandatory .collapse" title="protected">
+<h2>The mandatory settings
+that should be existing.</h2>
+<pre>$mandatory : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_name"> </a><div class="element clickable property protected property_name" data-toggle="collapse" data-target=".property_name .collapse" title="protected">
+<h2>The name of the provider,
+i.e. facebook, twitter, etc.</h2>
+<pre>$name : string</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description">NOTE: This will be used to load the configuration
+        so it must match the key.</div></div></div>
+</div>
+<a id="property_settings"> </a><div class="element clickable property protected property_settings" data-toggle="collapse" data-target=".property_settings .collapse" title="protected">
+<h2>Social network provider settings
+brought from the configuration.</h2>
+<pre>$settings : array</pre>
+<div class="row collapse"><div class="detail-description">
+<h3>Default</h3>
+<div class="subelement argument"></div>
+</div></div>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.2.0
+</a> and<br>
+            generated on 2013-12-10T23:26:34+02:00.<br></footer></div>
+</div>
+</body>
+</html>
