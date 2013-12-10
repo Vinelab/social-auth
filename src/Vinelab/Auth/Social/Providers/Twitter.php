@@ -128,6 +128,11 @@ class Twitter extends Provider {
         return $this->getProfile($access_token);
     }
 
+    public function authenticateWithToken($token)
+    {
+
+    }
+
     public function getProfile(OAuthTokenInterface $token)
     {
         $url = $this->api($this->settings('verify_credentials_uri'));

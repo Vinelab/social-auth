@@ -69,6 +69,13 @@ class Auth {
         return $this->provider->callback($input);
     }
 
+    public function authenticateWithToken($provider, $token)
+    {
+        $this->provider = $this->providerInstance($provider);
+
+        return $this->provider->authenticateWithToken($token);
+    }
+
     protected function providerInstance($provider)
     {
         return $this->manager->instantiate($provider, $this->http, $this->redirect);

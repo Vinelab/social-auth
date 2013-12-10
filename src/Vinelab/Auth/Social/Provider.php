@@ -61,9 +61,18 @@ abstract class Provider implements ProviderInterface {
      * Handles the provider's authentication
      * callback.
      *
-     * @return void
+     * @return Vinelab\Auth\Contracts\ProfileInterface
      */
     abstract public function callback($input);
+
+    /**
+     * Authenticate a user using an already
+     * acquired access token.
+     *
+     * @param  string $token
+     * @return Vinelab\Auth\Contracts\ProfileInterface
+     */
+    abstract public function authenticateWithToken($token);
 
     /**
      * Returns settings values,

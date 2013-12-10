@@ -6,6 +6,8 @@ interface AccessTokenInterface {
 
     public function make(Response $response);
 
+    public function makeFromToken($token);
+
     public function token();
 
     public function expiry();

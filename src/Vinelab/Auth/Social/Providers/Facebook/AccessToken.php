@@ -30,6 +30,30 @@ class AccessToken implements AccessTokenInterface {
 		return $this;
 	}
 
+	public function makeFromToken($token)
+	{
+		if ( ! is_null($token) and ! empty($token))
+		{
+			$this->token = $token;
+
+			return $this;
+		}
+
+		throw new AccessTokenException('invalid access token format');
+	}
+
+	public function parseToken($token)
+	{
+		if(strpos($token, 'access_token') !== false)
+	    {
+            parse_str($token, $params);
+
+            return $params;
+	    }
+
+		throw new AccessTokenException('no access token received');
+	}
+
 	/**
 	 * Parses an access token response.
 	 *
@@ -53,18 +77,9 @@ class AccessToken implements AccessTokenInterface {
 			}
 		}
 
-		$content = $response->content();
+		$token = $response->content();
 
-	    if(strpos($content, 'access_token') !== false)
-	    {
-	            parse_str($content, $params);
-	            return $params;
-
-	    } else {
-			throw new AccessTokenException('no access token received');
-	    }
-
-		return (array) $json;
+	    return $this->parseToken($token);
 	}
 
 	/**

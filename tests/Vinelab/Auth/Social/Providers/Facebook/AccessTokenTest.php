@@ -30,6 +30,8 @@ class AccessTokenTest extends TestCase {
 
         $access_token = $this->access_token->make($this->response);
         $this->assertInstanceOf('Vinelab\Auth\Social\Providers\Facebook\AccessToken', $access_token);
+        $this->assertInstanceOf(
+            'Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface', $access_token);
         $this->assertEquals($sample['access_token'], $access_token->token());
         $this->assertEquals($sample['expires'], $access_token->expiry());
     }
@@ -87,5 +89,32 @@ class AccessTokenTest extends TestCase {
             ->andReturn('another thing here');
 
         $this->access_token->make($this->response);
+    }
+
+    public function test_making_from_token()
+    {
+        $this->assertInstanceOf(
+            'Vinelab\Auth\Social\Providers\Facebook\AccessToken',
+            $this->access_token->makeFromToken($this->at_sample));
+    }
+
+    /**
+     * @expectedException Vinelab\Auth\Exceptions\AccessTokenException
+     */
+    public function test_making_from_empty_token()
+    {
+        $this->assertInstanceOf(
+            'Vinelab\Auth\Social\Providers\Facebook\AccessToken',
+            $this->access_token->makeFromToken(''));
+    }
+
+    /**
+     * @expectedException Vinelab\Auth\Exceptions\AccessTokenException
+     */
+    public function test_making_from_null_token()
+    {
+        $this->assertInstanceOf(
+            'Vinelab\Auth\Social\Providers\Facebook\AccessToken',
+            $this->access_token->makeFromToken(null));
     }
 }

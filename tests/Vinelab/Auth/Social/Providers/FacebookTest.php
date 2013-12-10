@@ -261,6 +261,37 @@ class FacebookTest extends TestCase {
         $fb->callback(['code' => $code, 'state'=>'some-state']);
     }
 
+    public function test_authentication_with_token()
+    {
+        $this->access_token->shouldReceive('makeFromToken')
+            ->with('tochkan')
+            ->andReturn($this->access_token);
+
+        $this->access_token->shouldReceive('token')
+            ->andReturn('tochkan');
+
+        $this->access_token->shouldReceive('token')->once()
+            ->andReturn('tochkan');
+
+        $this->response->shouldReceive('json')->once()
+            ->andReturn(static::$fb_profile);
+        $this->access_token->shouldReceive('token')->once()
+            ->andReturn('tochkan');
+
+        $this->profile->shouldReceive('instantiate')->once()
+            ->with(static::$fb_profile, 'facebook')
+            ->andReturn($this->profile);
+
+        $this->http->shouldReceive('get')->once()
+            ->with([
+                'url' => 'api_urlprofile_uri',
+                'params' => ['access_token'=>'tochkan']
+            ])->andReturn($this->response);
+
+        $fb = $this->fb();
+        $fb->authenticateWithToken('tochkan');
+    }
+
     /**
      * @expectedException Vinelab\Auth\Exceptions\AuthenticationException
      */
