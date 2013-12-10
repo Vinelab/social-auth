@@ -72,7 +72,7 @@ abstract class Provider implements ProviderInterface {
      * @param  string $token
      * @return Vinelab\Auth\Contracts\ProfileInterface
      */
-    abstract public function authenticateWithToken($token);
+    abstract public function authenticateWithToken($token, $secret = null);
 
     /**
      * Returns settings values,

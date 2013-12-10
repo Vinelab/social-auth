@@ -18,4 +18,4 @@ class InvalidOAuthTokenException extends SocialAuthException {}
 
 class AuthenticationCanceledException extends SocialAuthException {}
 
-class TiwtterProfileException extends SocialAuthException {}
+class TwitterProfileException extends SocialAuthException {}

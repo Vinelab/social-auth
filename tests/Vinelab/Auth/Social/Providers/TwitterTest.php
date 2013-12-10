@@ -117,6 +117,45 @@ class TwitterTest extends TestCase {
         $this->twt->getProfile($this->token);
     }
 
+    public function test_authentication_with_token()
+    {
+        $token = 'my-token-to-be-alive';
+
+        $this->token->shouldReceive('make')->once()
+            ->with($token, null)
+            ->andReturn($this->token);
+
+        // brought in from the getProfile test
+        $headers = ['here'];
+        $url = $this->settings['api_url'] .'/'.
+                $this->settings['version'] .
+                $this->settings['verify_credentials_uri'] . '.json';
+
+        $this->oauth->shouldReceive('headers')->once()
+            ->with($this->settings, 'GET', $url, $this->consumer, $this->token)
+            ->andReturn($headers);
+
+        // make sure it adds the content-type
+        array_push($headers, 'Content-Type: application/x-www-form-urlencoded');
+
+        $response = M::mock('Vinelab\Http\Response');
+        $response->shouldReceive('statusCode')->once()
+            ->andReturn(200);
+        $response->shouldReceive('json')->once()
+            ->andReturn(M::mock('stdClass'));
+
+        $this->profile->shouldReceive('instantiate')->once()
+            ->with(M::type('object'), 'twitter');
+
+        $this->http->shouldReceive('get')->once()
+            ->with(['url' => $url, 'headers' => $headers])
+            ->andReturn($response);
+
+        // -- till here
+
+        $this->twt->authenticateWithToken($token);
+    }
+
     /**
      * @depends test_getting_profile
      */

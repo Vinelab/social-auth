@@ -12,6 +12,7 @@ use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface;
 
+use Vinelab\Auth\Exceptions\TwitterProfileException;
 use Vinelab\Auth\Exceptions\InvalidOAuthTokenException;
 use Vinelab\Auth\Exceptions\AuthenticationCanceledException;
 
@@ -128,9 +129,9 @@ class Twitter extends Provider {
         return $this->getProfile($access_token);
     }
 
-    public function authenticateWithToken($token)
+    public function authenticateWithToken($token, $secret = null)
     {
-
+        return $this->getProfile($this->token->make($token, $secret));
     }
 
     public function getProfile(OAuthTokenInterface $token)
@@ -148,7 +149,7 @@ class Twitter extends Provider {
             return $this->profile->instantiate($response->json(), 'twitter');
         }
 
-        throw new TiwtterProfileException('invalid response');
+        throw new TwitterProfileException('invalid response');
     }
 
     public function api($uri)

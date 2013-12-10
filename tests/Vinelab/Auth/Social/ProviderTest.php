@@ -15,7 +15,7 @@ class TestableProvider extends Provider
 
     public function callback($input) {}
 
-    public function authenticateWithToken($token) {}
+    public function authenticateWithToken($token, $secret = null) {}
 }
 
 class ProviderTest extends TestCase {

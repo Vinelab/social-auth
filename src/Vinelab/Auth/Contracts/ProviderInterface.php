@@ -6,5 +6,5 @@ interface ProviderInterface {
 
     public function callback($input);
 
-    public function authenticateWithToken($token);
+    public function authenticateWithToken($token, $secret = null);
 }

@@ -118,7 +118,7 @@ class Facebook extends Provider {
         return $this->requestProfile($access_token);
     }
 
-    public function authenticateWithToken($token)
+    public function authenticateWithToken($token, $secret = null)
     {
         return $this->requestProfile($this->access_token->makeFromToken($token));
     }
