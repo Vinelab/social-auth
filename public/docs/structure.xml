@@ -222,7 +222,7 @@ embedded in a request header.</description>
     </parse_markers>
     <source>eJztWEtv4zYQvudXsIEByoGdtIdeknXaIIdugaK7aNxe1oFAy7RFWKJUkoqbDfLfO3zJ1Mveh/dSNJdE5Mzw4/D7hsO8+alMS8RJTmVJEor+YpxmZLm4q1S6eCgSRrLFe1E8sRUVcjHfMaWouDk7q+Te9q1S5eI+Y5QrRCTSn/brpmF2MOTivuBKkETJxTttOC+2lP/KYWYNsL4iEHzKKqfiFLEe2IYTVQkaBDtLMiIlMvOI5WVGc9i5RC3X2gO9nJ0h+Lm6uDC/0QWapxQJ+ndFpULSL4GY97h0dt785yciToXfxbwyv0tRKJooukKjGsZNB+29oERRRBCnO79tLhXhPUhLIkh+CgKYgCOlx04RvJuIYMsDC4QsH6Xw0cxdtcxYgtYVTxQrOIrjBIinRJWoqG8/di8TG+PAz3G4x2PsBWmBj43HS+03UimT01uDyAzMHLybton2Rt5Ef3Qs9vydNVikTV47XPrDsl4id05oXQhglheDATFAKkSEIM+wBlWK8Y1sT5+mWKBR4oZOEr+XBHVkQSFX/BSRD1JzQ5XLu3GK6hQeZ1LNyAOJ+owovenosLMSmSGTQ/kBE3CNSclimMGP6DKcc9SJTSgwYPgx4GhR6gxICPcBFyZMQrJsSZItRrPbMI4ft2s8ujJogqSU6JMwKrGqsANBIhF+/+5hjicG/CTIjdd9DWW8R3d1hZYVy1ae/vsVvR40bI3HYNWRsVvajriPEKyjVKjw6W1OtrTJgL26p7dlIVXklxyPh6Q7F4RLkGsuQbBPVLA1A/1G3g81qA13WYEIRyRJKFyW/+v6G+n6zuT3PyhrS5wBVZuTC0Xt6Whl4VjvBwfqQWd7WJ8E3JnT+XNJrxEpS8g20fZX/0x3u91Uk38KWClPihVd4W6G6hC/Ub5R6TXCsCtoCsAl0mKLjd5jUIx4jtw2xuM6zDetOp9VdpIih9eBikz1gXV82YE/LWo8/pSi06Dnp9acNs27+z7ITNOmwNkvj5jplB20+DqBfGkPGFL0saOhPSma/PWXm4MWb+kzNhNaD350egvDkz4/XkAzj8MJoyNzYBvKqYAHwO/aJhr3+td9X5xTlRYrHPjXc0AJMzkQQzF4kiqSl3gYw9zbDMSAY5eQvGAnEOP8h8vvz3s1BkpIUppsXRdq+2G4uJbw2lmBwmtDtkYR+g4xGfMqyyJfYSCdgXpfGoj8UfkSZVygys1Q4L2vTK8NVHBYG4o8E+CiSL0K+qhgLtDY+ER+eFD6sDHUevn0oK0tHOL2ScLVE/WVm1p7viS5uCGIaisLoQKkGCpkAufeQsqh3JKMfeyi3EOqbd76ItGzoCtPLcVofRaCfTQV/to9bHW9roE17f+UoKA7YKKyZT24rCqYiomewo8h0YKDHWqkTDWlSm/K9kG6c/KWBEFgRiUq1voW0YvZyqzYMqOWqd6W5kuqOQsBggeV3cqRzstW9Hb3Yhc82IB0s++utHbZKip9qWAcHAokgJIk9S76/0gjUIQRvRkaFJYOdjmz1pcIz871aQiyq2/mCJDnLvB4rG3OJ7hXam6rwjpAYCDjBDevo/roLtAvrgzJIMOmdNoEe7OeDA52cI3a2kqbC5OvfoxylohCV8hI7ydXMXAICulgs96HtC6wHTq4hYB6R/rNThXuR2yBemyv/wJ2pB6E</source>
   </file>
-  <file path="config/social.php" generated-path="config.social.html" hash="5ec1978c5b897bb01ce6f690bad1aa9a" package="Default">
+  <file path="config/social.php" generated-path="config.social.html" hash="5d150a1bdade527244cb1df97cbfbab0" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -230,83 +230,59 @@ embedded in a request header.</description>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
     </parse_markers>
-    <source>eJyFVNty2jAQfQ5foT75JcXcDCa9DaEJIUkTBshk0k6GkeW1rWBbjiTjkq+vZBsw5FK/yTq7e3T27H79kQRJrWaaaPxrcjudD27mn9ApZJgD4hCxFSAcrxHzkAwAERZ71E85lpTFKMEcRyCBC5SxNHSRwwEvkZfGRN/jkMp1rcZBpjxGf2q1I8PDBBzGlgb69j3/c6QKD5IEDauJ9X8DJ3SxhLWB8k/BjZZtte1eo2u32i2r1TGOc5wAoiqUsBzXdTwbk67VdHtWr9XtNizHdogD2Op3Ola/WQZycCkHIhcppzkfI5AyOTHNkBEcBkzIE7vRaJg4lYEpGKE4NDf8TYUIHUyWZa4EeESFUNyFUZCACNPwOBXAF9hhqVxEUJwcymXg4nVxCpgSkGVxcaKxEhOEFMVRE9F6FKcMHEElFBWVbCOOkwDNQEoa+wJ9Vl2TKhzFTCIS4NgH1TIqkJCp56E0DkEIdF4+AKWJiyUI3VXK0WAy3oqe8nCj5lZSrYxQ0vi6Zn2jQp2wqBRAiwSxpAXhIkc1MMuyvTDTVXIy32S5umUSyZYQH9T/uHoZjwlRj1vk8ZuOcObREIrmVnKZERgK8KhRhsyolmznRkMZXKSRUntnvbKffc+dtki7ceFSdjleXl40yaCstQ2qelEH+T5Lm+3ZX7flvNwHNHheXgf04XrUvj0fJZ3ZivhOaF3FcUtsZKw+pFq+adnKyMr2n6eds2UDe0RE0+lTaE/wWX8K09thj3dXyRPBD016N78fsjcybvnl05Q9zS4615OEj37SwBrOsdt/6YnB79P56spKbqy7s8nkfOT5m0eWjt/rz3+mptT3YFr0yE/GVecWPg3yHVKxb+nZeZHlHcuu1PpRltuzrObVrDfftfSeqxSgXhLNDb318+Iw9IOowohvab4xYG6+N4z6anKosQHvbqACZpy+VLE7sL6B7XZ7TtUm2SeRI/duPpiWAq1XjzBVb7ISqvSm3nqhjORqcjgUe5wJYWkszdeoMrzYiL76eTDkQm/CQBkC5fsS4STJB7X2+OUfJWQItw==</source>
+    <source>eJyFVNty2jAQfQ5foT75JcXcDCa9DaEJIUkTBshk0k6GkeW1rWBbjiTjkq+vZBsw5FK/yTq7e3T27H79kQRJrWaaaPxrcjudD27mn9ApZJgD4hCxFSAcrxHzkAwAERZ71E85lpTFKMEcRyCBC5SxNHSRwwEvkZfGRN/jkMp1rcZBpjxGf2q1I8PDBBzGlgb69j3/c6QKD5IEDauJ9X8DJ3SxhLWB8k/BjZZtte1eo2u32i2r1TGOc5wAoiqUsBzXdTwbk67VdHtWr9XtNizHdogD2Op3Ola/WQZycCkHIhcppzkfI5AyOTHNkBEcBkzIE7vRaJg4lYEpGKE4NDf8TYUIHUyWZa4EeESFUNyFUZCACNPwOBXAF9hhqVxEUJwcymXg4nVxCpgSkGVxcaKxEhOEFMVRE9F6FKcMHEElFBWVbCOOkwDNQEoa+wJ9Vl2TKhzFTCIS4NgH1TIqkJCp56E0DkEIdF4+AKWJiyUI3VXK0WAy3oqe8nCj5lZSrYxQ0vi6Zn2jQp2wqBRAiwSxpAXhIkc1MMuyvTDTVXIy32S5umUSyZYQH9T/uHoZjwlRj1vk8ZuOcObREIrmVnKZERgK8KhRhsyolmznRkMZXKSRUntnvbKffc+dtki7ceFSdjleXl40yaCstQ2qelEH+T5Lm+3ZX7flvNwHNHheXgf04XrUvj0fJZ3ZivhOaF3FcUtsZKw+pFq+adnKyMr2n6eds2UDe0RE0+lTaE/wWX8K09thj3dXyRPBD016N78fsjcybvnl05Q9zS4615OEj37SwBrOsdt/6YnB79P56spKbqy7s8nkfOT5m0eWjt/rz3+mptT3YFr0yE/GVecWPg3yHVKxb+nZeZHlHcuu1PpRltuzrObVrDeP3/X0nq0UoF4yPXD04jD2g7DCim+pvrFgbr83rPpqdqixAe9uoAJmnL5UsTuwvoHtfntO1S7ZJ5Ej924+mJcCrZePMFV3shKqFKfeeqGs5GpyOBR7nAlhaSzN16gyvNiJvvp5MOZC78JAWQLlGxPhJMlHtfb45R/E9QkP</source>
   </file>
-  <file path="Vinelab/Auth/Social/Profile.php" generated-path="Vinelab.Auth.Social.Profile.html" hash="a68f4c61161a3dd4a11f235904e2c03b" package="Default">
+  <file path="Vinelab/Auth/Social/Profile.php" generated-path="Vinelab.Auth.Social.Profile.html" hash="20f9bec87aedef7c78f8b2a5bd72acf0" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
     </docblock>
-    <class final="false" abstract="false" namespace="Vinelab\Auth\Social" line="13" package="Default">
+    <class final="false" abstract="false" namespace="Vinelab\Auth\Social" line="11" package="Default">
       <extends/>
       <implements>\Vinelab\Auth\Contracts\ProfileInterface</implements>
       <name>Profile</name>
       <full_name>\Vinelab\Auth\Social\Profile</full_name>
-      <docblock line="13">
+      <docblock line="11">
         <description></description>
         <long-description></long-description>
       </docblock>
-      <property static="false" visibility="protected" line="20" namespace="Vinelab\Auth\Social" package="Default">
-        <name>$config</name>
-        <default></default>
-        <docblock line="20">
-          <description>The configuration instance</description>
-          <long-description></long-description>
-          <tag name="var" line="20" description="" type="\Vinelab\Auth\Social\Illuminate\Config\Repository" variable="">
-            <type link="Repository.html">\Vinelab\Auth\Social\Illuminate\Config\Repository</type>
-          </tag>
-        </docblock>
-      </property>
-      <property static="false" visibility="protected" line="27" namespace="Vinelab\Auth\Social" package="Default">
+      <property static="false" visibility="protected" line="18" namespace="Vinelab\Auth\Social" package="Default">
         <name>$info</name>
         <default></default>
-        <docblock line="27">
+        <docblock line="18">
           <description>The profile info;</description>
           <long-description></long-description>
-          <tag name="var" line="27" description="" type="array" variable="">
+          <tag name="var" line="18" description="" type="array" variable="">
             <type>array</type>
           </tag>
         </docblock>
       </property>
-      <property static="false" visibility="protected" line="34" namespace="Vinelab\Auth\Social" package="Default">
+      <property static="false" visibility="protected" line="25" namespace="Vinelab\Auth\Social" package="Default">
         <name>$provider</name>
         <default></default>
-        <docblock line="34">
+        <docblock line="25">
           <description>The social network service.</description>
           <long-description></long-description>
-          <tag name="var" line="34" description="" type="string" variable="">
+          <tag name="var" line="25" description="" type="string" variable="">
             <type>string</type>
           </tag>
         </docblock>
       </property>
       <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="36" package="Default">
-        <name>__construct</name>
-        <full_name>\Vinelab\Auth\Social\Profile::__construct()</full_name>
-        <docblock line="36">
-          <description></description>
-          <long-description></long-description>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$config</name>
-          <default></default>
-          <type>\Illuminate\Config\Repository</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="50" package="Default">
         <name>instantiate</name>
         <full_name>\Vinelab\Auth\Social\Profile::instantiate()</full_name>
-        <docblock line="50">
+        <docblock line="36">
           <description>Instantiates a profile by parsing
 it and mapping it to commonly used
 values across the different providers.</description>
           <long-description></long-description>
-          <tag name="param" line="50" description="" type="object" variable="$profile">
+          <tag name="param" line="36" description="" type="object" variable="$profile">
             <type>object</type>
           </tag>
-          <tag name="param" line="50" description="" type="string" variable="$provider">
+          <tag name="param" line="36" description="" type="string" variable="$provider">
             <type>string</type>
           </tag>
-          <tag name="return" line="50" description="" type="\Vinelab\Auth\Social\Vinelab\Auth\Social\Profile">
+          <tag name="return" line="36" description="" type="\Vinelab\Auth\Social\Vinelab\Auth\Social\Profile">
             <type link="Profile.html">\Vinelab\Auth\Social\Vinelab\Auth\Social\Profile</type>
           </tag>
         </docblock>
@@ -321,38 +297,38 @@ values across the different providers.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="73" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="59" package="Default">
         <name>info</name>
         <full_name>\Vinelab\Auth\Social\Profile::info()</full_name>
-        <docblock line="73">
+        <docblock line="59">
           <description>Returns the profile.</description>
           <long-description></long-description>
-          <tag name="return" line="73" description="" type="array">
+          <tag name="return" line="59" description="" type="array">
             <type>array</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="83" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="69" package="Default">
         <name>provider</name>
         <full_name>\Vinelab\Auth\Social\Profile::provider()</full_name>
-        <docblock line="83">
+        <docblock line="69">
           <description>Returns the provider.</description>
           <long-description></long-description>
-          <tag name="return" line="83" description="" type="string">
+          <tag name="return" line="69" description="" type="string">
             <type>string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="94" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="80" package="Default">
         <name>parseTwt</name>
         <full_name>\Vinelab\Auth\Social\Profile::parseTwt()</full_name>
-        <docblock line="94">
+        <docblock line="80">
           <description>Parses a Twitter profile</description>
           <long-description></long-description>
-          <tag name="param" line="94" description="" type="object" variable="$profile">
+          <tag name="param" line="80" description="" type="object" variable="$profile">
             <type>object</type>
           </tag>
-          <tag name="return" line="94" description="" type="array">
+          <tag name="return" line="80" description="" type="array">
             <type>array</type>
           </tag>
         </docblock>
@@ -362,16 +338,16 @@ values across the different providers.</description>
           <type>object</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="109" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="95" package="Default">
         <name>parseFb</name>
         <full_name>\Vinelab\Auth\Social\Profile::parseFb()</full_name>
-        <docblock line="109">
+        <docblock line="95">
           <description>Parse a Facebook profile.</description>
           <long-description></long-description>
-          <tag name="param" line="109" description="" type="object" variable="$raw_profile">
+          <tag name="param" line="95" description="" type="object" variable="$raw_profile">
             <type>object</type>
           </tag>
-          <tag name="return" line="109" description="" type="array">
+          <tag name="return" line="95" description="" type="array">
             <type>array</type>
           </tag>
         </docblock>
@@ -381,17 +357,17 @@ values across the different providers.</description>
           <type>object</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="126" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="110" package="Default">
         <name>__get</name>
         <full_name>\Vinelab\Auth\Social\Profile::__get()</full_name>
-        <docblock line="126">
+        <docblock line="110">
           <description>Implement the __get Magic method
 to return profile attributes directly.</description>
           <long-description></long-description>
-          <tag name="param" line="126" description="" type="string" variable="$attr">
+          <tag name="param" line="110" description="" type="string" variable="$attr">
             <type>string</type>
           </tag>
-          <tag name="return" line="126" description="" type="mixed">
+          <tag name="return" line="110" description="" type="mixed">
             <type>mixed</type>
           </tag>
         </docblock>
@@ -401,18 +377,18 @@ to return profile attributes directly.</description>
           <type>string</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="139" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="123" package="Default">
         <name>__set</name>
         <full_name>\Vinelab\Auth\Social\Profile::__set()</full_name>
-        <docblock line="139">
+        <docblock line="123">
           <description>Implement the __set Magic method
 to open the ability to assign
 values to the profile.</description>
           <long-description></long-description>
-          <tag name="param" line="139" description="" type="string" variable="$attr">
+          <tag name="param" line="123" description="" type="string" variable="$attr">
             <type>string</type>
           </tag>
-          <tag name="param" line="139" description="" type="mixed" variable="$val">
+          <tag name="param" line="123" description="" type="mixed" variable="$val">
             <type>mixed</type>
           </tag>
         </docblock>
@@ -427,18 +403,18 @@ values to the profile.</description>
           <type>mixed</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="152" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth\Social" line="136" package="Default">
         <name>__isset</name>
         <full_name>\Vinelab\Auth\Social\Profile::__isset()</full_name>
-        <docblock line="152">
+        <docblock line="136">
           <description>Implement the __isset Magic method
 to bypass issues when checking for
 empty attributes of this class.</description>
           <long-description></long-description>
-          <tag name="param" line="152" description="" type="string" variable="$attr">
+          <tag name="param" line="136" description="" type="string" variable="$attr">
             <type>string</type>
           </tag>
-          <tag name="return" line="152" description="" type="boolean">
+          <tag name="return" line="136" description="" type="boolean">
             <type>boolean</type>
           </tag>
         </docblock>
@@ -451,10 +427,9 @@ empty attributes of this class.</description>
     </class>
     <parse_markers>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
-      <error line="13" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Profile</error>
-      <error line="36" code="PPC:ERR-50008">No summary for method __construct()</error>
+      <error line="11" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\Social\Profile</error>
     </parse_markers>
-    <source>eJylllFv0zAQgN/7K+5h0tppa98pG0MgxB6QEEy8MFRdXKc1dezIdloqtP/O2YmTJk3WAnlpbZ/vzt/d+fz6Tb7OQWHGbY6MwzehuMTk6W3h1k9fNRMo56PR7OpqBFdwjzSrDcDbhC/hI0rcCXiNNJiuw+B+W26fMp3d0Y7ZaFRYDu/R8UeR8Xk5bNl4p5UzyJx9+mx0KiR/UI6blHyppB+kLDKhSIWXTcXq6QvPtRVOmz2ghXKShJlEa6HSAiLLJc+4cvVUrRh+j0ZAXziV/67gcc2BBUWFQSe0AqGsQ8V4JREF77doXnSpEpyF39xox5kjWBcsutljOY8+q1TP+wyiMTioudzVp9eG+IHibqfNBiw3W8H4tM+CdUao1ZAJ+rsVS24qM3mRSMEgLRQLrBYLOh1pKJgbl0DieSdB/nepl74Ltxb25q5chNsGi198PjrEQwiCE0TaAtackj3kaGzjMAgHqJaQYZ7TrB86TQHNMq3kHiiNllFyi7LwypjRlC2OKC1FmnJDmQLxmPYIEZnDDHTyk4AEHN6PzmqJsIFVLxvuCqP6SivmfJt7h65oIIyj6evGzADiuOwhd8LnP7sTjq1h3FHTVuU/hlSDl75sEq03l69aiwf2fBZ6W5V1Cg//kNT+TuatfYnhuDnwpjHkyC8q07+y87hzJwzF4XNjsgpK0DOUfl+CTJkllf6jzKj09FToURhTPe4G69CL8mxn+hJiNuRMXzF3vIkqTnjUZE6/V589f1+aj2XcoF0anQoZLKCzIR7Hu+P+bEYnyPSWQ6E449YidYlUcLm0tUyhLG803NxRebnCHmQOKbFOsA3gFh2aprTqLeVCVVvlVPVnITJc8UVh5LzLdBzON6n3vAiVmH6oim4w9zpUDe4W/0fWV+yBlqOrJV7Aty1j85cA2Zxy0aXjVlm22sDN3YrCcVk2q2m8aaa5YOR6IHk5uW5vr83QzW7842UyP6rsc2k/xIdCKK3FgpyBT7giNhmn107dOKihVJojBXRUZ0nhe9NSGAqB3A+FKPYGv6Ubm0z8qttTf2yCU+OweaBchQ0p3Vwj34P0jwm8geNZeAWqkPJcInaYiM65ClKYCCnc3s/RK0ysVKff0vxLt2i7g7YolUsBElyQthOkbCR1HaQHuuMhjNsgeC6MQHoIR7LP/RuUZPyZd2uCw9acbfypUl2fiWc5oTpIH52C9wvCE/ZEDvUnEZWM5KhOwKnS5F8SKfJ5/gNiqoS0</source>
+    <source>eJylVktv4zYQvvtXDBYp1g6y0T3eZLNosWgOBRZt0EtTGCN6ZLGWSIGk7BqL/PcOqZclWbG7y4tNzuubjzMcffxUpAUozMkWKAj+lIoyjF8+ly59+UMLidlyNouur2dwDY/Ip9oAfI5pDb9ihnsJH5E3t2nYPO4q81uh8we2iGaz0hL8go6eZU7LatuL8bNWzqBw9uWr0YnM6Ek5MgljYW2RobVQC0DmRUY5KdcetbrwbTYDXgGoX9fwnBIUjaVK9LIWNPLHHRpAY/BQn0Thl00cCcf5XVVWp/zaQAwocntttmDJ7KSg21MRrDNSbaZC8N+dXJMZh3lS1qFykqmzgG0m8QEKNLZzCdIBqjXkWBR86rdOA/Ofa5UdgPleN5o7zErvTBjNrDrOYy2ThAwzCg0QO0qCw2EOOv6HIQfAHsdAWiXZpdOKDbnSqFNV1Vx3n5kyzqSApFTCSa343loS5k3omy7MIhh9q1zwunKptB8eGjHcjwj2y+6lEynMB276rvwSyMX63pdXrPX2/V1PeBTP14mPVUfn66EvcYt3sezZxYZwe4SmC+QYF5fz/4rzvHdnAjXb1y5kfSnBT6XwOiq/34NOVSW1/1Fl1H5O9NDoGhM9H17WMYoqtwuxhDubAnOq3QZoGhdnEHWVcxrVV8+/b83n6t6g3xqDDplsoItJHN/3AH4UcQa53hGUigRZi+YAiaRsbVudUlnqPHx44PZypT2qHHZinRRbwB06NF1rtSaVoO6t6qj+s5I5bmhVmmw55HQe8lu0Nm+Sypx+qZtusvYGrBrcr36MWd+xR15GT0vzAN/3gi3fIsgWXIsumb9LnSvuomhjsEhvm/fEz8joJxsVUjBOendz5IJfbeNn8mI56tpLmXxqhmVom9VqQw5+ww3nnRMP8XYo8LCoPTcZouMeiks/d9bSML3ZYYr+5t33JkPec/lvO3pO8x5AzYPxRCtKG8q1eyL+Ctp/L+ATjE/hDlSZZZcyYqcZ0QWpoIWxzKQ7+DP+EpEbNZilfP7WC9mfjj2WKlEgCa7Y2xmmbMPUTdCemHzHZNwHxUvJCExP0REfCv8dxjo+533K5IiUxNZnleg2J8oLpuqofHQCHheEz7gzNXS6iLhRMkJ1hpy6TL6nkBp+Xv8DTFktrQ==</source>
   </file>
   <file path="Vinelab/Auth/Contracts/ProvidersManagerInterface.php" generated-path="Vinelab.Auth.Contracts.ProvidersManagerInterface.html" hash="8007d99ef632b2de76e1da725bed793a" package="Default">
     <docblock line="0">
@@ -1802,7 +1777,7 @@ key.</description>
     </parse_markers>
     <source>eJzFVMFu4yAQvecrOOSQRsn2A7LJ7qqX5rBS1Y26F0sVIZN6FAIWDF2tqv57wWDHdu00p5aDEfgx783Mg+8/irxgih/BFlwAe0AFkm+zX47yxWjkLLC1lO6IihNkN1rt8Sm7h0JbJG3+M25Z3Fx0sffaEaoA3qEB4dEpXkVxS1RkNxJBUQgTlnG1aMGCkuyPFshldmf0M+7A2N9c8ScwPUivhgwXZN+B14rA7H2SXoeQ3FoWDrCX0Yj5cT2dljObsk0OTJRJOcMJtWKoLHEl4FuCVMifz9ycrU8CXpdzYTT5QsCOjUWqWS81F/57MWVAx2/Kc5AzYPopTd2ji3nft3eItwreT3272dwxEV1wlrvHNkOMuYf0symgf9ocArj0xmWUfRYc4q4iJ/7CbSUKtndKlE56fPStt2ScoEl0S2WGWYx4ZpxKfSqqNh+fO92sWJqPTwxeHTY+xp2rMsZLHWlMOdr5Kqbi18uTxzuQSnmAmMbb0IEFoeV6WfWzA0hCSsCxeg7C/9f+ynPfRF8CFN69k7pNA3nU/lh2d9bJMI0QqdVhGCBnVPfMfNUivzqr0x/ao2zEn7ExqsLRJ0kVXMotF4dJYr24qH+R8o0+gGpJp7DjZwvCM3qRykn5BVVvqGtL6iRY3+RmQ4Y0dNJo60imnK/iG0PYMt6safRZ93LUol7fAH8QUjg=</source>
   </file>
-  <file path="Vinelab/Auth/AuthServiceProvider.php" generated-path="Vinelab.Auth.AuthServiceProvider.html" hash="beeecdef8e84f7d0fa4e913d31a21476" package="Default">
+  <file path="Vinelab/Auth/AuthServiceProvider.php" generated-path="Vinelab.Auth.AuthServiceProvider.html" hash="ba174f3ae169a90e96d9996d94c1c93b" package="Default">
     <docblock line="0">
       <description></description>
       <long-description></long-description>
@@ -1848,13 +1823,13 @@ key.</description>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth" line="106" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Vinelab\Auth" line="104" package="Default">
         <name>provides</name>
         <full_name>\Vinelab\Auth\AuthServiceProvider::provides()</full_name>
-        <docblock line="106">
+        <docblock line="104">
           <description>Get the services provided by the provider.</description>
           <long-description></long-description>
-          <tag name="return" line="106" description="" type="array">
+          <tag name="return" line="104" description="" type="array">
             <type>array</type>
           </tag>
         </docblock>
@@ -1864,7 +1839,7 @@ key.</description>
       <error line="0" code="PPC:ERR-50000">No summary was found for this file</error>
       <error line="11" code="PPC:ERR-50005">No summary for class \Vinelab\Auth\AuthServiceProvider</error>
     </parse_markers>
-    <source>eJy1Vl1v2jAUfaZS/4MfkBKqUt7brRur1g1p06pR7SkvxrkBC2NHtkNbTf3vu3E+SEJYglpeIoh9js+9vvfmfPgUr2Ii6QZMTBmQP1yCoItgmtjVzfnZ+VligMyESDZcUgvBPIljpW0wB73lDB602vIQdLm1ii9I9t7fUbZCKqs0tC3PFeNUBMgdcdGxw51uflJJl05F59bg8YlbCzr4lS7fKWmSTa6fCWoMSV83oiPwbEGGhjTf/01hg8nFBT7JBZnJkDPMkiE8IkLRkMslURGxKyBxgeGGhBCB1hBeOViG/bylmiyUEu7vBJ+IsMAshGToAOQjiagwcFM/9ItS1lhNY3cMjWORauBKEtiCtKZ2iAabaEm2ioe7c5IFQkiUSOZgKML6I1zA6AaDoV1xM77F4lhjin1vmyV3YlxexxSz5Y1Q0uC1Lus3LLnBPDtVJstbmYSjNemcbU8Xxju+LVe94uq/Wxu7R+PGMqkd4Kkx+IZKu/vVRtMkWnAZVkhcoSuJN8OsyYp9JvGcCNvMuyxD84cIHrmQBnkmJDwRt9+tjW83dI2JZ2nTeKMsgNeDAhyR168FdvJcM8z5Ens8qek8hq5O4qXQU8gsevYtKguOk4l8VGuQb1HoCE4m7y3KDooyOO4EWKzpQ13QHNhHNEQTmkU/qHWIkhFfeqPL/SUctlzjMG1dzEfa1QrnBRMch2brtn6dfQQy/8Adgd27mHuE4bxeV1injIExjfo7nrmzcN6N8lRSW8bZu3Hvz6CRY+6azr1LoU8/pAi/rQHe4xvRt7J6zY+SrEJRfkMnE/L1OVZo3FKrgFtpCO3JKxo18x7OenTmKRXUmqS8FLoGRf9Z0bvpD4zA/14bejKcrn4ZbB7oMHWZzhoGFZN+rxIZOg8YTAWn5ofbdH29BDuTqZ9h4GeHFQR4TLrR97Krm2aprceQ3Yxxf7yK1qbz+wa2avpM4fpCsnipWeE2F0i1pi8HbWCONDsbWIX5OzWv/wA3xC+k</source>
+    <source>eJy1Vl1v2jAUfaZS/4MfkBIqKO/t1o1V64a0adOo9pQX49yARbAj26Gtpv733TgfJCFpgigvEcT3HJ977XtyP3yK1hERdAs6ogzIXy4gpEtvFpv17eXF5UWsgczDMN5yQQ14iziKpDLeAtSOM/it5I77oIrQMj4nOXh/T9kaqYxU0LS8kIzT0EPugIcdEXZ3/ZMKurIqOkO9xyduDCjvV7J8L4WOt5l+FlKtSfK6lh2BZwPC16T+/l8CG0yvrvBJrshc+JxhlTThAQkl9blYERkQswYS5RiuiQ8BKAX+tYWl2M87qshSytD+neITEQaYAZ8MLYB8JAENNdxWN/0ipdFG0chuQ6MoTDRwKQjsQBhd2USBiZUgO8n9/T7xEiEkiAWzMBRh3BEuYHaDwdCsuZ7c4eXYYIldZ5cWd6ptXScUq+WMUNLgtSrrD6y4xjpbVTqtW1GEozWpjO1AF+Y7uStWnfzovxsT2UftxFKpHeCZ1viGCrP/1URTJ1py4ZdI7EWXAk+GGZ1e9rnAfQJsM2dcpOYOETyyKQ2ySgh4Ijberk3utnSDhWdJ0zijNIHXVgGWyOnXAnt5thkWfIU9Hld0HkNXJXES6Dlk5j17isqc42wiH+UGxCkKLcHZ5J2irFWURrsLweCdbuuCumEf0RB1aJr9oNIhUgR85YzGh0totlyhmTYuZpZ2vUa/YCFH02wM69fZRyCzD9wR2IODeUAY+vWmxDpjDLSu3b/jmTsvzrtRnktqg529G/ehB40sc5c7974KY9ImLIlr//706ea+l6aXNRRkJYpC3nRKvj5HEmeyZArAUOpDc13yHkzHCjtVdFpCIsh9wwC6PKC/DfTu5xZ3e/OrjeMWGqdbJJslOkwGSDv1eaX5+0HGwrfjnTcLOdU/bNDNzQrMXCSjCgM33SwnwG2SQNdJj26WlraaQ3oy2v5xSlrrQ903MOV5TucDnU+WL5Upt2nAo0rRl9YJL0Pq/YRXhrl7Na//AXDvJgw=</source>
   </file>
   <file path="Vinelab/Auth/Social/Providers/Twitter/OAuthToken.php" generated-path="Vinelab.Auth.Social.Providers.Twitter.OAuthToken.html" hash="f5c33ab93a7448f6d49daa7fe42f734c" package="Default">
     <docblock line="0">
