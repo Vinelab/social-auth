@@ -42,9 +42,9 @@ return [
 
 		// API Settings - this should not change unless Twitter updates their API
 
-		'version'             => 1.1
+		'version'             => 1.1,
 
-		'api_url'             => 'https://api.twitter.com'
+		'api_url'             => 'https://api.twitter.com',
 
 		'auth_api_url'        => 'https://api.twitter.com/oauth',
 
