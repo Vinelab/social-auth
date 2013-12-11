@@ -15,7 +15,7 @@ class ProfileTest extends TestCase {
     {
         $this->config = M::mock('Illuminate\Config\Repository');
 
-        $this->profile = new SocialProfile($this->config);
+        $this->profile = new SocialProfile;
 
         $this->fb_sample = (object) array(
             'id'         => 'some-id',
@@ -59,6 +59,7 @@ class ProfileTest extends TestCase {
 
         $profile = $this->profile->instantiate($this->fb_sample, 'facebook');
 
+        $this->assertInstanceOf('Vinelab\Auth\Contracts\ProfileInterface', $profile);
         $this->assertInstanceOf('Vinelab\Auth\Social\Profile', $profile);
     }
 

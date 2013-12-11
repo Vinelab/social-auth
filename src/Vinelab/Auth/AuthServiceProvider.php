@@ -76,9 +76,7 @@ class AuthServiceProvider extends ServiceProvider {
 			);
 		});
 
-		$this->app->bind('Vinelab\Auth\Contracts\ProfileInterface', function($app){
-			return new Profile($app->make('config'));
-		});
+		$this->app->bind('Vinelab\Auth\Contracts\ProfileInterface', 'Vinelab\Auth\Social\Profile');
 
 		$this->app->bind(
 			'Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface',

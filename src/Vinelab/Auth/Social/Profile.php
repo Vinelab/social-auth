@@ -8,16 +8,7 @@ use DateTime;
 
 use Vinelab\Auth\Contracts\ProfileInterface;
 
-use Illuminate\Config\Repository as Config;
-
 class Profile implements ProfileInterface {
-
-    /**
-     * The configuration instance
-     *
-     * @var Illuminate\Config\Repository
-     */
-    protected $config;
 
     /**
      * The profile info;
@@ -32,11 +23,6 @@ class Profile implements ProfileInterface {
      * @var string
      */
     protected $provider;
-
-    public function __construct(Config $config)
-    {
-        $this->config = $config;
-    }
 
     /**
      * Instantiates a profile by parsing
@@ -109,9 +95,7 @@ class Profile implements ProfileInterface {
     public function parseFb($raw_profile)
     {
         $profile = $raw_profile;
-        $profile->avatar = sprintf(
-            $this->config->get('social.facebook.picture_url'),
-            $profile->username);
+        $profile->avatar = sprintf("http://graph.facebook.com/%s/picture", $profile->username);
 
         return (array) $profile;
     }
