@@ -23,7 +23,6 @@ class ProfileTest extends TestCase {
             'first_name' => 'Mouse',
             'last_name'  => 'Mouse',
             'email'      => 'mickey@mouse.dis',
-            'username'   => 'mickey.mouse',
             'birthday'   => '12/03/1928',
             'gender'     => 'male'
         );

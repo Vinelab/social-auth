@@ -95,7 +95,7 @@ class Profile implements ProfileInterface {
     public function parseFb($raw_profile)
     {
         $profile = $raw_profile;
-        $profile->avatar = sprintf("http://graph.facebook.com/%s/picture", $profile->username);
+        $profile->avatar = sprintf("http://graph.facebook.com/%s/picture", $profile->id);
 
         return (array) $profile;
     }
