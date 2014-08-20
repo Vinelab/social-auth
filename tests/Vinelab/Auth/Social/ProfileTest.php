@@ -69,6 +69,10 @@ class ProfileTest extends TestCase {
         $fb = $this->profile->instantiate($this->fb_sample, 'facebook');
 
         $this->assertNotNull($fb->avatar);
+
+        $avatar = $fb->avatar;
+        $this->assertEquals($avatar, "http://graph.facebook.com/$fb->id/picture");
+
     }
 
     public function test_generates_birthday()
