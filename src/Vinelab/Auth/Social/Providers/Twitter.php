@@ -123,9 +123,6 @@ class Twitter extends Provider {
         $verifier_token = $this->token->verifier($input['oauth_token'], $input['oauth_verifier']);
         $access_token = $this->oauth->getAccessToken($this->settings, $this->consumer, $verifier_token);
 
-        // cache the access token
-        // $this->store->put($this->storeKey($access_token->user_id), $access_token, 30000);
-
         return $this->getProfile($access_token);
     }
 
