@@ -7,11 +7,6 @@
 use Vinelab\Http\Response;
 use Vinelab\Auth\Exceptions\InvalidOAuthTokenException;
 
-/**
- * @todo  Methods parsing responses to take into consideration
- *        the HTTP status code as well.
- */
-
 class OAuthToken implements Contracts\OAuthTokenInterface {
 
     /**
@@ -60,7 +55,8 @@ class OAuthToken implements Contracts\OAuthTokenInterface {
 
         $this->credentials['key'] = $params['oauth_token'];
         $this->credentials['secret'] = $params['oauth_token_secret'];
-        $this->credentials['callback_confirmed'] = (boolean) @$params['oauth_callback_confirmed'] or null;
+        $this->credentials['callback_confirmed'] = (isset($params['oauth_callback_confirmed'])) ?
+                                                        (boolean) $params['oauth_callback_confirmed'] : null;
 
         return $this;
     }
@@ -94,9 +90,9 @@ class OAuthToken implements Contracts\OAuthTokenInterface {
      */
     public function validateRequestTokenResponse($params)
     {
-        if ( ! isset($params['oauth_token']) or
-             ! isset($params['oauth_token_secret']) or
-            empty($params['oauth_token']) or
+        if ( ! isset($params['oauth_token']) ||
+             ! isset($params['oauth_token_secret']) ||
+            empty($params['oauth_token']) ||
             empty($params['oauth_token_secret']))
         {
             throw new InvalidOAuthTokenException('request token');
@@ -113,9 +109,9 @@ class OAuthToken implements Contracts\OAuthTokenInterface {
      */
     public function validateAccessTokenResponse($params)
     {
-        if ( ! isset($params['oauth_token']) or
-             ! isset($params['oauth_token_secret']) or
-            empty($params['oauth_token']) or
+        if ( ! isset($params['oauth_token']) ||
+             ! isset($params['oauth_token_secret']) ||
+            empty($params['oauth_token']) ||
             empty($params['oauth_token_secret']))
         {
             throw new InvalidOAuthTokenException('access token');

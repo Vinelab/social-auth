@@ -98,12 +98,12 @@ class Facebook extends Provider {
             throw new AuthenticationException($input['error'] . ':' . $input['error_description']);
         }
 
-        if ( ! isset($input['code']) or empty($input['code']))
+        if ( ! isset($input['code']) || empty($input['code']))
         {
             throw new AuthenticationException('invalid code');
         }
 
-        if ( ! isset($input['state']) or empty($input['state']))
+        if ( ! isset($input['state']) || empty($input['state']))
         {
             throw new AuthenticationException('invalid state');
         }
@@ -156,7 +156,7 @@ class Facebook extends Provider {
      */
     public function requestAccessToken($code)
     {
-        if ( ! $code or empty($code))
+        if ( ! $code || empty($code))
         {
             throw new InvalidFacebookCodeException;
         }

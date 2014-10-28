@@ -115,7 +115,7 @@ class Twitter extends Provider {
             throw new AuthenticationCanceledException;
         }
 
-        if ( ! isset($input['oauth_token']) or ! isset($input['oauth_verifier']))
+        if ( ! isset($input['oauth_token']) || ! isset($input['oauth_verifier']))
         {
             throw new InvalidOAuthTokenException('missing oauth_token or oauth_verifier');
         }

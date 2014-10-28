@@ -32,7 +32,7 @@ class AccessToken implements AccessTokenInterface {
 
 	public function makeFromToken($token)
 	{
-		if ( ! is_null($token) and ! empty($token))
+		if ( ! is_null($token) && ! empty($token))
 		{
 			$this->token = $token;
 
