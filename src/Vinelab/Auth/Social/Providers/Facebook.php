@@ -128,8 +128,6 @@ class Facebook extends Provider {
      * URL to which we should be
      * redirecting to.
      *
-     * @todo  use the built-in settings() method
-     *        for retrieval.
      *
      * @return string
      */
@@ -138,9 +136,9 @@ class Facebook extends Provider {
         $url = $this->settings['authentication_url'];
 
         $params = [
-            'client_id'    => $this->settings['api_key'],
-            'redirect_uri' => $this->settings['redirect_uri'],
-            'scope'        => $this->settings['permissions'],
+            'client_id'    => $this->settings('api_key'),
+            'redirect_uri' => $this->settings('redirect_uri'),
+            'scope'        => $this->settings('permissions'),
             'state'        => $state
         ];
 
