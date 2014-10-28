@@ -21,9 +21,6 @@
         "mockery/mockery": "dev-master"
     },
     "autoload": {
-        "classmap": [
-            "src/Vinelab/Auth/Exceptions"
-        ],
         "psr-0": {
             "Vinelab\\Auth": "src/"
         }

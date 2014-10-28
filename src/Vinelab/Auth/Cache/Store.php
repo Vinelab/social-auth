@@ -1,7 +1,6 @@
 <?php namespace Vinelab\Auth\Cache;
 
 use Vinelab\Auth\Contracts\StoreInterface;
-
 use Illuminate\Cache\CacheManager as Cache;
 
 class Store implements StoreInterface {
