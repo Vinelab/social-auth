@@ -4,8 +4,6 @@
  * @author  Abed Halawi <abed.halawi@vinelab.com>
  */
 
-use DateTime;
-
 use Vinelab\Auth\Contracts\ProfileInterface;
 
 class Profile implements ProfileInterface {

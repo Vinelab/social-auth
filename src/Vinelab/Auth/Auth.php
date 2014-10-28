@@ -1,10 +1,8 @@
 <?php namespace Vinelab\Auth;
 
-use Illuminate\Config\Repository as Config;
 use Illuminate\Routing\Redirector;
-
 use Vinelab\Http\Client as HttpClient;
-use Vinelab\Auth\Social\ProvidersManager;
+use Illuminate\Config\Repository as Config;
 use Vinelab\Auth\Contracts\ProvidersManagerInterface;
 
 class Auth {

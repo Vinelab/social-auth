@@ -4,10 +4,8 @@ use Illuminate\Support\ServiceProvider;
 
 use Vinelab\Auth\Auth;
 use Vinelab\Auth\Cache\Store;
-use Vinelab\Auth\Social\Profile;
 use Vinelab\Auth\Social\ProvidersManager;
 use Illuminate\Foundation\Application as App;
-use Vinelab\Auth\Social\Providers\Twitter\OAuthConsumer;
 
 class AuthServiceProvider extends ServiceProvider {
 
