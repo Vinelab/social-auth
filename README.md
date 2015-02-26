@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Vinelab/social-auth.png?branch=3.0.0-dev)](https://travis-ci.org/Vinelab/social-auth)
-# Social Authentication - Laravel 4
+# Social Authentication - Laravel
 
 [![Dependency Status](https://www.versioneye.com//user/projects/53efc9c413bb062f5f0004bb/badge.svg?style=flat)](https://www.versioneye.com//user/projects/53efc9c413bb062f5f0004bb)
 
