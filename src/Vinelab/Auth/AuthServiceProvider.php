@@ -17,16 +17,6 @@ class AuthServiceProvider extends ServiceProvider {
 	protected $defer = false;
 
 	/**
-	 * Bootstrap the application events.
-	 *
-	 * @return void
-	 */
-	public function boot()
-	{
-		$this->package('vinelab/social-auth');
-	}
-
-	/**
 	 * Register the service provider.
 	 *
 	 * @return void
