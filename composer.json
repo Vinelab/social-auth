@@ -11,10 +11,10 @@
     ],
     "require": {
         "php": ">=5.4",
-        "illuminate/support": "4.*",
-        "illuminate/database": "4.*",
-        "vinelab/assistant": "1.0.*",
-        "vinelab/http": "1.1.*"
+        "illuminate/support": "*",
+        "illuminate/database": "*",
+        "vinelab/assistant": "1.*",
+        "vinelab/http": "1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*",
