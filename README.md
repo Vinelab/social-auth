@@ -10,6 +10,9 @@ Using [composer](http://getcomposer.org) require the package [vinelab/social-aut
 Edit **app.php** and add ```'Vinelab\Auth\AuthServiceProvider'``` to the ```'providers'``` array.
 It will automatically alias itself as SocialAuth which is a Facade.
 
+## Configuration
+Publish the configuration file using `php artisan vendor:publish`
+
 ## Usage
 ```php
 <?php

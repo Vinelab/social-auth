@@ -16,6 +16,13 @@ class AuthServiceProvider extends ServiceProvider {
 	 */
 	protected $defer = false;
 
+	public function boot()
+	{
+		$this->publishes([
+		    __DIR__.'/../../config/social.php' => config_path('social.php'),
+		]);
+	}
+
 	/**
 	 * Register the service provider.
 	 *
