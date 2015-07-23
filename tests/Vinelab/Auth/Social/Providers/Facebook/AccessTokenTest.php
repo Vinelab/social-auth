@@ -1,12 +1,13 @@
-<?php namespace Vinelab\Auth\Tests\Social\Providers\Facebook;
+<?php
+
+namespace Vinelab\Auth\Tests\Social\Providers\Facebook;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Mockery as M;
+use Vinelab\Auth\Social\Providers\Facebook\AccessToken;
 
-use  Vinelab\Auth\Social\Providers\Facebook\AccessToken;
-
-class AccessTokenTest extends TestCase {
-
+class AccessTokenTest extends TestCase
+{
     public function setUp()
     {
         // a sample of the returned access token from facebook
@@ -15,7 +16,7 @@ class AccessTokenTest extends TestCase {
 
         $this->response = M::mock('Vinelab\Http\Response');
 
-        $this->access_token = new AccessToken;
+        $this->access_token = new AccessToken();
     }
 
     public function test_instantiation()
@@ -63,7 +64,7 @@ class AccessTokenTest extends TestCase {
         $this->access_token->make($this->response);
     }
 
-   /**
+    /**
      * @expectedException Vinelab\Auth\Exceptions\AccessTokenException
      * @expectedExceptionMessage no access token received
      */

@@ -1,18 +1,19 @@
-<?php namespace Vinelab\Auth\Tests\Social\Providers\Twitter;
+<?php
+
+namespace Vinelab\Auth\Tests\Social\Providers\Twitter;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Mockery as M;
-
 use Vinelab\Auth\Social\Providers\Twitter\OAuthToken;
 
-class OAuthTokenTest extends TestCase {
-
+class OAuthTokenTest extends TestCase
+{
     public function setUp()
     {
         $this->req_tok_sample = file('./tests/samples/twt_request_token.txt')[0];
         $this->acc_tok_sample = file('./tests/samples/twt_access_token.txt')[0];
 
-        $this->token = new OAuthToken;
+        $this->token = new OAuthToken();
 
         $this->response = M::mock('Vinelab\Http\Response');
     }
@@ -25,7 +26,7 @@ class OAuthTokenTest extends TestCase {
         $token = $this->token->make($key, $secret);
 
         $this->assertInstanceOf(
-            'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface',$token);
+            'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface', $token);
         $this->assertInstanceOf('Vinelab\Auth\Social\Providers\Twitter\OAuthToken', $token);
 
         $this->assertEquals($key, $token->key);
@@ -41,7 +42,7 @@ class OAuthTokenTest extends TestCase {
         $token = $this->token->verifier($key, $verifier);
 
         $this->assertInstanceOf(
-            'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface',$token);
+            'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface', $token);
         $this->assertInstanceOf('Vinelab\Auth\Social\Providers\Twitter\OAuthToken', $token);
 
         $this->assertEquals($key, $token->key);
@@ -57,7 +58,7 @@ class OAuthTokenTest extends TestCase {
         $token = $this->token->makeRequestToken($this->response);
 
         $this->assertInstanceOf(
-            'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface',$token);
+            'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface', $token);
         $this->assertInstanceOf('Vinelab\Auth\Social\Providers\Twitter\OAuthToken', $token);
 
         parse_str($this->req_tok_sample, $params);
@@ -116,7 +117,7 @@ class OAuthTokenTest extends TestCase {
         $token = $this->token->makeAccessToken($this->response);
 
         $this->assertInstanceOf(
-            'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface',$token);
+            'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface', $token);
         $this->assertInstanceOf('Vinelab\Auth\Social\Providers\Twitter\OAuthToken', $token);
 
         parse_str($this->acc_tok_sample, $params);
@@ -181,7 +182,7 @@ class OAuthTokenTest extends TestCase {
      */
     public function test_fails_validating_request_token_with_missing_token()
     {
-        $this->token->validateRequestTokenResponse(['oauth_token_secret'=>'something']);
+        $this->token->validateRequestTokenResponse(['oauth_token_secret' => 'something']);
     }
 
     /**
@@ -193,7 +194,7 @@ class OAuthTokenTest extends TestCase {
     {
         $this->token->validateRequestTokenResponse([
             'oauth_token' => '',
-            'oauth_token_secret'=>'something'
+            'oauth_token_secret' => 'something',
         ]);
     }
 
@@ -206,7 +207,7 @@ class OAuthTokenTest extends TestCase {
     {
         $this->token->validateRequestTokenResponse([
             'oauth_token' => null,
-            'oauth_token_secret'=>'something'
+            'oauth_token_secret' => 'something',
         ]);
     }
 
@@ -217,7 +218,7 @@ class OAuthTokenTest extends TestCase {
      */
     public function test_fails_validating_request_token_with_missing_secret()
     {
-        $this->token->validateRequestTokenResponse(['oauth_token'=>'something']);
+        $this->token->validateRequestTokenResponse(['oauth_token' => 'something']);
     }
 
     /**
@@ -229,7 +230,7 @@ class OAuthTokenTest extends TestCase {
     {
         $this->token->validateRequestTokenResponse([
             'oauth_token' => 'something',
-            'oauth_token_secret'=>''
+            'oauth_token_secret' => '',
         ]);
     }
 
@@ -242,7 +243,7 @@ class OAuthTokenTest extends TestCase {
     {
         $this->token->validateRequestTokenResponse([
             'oauth_token' => 'tfouuuu',
-            'oauth_token_secret'=> null
+            'oauth_token_secret' => null,
         ]);
     }
 
@@ -259,7 +260,7 @@ class OAuthTokenTest extends TestCase {
      */
     public function test_fails_validating_access_token_with_missing_token()
     {
-        $this->token->validateAccessTokenResponse(['oauth_token_secret'=>'something']);
+        $this->token->validateAccessTokenResponse(['oauth_token_secret' => 'something']);
     }
 
     /**
@@ -271,7 +272,7 @@ class OAuthTokenTest extends TestCase {
     {
         $this->token->validateAccessTokenResponse([
             'oauth_token' => '',
-            'oauth_token_secret'=>'some-secret'
+            'oauth_token_secret' => 'some-secret',
         ]);
     }
 
@@ -284,7 +285,7 @@ class OAuthTokenTest extends TestCase {
     {
         $this->token->validateAccessTokenResponse([
             'oauth_token' => null,
-            'oauth_token_secret'=>'some-secret'
+            'oauth_token_secret' => 'some-secret',
         ]);
     }
 
@@ -295,7 +296,7 @@ class OAuthTokenTest extends TestCase {
      */
     public function test_fails_validating_access_token_with_missing_secret()
     {
-        $this->token->validateAccessTokenResponse(['oauth_token'=>'something']);
+        $this->token->validateAccessTokenResponse(['oauth_token' => 'something']);
     }
 
     /**
@@ -307,7 +308,7 @@ class OAuthTokenTest extends TestCase {
     {
         $this->token->validateAccessTokenResponse([
             'oauth_token' => 'some-token',
-            'oauth_token_secret'=>''
+            'oauth_token_secret' => '',
         ]);
     }
 
@@ -320,7 +321,7 @@ class OAuthTokenTest extends TestCase {
     {
         $this->token->validateAccessTokenResponse([
             'oauth_token' => 'some-token',
-            'oauth_token_secret'=> null
+            'oauth_token_secret' => null,
         ]);
     }
 }

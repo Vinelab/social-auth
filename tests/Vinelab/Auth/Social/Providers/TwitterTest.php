@@ -1,38 +1,39 @@
-<?php namespace Vinelab\Auth\Tests\Social\Providers;
+<?php
+
+namespace Vinelab\Auth\Tests\Social\Providers;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Mockery as M;
-
 use Vinelab\Auth\Social\Providers\Twitter;
 
-class TwitterTest extends TestCase {
-
+class TwitterTest extends TestCase
+{
     public function setUp()
     {
-        $this->config   = M::mock('Illuminate\Config\Repository');
-        $this->http     = M::mock('Vinelab\Http\Client');
-        $this->redirect  = M::mock('Illuminate\Routing\Redirector');
-        $this->store     = M::mock('Vinelab\Auth\Contracts\StoreInterface');
-        $this->profile   = M::mock('Vinelab\Auth\Contracts\ProfileInterface');
+        $this->config = M::mock('Illuminate\Config\Repository');
+        $this->http = M::mock('Vinelab\Http\Client');
+        $this->redirect = M::mock('Illuminate\Routing\Redirector');
+        $this->store = M::mock('Vinelab\Auth\Contracts\StoreInterface');
+        $this->profile = M::mock('Vinelab\Auth\Contracts\ProfileInterface');
         $this->signature = M::mock(
             'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface');
-        $this->consumer  = M::mock(
+        $this->consumer = M::mock(
             'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface');
-        $this->token     = M::mock(
+        $this->token = M::mock(
             'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface');
-        $this->oauth     = M::mock(
+        $this->oauth = M::mock(
             'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface');
 
         $this->response = M::mock('Vinelab\Http\Response');
 
         $this->settings = [
-            'version'                => '1.1',
-            'consumer_key'           => 'conskey',
-            'consumer_secret'        => 'universe',
-            'api_url'                => 'api://url',
-            'auth_api_url'           => 'auth://api.url',
-            'authentication_uri'     => '/authenticate',
-            'verify_credentials_uri' => '/verify_credentials'
+            'version' => '1.1',
+            'consumer_key' => 'conskey',
+            'consumer_secret' => 'universe',
+            'api_url' => 'api://url',
+            'auth_api_url' => 'auth://api.url',
+            'authentication_uri' => '/authenticate',
+            'verify_credentials_uri' => '/verify_credentials',
         ];
 
         $this->config->shouldReceive('get')->once()
@@ -67,8 +68,8 @@ class TwitterTest extends TestCase {
 
         $this->token->key = 'request-token-retrieved-from-twittaaaaa3333';
 
-        $auth_url = $this->settings['auth_api_url'] . $this->settings['authentication_uri'];
-        $auth_url .= '?' . http_build_query(['oauth_token' => $this->token->key]);
+        $auth_url = $this->settings['auth_api_url'].$this->settings['authentication_uri'];
+        $auth_url .= '?'.http_build_query(['oauth_token' => $this->token->key]);
 
         $this->redirect->shouldReceive('to')->once()
             ->with($auth_url)
@@ -80,8 +81,8 @@ class TwitterTest extends TestCase {
     public function test_generating_api_url()
     {
         $url = $this->twt->api('/somewhere');
-        $expected = $this->settings['api_url'] . '/' .
-                    $this->settings['version'] .
+        $expected = $this->settings['api_url'].'/'.
+                    $this->settings['version'].
                     '/somewhere.json';
 
         $this->assertEquals($expected, $url);
@@ -90,9 +91,9 @@ class TwitterTest extends TestCase {
     public function test_getting_profile()
     {
         $headers = ['here'];
-        $url = $this->settings['api_url'] .'/'.
-                $this->settings['version'] .
-                $this->settings['verify_credentials_uri'] . '.json';
+        $url = $this->settings['api_url'].'/'.
+                $this->settings['version'].
+                $this->settings['verify_credentials_uri'].'.json';
 
         $this->oauth->shouldReceive('headers')->once()
             ->with($this->settings, 'GET', $url, $this->consumer, $this->token)
@@ -127,9 +128,9 @@ class TwitterTest extends TestCase {
 
         // brought in from the getProfile test
         $headers = ['here'];
-        $url = $this->settings['api_url'] .'/'.
-                $this->settings['version'] .
-                $this->settings['verify_credentials_uri'] . '.json';
+        $url = $this->settings['api_url'].'/'.
+                $this->settings['version'].
+                $this->settings['verify_credentials_uri'].'.json';
 
         $this->oauth->shouldReceive('headers')->once()
             ->with($this->settings, 'GET', $url, $this->consumer, $this->token)
@@ -174,9 +175,9 @@ class TwitterTest extends TestCase {
 
         // brought in from the getProfile test
         $headers = ['here'];
-        $url = $this->settings['api_url'] .'/'.
-                $this->settings['version'] .
-                $this->settings['verify_credentials_uri'] . '.json';
+        $url = $this->settings['api_url'].'/'.
+                $this->settings['version'].
+                $this->settings['verify_credentials_uri'].'.json';
 
         $this->oauth->shouldReceive('headers')->once()
             ->with($this->settings, 'GET', $url, $this->consumer, $this->token)
@@ -200,8 +201,8 @@ class TwitterTest extends TestCase {
         // -- till here
 
         $this->twt->callback([
-            'oauth_token'    => $token,
-            'oauth_verifier' => $verifier
+            'oauth_token' => $token,
+            'oauth_verifier' => $verifier,
         ]);
     }
 
@@ -211,7 +212,7 @@ class TwitterTest extends TestCase {
      */
     public function test_callback_denied()
     {
-        $this->twt->callback(['denied'=>'order like shit']);
+        $this->twt->callback(['denied' => 'order like shit']);
     }
 
     /**

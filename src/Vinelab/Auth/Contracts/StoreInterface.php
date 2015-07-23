@@ -1,7 +1,9 @@
-<?php namespace Vinelab\Auth\Contracts;
+<?php
 
-interface StoreInterface {
+namespace Vinelab\Auth\Contracts;
 
+interface StoreInterface
+{
     public function put($key, $value);
 
     public function has($key);

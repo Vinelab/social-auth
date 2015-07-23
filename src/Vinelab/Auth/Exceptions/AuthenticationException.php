@@ -1,3 +1,7 @@
-<?php namespace Vinelab\Auth\Exceptions;
+<?php
 
-class AuthenticationException extends SocialAuthException {}
+namespace Vinelab\Auth\Exceptions;
+
+class AuthenticationException extends SocialAuthException
+{
+}

@@ -1,8 +1,9 @@
-<?php namespace Vinelab\Auth\Tests\Social;
+<?php
+
+namespace Vinelab\Auth\Tests\Social;
 
 use Mockery as M;
 use PHPUnit_Framework_TestCase as TestCase;
-
 use Vinelab\Auth\Social\Provider;
 
 class TestableProvider extends Provider
@@ -11,15 +12,21 @@ class TestableProvider extends Provider
 
     protected $mandatory = ['setting'];
 
-    public function authenticate() {}
+    public function authenticate()
+    {
+    }
 
-    public function callback($input) {}
+    public function callback($input)
+    {
+    }
 
-    public function authenticateWithToken($token, $secret = null) {}
+    public function authenticateWithToken($token, $secret = null)
+    {
+    }
 }
 
-class ProviderTest extends TestCase {
-
+class ProviderTest extends TestCase
+{
     public function setUp()
     {
         $this->config = M::mock('Illuminate\Config\Repository');
@@ -29,12 +36,12 @@ class ProviderTest extends TestCase {
     {
         $this->config->shouldReceive('get')->once()
             ->with('social.fake')
-            ->andReturn(['setting'=>'value']);
+            ->andReturn(['setting' => 'value']);
 
         $this->provider = new TestableProvider($this->config);
 
         $this->assertInstanceOf('Vinelab\Auth\Social\Provider', $this->provider);
-        $this->assertEquals(['setting'=>'value'], $this->provider->settings());
+        $this->assertEquals(['setting' => 'value'], $this->provider->settings());
     }
 
     /**
@@ -45,12 +52,12 @@ class ProviderTest extends TestCase {
     {
         $this->config->shouldReceive('get')->once()
             ->with('social.fake')
-            ->andReturn(['setting'=>'value']);
+            ->andReturn(['setting' => 'value']);
 
         $this->provider = new TestableProvider($this->config);
         $validateSettings = static::getProtectedMethod('validateSettings', $this->provider);
 
-        $validateSettings->invokeArgs($this->provider, ['something'=>'else']);
+        $validateSettings->invokeArgs($this->provider, ['something' => 'else']);
     }
 
     /**
@@ -60,12 +67,12 @@ class ProviderTest extends TestCase {
     {
         $this->config->shouldReceive('get')->once()
             ->with('social.fake')
-            ->andReturn(['setting'=>'value']);
+            ->andReturn(['setting' => 'value']);
 
         $this->provider = new TestableProvider($this->config);
         $validateSettings = static::getProtectedMethod('validateSettings', $this->provider);
 
-        $this->assertTrue($validateSettings->invokeArgs($this->provider, [['setting'=>'value']]));
+        $this->assertTrue($validateSettings->invokeArgs($this->provider, [['setting' => 'value']]));
     }
 
     protected static function getProtectedMethod($name, $class)
@@ -73,6 +80,7 @@ class ProviderTest extends TestCase {
         $class = new \ReflectionClass(get_class($class));
         $method = $class->getMethod($name);
         $method->setAccessible(true);
+
         return $method;
     }
 }

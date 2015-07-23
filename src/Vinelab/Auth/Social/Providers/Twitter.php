@@ -1,23 +1,23 @@
-<?php namespace Vinelab\Auth\Social\Providers;
+<?php
+
+namespace Vinelab\Auth\Social\Providers;
 
 use Vinelab\Auth\Social\Provider;
 use Vinelab\Http\Client as HttpClient;
 use Illuminate\Config\Repository as Config;
 use Illuminate\Routing\Redirector;
-
 use Vinelab\Auth\Contracts\StoreInterface;
 use Vinelab\Auth\Contracts\ProfileInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface;
-
 use Vinelab\Auth\Exceptions\TwitterProfileException;
 use Vinelab\Auth\Exceptions\InvalidOAuthTokenException;
 use Vinelab\Auth\Exceptions\AuthenticationCanceledException;
 
-class Twitter extends Provider {
-
+class Twitter extends Provider
+{
     protected $name = 'twitter';
 
     protected $mandatory = [
@@ -28,7 +28,7 @@ class Twitter extends Provider {
         'access_token_uri',
         'authentication_uri',
         'authorization_uri',
-        'request_token_uri'
+        'request_token_uri',
     ];
 
     /**
@@ -71,14 +71,14 @@ class Twitter extends Provider {
     {
         parent::__construct($config);
 
-        $this->http      = $http;
+        $this->http = $http;
         $this->signature = $signature;
-        $this->consumer  = $consumer;
-        $this->oauth     = $oauth;
-        $this->token     = $token;
-        $this->redirect  = $redirect;
-        $this->store     = $store;
-        $this->profile   = $profile;
+        $this->consumer = $consumer;
+        $this->oauth = $oauth;
+        $this->token = $token;
+        $this->redirect = $redirect;
+        $this->store = $store;
+        $this->profile = $profile;
 
         $this->consumer->make(
             $this->settings('consumer_key'),
@@ -88,15 +88,13 @@ class Twitter extends Provider {
 
     /**
      * Authenticate with Twitter.
-     *
-     * @return void
      */
     public function authenticate()
     {
         $request_token = $this->oauth->getRequestToken($this->settings, $this->consumer, $this->token);
 
-        $auth_url = $this->settings('auth_api_url') . $this->settings('authentication_uri');
-        $auth_url .= '?' . http_build_query(['oauth_token'=>$request_token->key]);
+        $auth_url = $this->settings('auth_api_url').$this->settings('authentication_uri');
+        $auth_url .= '?'.http_build_query(['oauth_token' => $request_token->key]);
 
         return $this->redirect->to($auth_url);
     }
@@ -105,18 +103,17 @@ class Twitter extends Provider {
      * Handle the callback from a previous
      * authentication request.
      *
-     * @param  array   $input
+     * @param array $input
+     *
      * @return Vinelab\Auth\Contracts\ProfileInterface
      */
     public function callback($input)
     {
-        if (isset($input['denied']))
-        {
-            throw new AuthenticationCanceledException;
+        if (isset($input['denied'])) {
+            throw new AuthenticationCanceledException();
         }
 
-        if ( ! isset($input['oauth_token']) || ! isset($input['oauth_verifier']))
-        {
+        if (!isset($input['oauth_token']) || !isset($input['oauth_verifier'])) {
             throw new InvalidOAuthTokenException('missing oauth_token or oauth_verifier');
         }
 
@@ -141,8 +138,7 @@ class Twitter extends Provider {
 
         $response = $this->http->get(compact('url', 'headers'));
 
-        if ($response->statusCode() == 200)
-        {
+        if ($response->statusCode() == 200) {
             return $this->profile->instantiate($response->json(), 'twitter');
         }
 
@@ -151,17 +147,18 @@ class Twitter extends Provider {
 
     public function api($uri)
     {
-        return $this->settings('api_url') .'/'. $this->settings('version') . $uri .'.'. $this->format;
+        return $this->settings('api_url').'/'.$this->settings('version').$uri.'.'.$this->format;
     }
 
     /**
      * Generates a key to be used in the store.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return string
      */
     protected function storeKey($key)
     {
-        return $this->prefix . $key;
+        return $this->prefix.$key;
     }
 }

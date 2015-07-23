@@ -1,12 +1,13 @@
-<?php namespace Vinelab\Auth\Tests\Social\Providers;
+<?php
+
+namespace Vinelab\Auth\Tests\Social\Providers;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Mockery as M;
-
 use Vinelab\Auth\Social\Providers\Facebook;
 
-class FacebookTest extends TestCase {
-
+class FacebookTest extends TestCase
+{
     protected static $fb_profile;
 
     public static function setUpBeforeClass()
@@ -17,24 +18,24 @@ class FacebookTest extends TestCase {
 
     public function setUp()
     {
-        $this->config       = M::mock('Illuminate\Config\Repository');
-        $this->redirect     = M::mock('Illuminate\Routing\Redirector');
-        $this->http         = M::mock('Vinelab\Http\Client');
-        $this->store        = M::mock('Vinelab\Auth\Contracts\StoreInterface');
-        $this->profile      = M::mock('Vinelab\Auth\Contracts\ProfileInterface');
+        $this->config = M::mock('Illuminate\Config\Repository');
+        $this->redirect = M::mock('Illuminate\Routing\Redirector');
+        $this->http = M::mock('Vinelab\Http\Client');
+        $this->store = M::mock('Vinelab\Auth\Contracts\StoreInterface');
+        $this->profile = M::mock('Vinelab\Auth\Contracts\ProfileInterface');
         $this->access_token = M::mock(
             'Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface');
-        $this->response     = M::mock('Vinelab\Http\Response');
+        $this->response = M::mock('Vinelab\Http\Response');
 
-         $this->fb_settings = [
-            'api_key'            => 'api_key',
-            'secret'             => 'secret',
-            'redirect_uri'       => 'redirect_uri',
-            'permissions'        => 'permissions',
-            'api_url'            => 'api_url',
+        $this->fb_settings = [
+            'api_key' => 'api_key',
+            'secret' => 'secret',
+            'redirect_uri' => 'redirect_uri',
+            'permissions' => 'permissions',
+            'api_url' => 'api_url',
             'authentication_url' => 'authentication_url',
-            'token_url'          => 'token_url',
-            'profile_uri'        => 'profile_uri'
+            'token_url' => 'token_url',
+            'profile_uri' => 'profile_uri',
         ];
 
         $this->config->shouldReceive('get')->once()
@@ -82,12 +83,12 @@ class FacebookTest extends TestCase {
             ->with([
                 'url' => 'token_url',
                 'params' => [
-                    'client_id'     => 'api_key',
-                    'redirect_uri'  => 'redirect_uri',
+                    'client_id' => 'api_key',
+                    'redirect_uri' => 'redirect_uri',
                     'client_secret' => 'secret',
-                    'code'          => $code,
-                    'format'        => 'json'
-                ]
+                    'code' => $code,
+                    'format' => 'json',
+                ],
             ])->once()
             ->andReturn($this->response);
 
@@ -110,12 +111,12 @@ class FacebookTest extends TestCase {
             ->with([
                 'url' => 'token_url',
                 'params' => [
-                    'client_id'     => 'api_key',
-                    'redirect_uri'  => 'redirect_uri',
+                    'client_id' => 'api_key',
+                    'redirect_uri' => 'redirect_uri',
                     'client_secret' => 'secret',
-                    'code'          => $code,
-                    'format'        => 'json'
-                ]
+                    'code' => $code,
+                    'format' => 'json',
+                ],
             ])->once()
             ->andReturn($this->response);
 
@@ -138,12 +139,12 @@ class FacebookTest extends TestCase {
             ->with([
                 'url' => 'token_url',
                 'params' => [
-                    'client_id'     => 'api_key',
-                    'redirect_uri'  => 'redirect_uri',
+                    'client_id' => 'api_key',
+                    'redirect_uri' => 'redirect_uri',
                     'client_secret' => 'secret',
-                    'code'          => $code,
-                    'format'        => 'json'
-                ]
+                    'code' => $code,
+                    'format' => 'json',
+                ],
             ])->once()
             ->andReturn($this->response);
 
@@ -205,8 +206,8 @@ class FacebookTest extends TestCase {
      */
     public function test_parsing_erroneous_profile()
     {
-        $p = new \stdClass;
-        $p->error = new \stdClass;
+        $p = new \stdClass();
+        $p->error = new \stdClass();
         $p->error->type = 'err-type';
         $p->error->message = 'err-msg';
         $p->error->code = 508;
@@ -239,7 +240,7 @@ class FacebookTest extends TestCase {
         $this->http->shouldReceive('get')->once()
             ->with([
                 'url' => 'api_urlprofile_uri',
-                'params' => ['access_token'=>'tochkan']
+                'params' => ['access_token' => 'tochkan'],
             ])->andReturn($this->response);
 
         $fb = $this->fb();
@@ -258,7 +259,7 @@ class FacebookTest extends TestCase {
         $this->prepareCallbackTest($code, $state_cached);
 
         $fb = $this->fb();
-        $fb->callback(['code' => $code, 'state'=>'some-state']);
+        $fb->callback(['code' => $code, 'state' => 'some-state']);
     }
 
     public function test_authentication_with_token()
@@ -285,7 +286,7 @@ class FacebookTest extends TestCase {
         $this->http->shouldReceive('get')->once()
             ->with([
                 'url' => 'api_urlprofile_uri',
-                'params' => ['access_token'=>'tochkan']
+                'params' => ['access_token' => 'tochkan'],
             ])->andReturn($this->response);
 
         $fb = $this->fb();
@@ -308,7 +309,7 @@ class FacebookTest extends TestCase {
     public function test_callback_missing_code()
     {
         $fb = $this->fb();
-        $fb->callback(['state'=>'some-state']);
+        $fb->callback(['state' => 'some-state']);
     }
 
     /**
@@ -318,7 +319,7 @@ class FacebookTest extends TestCase {
     public function test_callback_missing_state()
     {
         $fb = $this->fb();
-        $fb->callback(['code'=>'some-code']);
+        $fb->callback(['code' => 'some-code']);
     }
 
     /**
@@ -331,7 +332,7 @@ class FacebookTest extends TestCase {
             ->andReturn(false);
 
         $fb = $this->fb();
-        $fb->callback(['code'=>'some-code', 'state'=>'some-state']);
+        $fb->callback(['code' => 'some-code', 'state' => 'some-state']);
     }
 
     protected function prepareCallbackTest($code, $cached)
@@ -346,19 +347,19 @@ class FacebookTest extends TestCase {
         $this->http->shouldReceive('get')->once()
             ->with([
                 'url' => 'api_urlprofile_uri',
-                'params' => ['access_token'=>'tochkan']
+                'params' => ['access_token' => 'tochkan'],
             ])->andReturn($this->response);
 
         $this->http->shouldReceive('get')
             ->with([
                 'url' => 'token_url',
                 'params' => [
-                    'client_id'     => 'api_key',
-                    'redirect_uri'  => 'redirect_uri',
+                    'client_id' => 'api_key',
+                    'redirect_uri' => 'redirect_uri',
                     'client_secret' => 'secret',
-                    'code'          => $code,
-                    'format'        => 'json'
-                ]
+                    'code' => $code,
+                    'format' => 'json',
+                ],
             ])->once()
             ->andReturn($this->response);
 
@@ -391,6 +392,7 @@ class FacebookTest extends TestCase {
         $class = new \ReflectionClass(get_class($class));
         $method = $class->getMethod($name);
         $method->setAccessible(true);
+
         return $method;
     }
 }

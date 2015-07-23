@@ -1,3 +1,7 @@
-<?php namespace Vinelab\Auth\Exceptions;
+<?php
 
-class TwitterProfileException extends SocialAuthException {}
+namespace Vinelab\Auth\Exceptions;
+
+class TwitterProfileException extends SocialAuthException
+{
+}

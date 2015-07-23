@@ -1,7 +1,9 @@
-<?php namespace Vinelab\Auth\Social\Providers\Twitter;
+<?php
 
-class OAuthConsumer implements Contracts\OAuthConsumerInterface {
+namespace Vinelab\Auth\Social\Providers\Twitter;
 
+class OAuthConsumer implements Contracts\OAuthConsumerInterface
+{
     /**
      * The consumer credentials.
      *

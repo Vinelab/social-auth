@@ -1,11 +1,13 @@
-<?php namespace Vinelab\Auth\Social\Providers\Twitter;
+<?php
+
+namespace Vinelab\Auth\Social\Providers\Twitter;
 
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface;
 
-class OAuthSignature implements Contracts\OAuthSignatureInterface {
-
-    protected  $method = 'HMAC-SHA1';
+class OAuthSignature implements Contracts\OAuthSignatureInterface
+{
+    protected $method = 'HMAC-SHA1';
 
     /**
      * Returns the signing method name used.
@@ -17,16 +19,17 @@ class OAuthSignature implements Contracts\OAuthSignatureInterface {
         return $this->method;
     }
 
-   /**
-    * Get a signature for the request.
-    *
-    * @param  OAuthConsumerInterface $consumer
-    * @param  OAuthTokenInterface    $token
-    * @param  string                 $httpverb
-    * @param  string                 $url
-    * @param  array                 $params
-    * @return string
-    */
+    /**
+     * Get a signature for the request.
+     *
+     * @param OAuthConsumerInterface $consumer
+     * @param OAuthTokenInterface    $token
+     * @param string                 $httpverb
+     * @param string                 $url
+     * @param array                  $params
+     *
+     * @return string
+     */
     public function get(OAuthConsumerInterface $consumer,
                         OAuthTokenInterface $token,
                         $httpverb,
@@ -36,7 +39,7 @@ class OAuthSignature implements Contracts\OAuthSignatureInterface {
         uksort($params, 'strcmp');
 
         $base_url = $this->baseURL($httpverb, $url, $params);
-        $key = $consumer->secret . '&' . $token->secret;
+        $key = $consumer->secret.'&'.$token->secret;
 
         return base64_encode(hash_hmac('sha1', $base_url, $key, true));
     }
@@ -47,14 +50,15 @@ class OAuthSignature implements Contracts\OAuthSignatureInterface {
     * @param  string $httpverb
     * @param  string $url
     * @param  array $params
+    *
     * @return string
     */
    public function baseURL($httpverb, $url, $params)
    {
-        uksort($params, 'strcmp');
+       uksort($params, 'strcmp');
 
-        return strtoupper($httpverb) . '&' .
-                rawurlencode($url) . '&' .
+       return strtoupper($httpverb).'&'.
+                rawurlencode($url).'&'.
                 rawurlencode(http_build_query($params));
    }
 };

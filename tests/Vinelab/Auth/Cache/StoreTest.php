@@ -1,12 +1,13 @@
-<?php namespace Vinelab\Auth\Tests\Cache;
+<?php
+
+namespace Vinelab\Auth\Tests\Cache;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Mockery as M;
-
 use Vinelab\Auth\Cache\Store;
 
-class StoreTest extends TestCase {
-
+class StoreTest extends TestCase
+{
     public function setUp()
     {
         $this->cache = M::mock('Illuminate\Cache\CacheManager');

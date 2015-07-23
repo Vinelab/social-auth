@@ -1,10 +1,10 @@
-<?php namespace Vinelab\Auth\Social;
+<?php
+
+namespace Vinelab\Auth\Social;
 
 use Vinelab\Http\Client as HttpClient;
-
 use Illuminate\Routing\Redirector;
 use Illuminate\Config\Repository as Config;
-
 use Vinelab\Auth\Contracts\StoreInterface;
 use Vinelab\Auth\Contracts\ProfileInterface;
 use Vinelab\Auth\Contracts\ProvidersManagerInterface;
@@ -15,8 +15,8 @@ use Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface;
 
-class ProvidersManager implements ProvidersManagerInterface {
-
+class ProvidersManager implements ProvidersManagerInterface
+{
     /**
      * Lists the supported provider
      * networks.
@@ -35,11 +35,11 @@ class ProvidersManager implements ProvidersManagerInterface {
     /**
      * Create a new ProvidersManager instance.
      *
-     * @param Illuminate\Config\Repository               $config
-     * @param Illuminate\Routing\Redirector           $redirector
-     * @param Vinelab\Http\Client                       $http
-     * @param Vinelab\Auth\Contracts\StoreInterface       $store
-     * @param Vinelab\Auth\Contracts\ProfileInterface     $profile
+     * @param Illuminate\Config\Repository                                          $config
+     * @param Illuminate\Routing\Redirector                                         $redirector
+     * @param Vinelab\Http\Client                                                   $http
+     * @param Vinelab\Auth\Contracts\StoreInterface                                 $store
+     * @param Vinelab\Auth\Contracts\ProfileInterface                               $profile
      * @param Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface $access_token
      */
     public function __construct(Config $config,
@@ -53,36 +53,35 @@ class ProvidersManager implements ProvidersManagerInterface {
                                 OAuthSignatureInterface $signature,
                                 OAuthConsumerInterface $consumer)
     {
-        $this->config       = $config;
-        $this->redirector   = $redirector;
-        $this->http         = $http;
-        $this->store        = $store;
-        $this->profile      = $profile;
+        $this->config = $config;
+        $this->redirector = $redirector;
+        $this->http = $http;
+        $this->store = $store;
+        $this->profile = $profile;
         $this->access_token = $access_token;
-        $this->signature    = $signature;
-        $this->consumer     = $consumer;
-        $this->oauth        = $oauth;
-        $this->token        = $token;
+        $this->signature = $signature;
+        $this->consumer = $consumer;
+        $this->oauth = $oauth;
+        $this->token = $token;
     }
 
     /**
      * Instantiates and returns a
      * social provider instance.
      *
-     * @param  string $provider
+     * @param string $provider
+     *
      * @return Vinelab\Auth\Contracts\ProviderInterface
      */
     public function instantiate($provider)
     {
-        if ( ! $this->supported($provider))
-        {
+        if (!$this->supported($provider)) {
             throw new ProviderNotSupportedException($provider);
         }
 
         $class = $this->providerClass($provider);
 
-        switch($provider)
-        {
+        switch ($provider) {
             case 'facebook':
                 return new $class($this->config,
                         $this->redirector,
@@ -104,16 +103,15 @@ class ProvidersManager implements ProvidersManagerInterface {
                                 $this->oauth);
             break;
         }
-
-
     }
 
     /**
      * Determines whether an authentication
      * provider is supported.
      *
-     * @param  string $provider
-     * @return boolean
+     * @param string $provider
+     *
+     * @return bool
      */
     public function supported($provider)
     {
@@ -124,11 +122,12 @@ class ProvidersManager implements ProvidersManagerInterface {
      * Returns the class name of
      * a provider network.
      *
-     * @param  string $provider
+     * @param string $provider
+     *
      * @return string
      */
     private function providerClass($provider)
     {
-        return 'Vinelab\Auth\Social\Providers\\' . ucwords(strtolower($provider));
+        return 'Vinelab\Auth\Social\Providers\\'.ucwords(strtolower($provider));
     }
 }

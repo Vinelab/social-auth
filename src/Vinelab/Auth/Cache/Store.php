@@ -1,16 +1,18 @@
-<?php namespace Vinelab\Auth\Cache;
+<?php
+
+namespace Vinelab\Auth\Cache;
 
 use Vinelab\Auth\Contracts\StoreInterface;
 use Illuminate\Cache\CacheManager as Cache;
 
-class Store implements StoreInterface {
-
+class Store implements StoreInterface
+{
     /**
      * The duration to keep the
      * state storage available
      * in minutes.
      *
-     * @var integer
+     * @var int
      */
     protected $duration = 2;
 
@@ -29,8 +31,9 @@ class Store implements StoreInterface {
      * and return the generated
      * key.
      *
-     * @param  string $key
-     * @param  mixed $data
+     * @param string $key
+     * @param mixed  $data
+     *
      * @return string
      */
     public function put($key, $data, $duration = null)
@@ -43,10 +46,11 @@ class Store implements StoreInterface {
     }
 
     /**
-     * Determines whether a key exists in the cache
+     * Determines whether a key exists in the cache.
      *
-     * @param  string $key
-     * @return boolean
+     * @param string $key
+     *
+     * @return bool
      */
     public function has($key)
     {
@@ -56,7 +60,8 @@ class Store implements StoreInterface {
     /**
      * Retrieve a value from the cache.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function get($key)

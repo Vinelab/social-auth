@@ -1,5 +1,9 @@
-<?php namespace Vinelab\Auth\Exceptions;
+<?php
+
+namespace Vinelab\Auth\Exceptions;
 
 use RuntimeException;
 
-class SocialAuthException extends RuntimeException {}
+class SocialAuthException extends RuntimeException
+{
+}

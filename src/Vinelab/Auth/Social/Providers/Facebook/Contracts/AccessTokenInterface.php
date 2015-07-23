@@ -1,9 +1,11 @@
-<?php namespace Vinelab\Auth\Social\Providers\Facebook\Contracts;
+<?php
+
+namespace Vinelab\Auth\Social\Providers\Facebook\Contracts;
 
 use Vinelab\Http\Response;
 
-interface AccessTokenInterface {
-
+interface AccessTokenInterface
+{
     public function make(Response $response);
 
     public function makeFromToken($token);

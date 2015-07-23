@@ -1,9 +1,11 @@
-<?php namespace Vinelab\Auth\Social\Providers\Twitter\Contracts;
+<?php
+
+namespace Vinelab\Auth\Social\Providers\Twitter\Contracts;
 
 use Vinelab\Http\Response;
 
-interface OAuthTokenInterface {
-
+interface OAuthTokenInterface
+{
     public function make($key, $secret);
 
     public function verifier($key, $verifier);

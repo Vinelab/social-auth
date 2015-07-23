@@ -1,12 +1,13 @@
-<?php namespace Vinelab\Auth\Social;
+<?php
+
+namespace Vinelab\Auth\Social;
 
 use Vinelab\Auth\Contracts\ProviderInterface;
 use Vinelab\Auth\Exceptions\InvalidProviderSettingsException;
-
 use Illuminate\Config\Repository as Config;
 
-abstract class Provider implements ProviderInterface {
-
+abstract class Provider implements ProviderInterface
+{
     /**
      * The name of the provider,
      * i.e. facebook, twitter, etc.
@@ -34,7 +35,7 @@ abstract class Provider implements ProviderInterface {
      */
     protected $settings;
 
-     /**
+    /**
      * The configuration instance.
      *
      * @var Illuminate\Config\Repository
@@ -45,15 +46,13 @@ abstract class Provider implements ProviderInterface {
     {
         $this->config = $config;
 
-        $this->settings = $this->config->get('social.' . $this->name);
+        $this->settings = $this->config->get('social.'.$this->name);
 
         $this->validateSettings($this->settings);
     }
 
     /**
      * Handles the authentication process.
-     *
-     * @return void
      */
     abstract public function authenticate();
 
@@ -69,7 +68,8 @@ abstract class Provider implements ProviderInterface {
      * Authenticate a user using an already
      * acquired access token.
      *
-     * @param  string $token
+     * @param string $token
+     *
      * @return Vinelab\Auth\Contracts\ProfileInterface
      */
     abstract public function authenticateWithToken($token, $secret = null);
@@ -80,13 +80,13 @@ abstract class Provider implements ProviderInterface {
      * are returned, otherwise it returns the specified
      * settings or null.
      *
-     * @param  setting $setting
+     * @param setting $setting
+     *
      * @return mixed
      */
     public function settings($setting = null)
     {
-        if ( ! is_null($setting) )
-        {
+        if (!is_null($setting)) {
             return isset($this->settings[$setting]) ? $this->settings[$setting] : null;
         }
 
@@ -102,9 +102,8 @@ abstract class Provider implements ProviderInterface {
      */
     protected function validateSettings($settings)
     {
-        if ( ! is_array($settings))
-        {
-            throw new InvalidProviderSettingsException;
+        if (!is_array($settings)) {
+            throw new InvalidProviderSettingsException();
         }
 
         $intersection = array_intersect(array_keys($settings), $this->mandatory);

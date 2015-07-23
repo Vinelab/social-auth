@@ -1,3 +1,7 @@
-<?php namespace Vinelab\Auth\Exceptions;
+<?php
 
-class InvalidProviderSettingsException extends SocialAuthException {}
+namespace Vinelab\Auth\Exceptions;
+
+class InvalidProviderSettingsException extends SocialAuthException
+{
+}

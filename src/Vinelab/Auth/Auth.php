@@ -1,12 +1,14 @@
-<?php namespace Vinelab\Auth;
+<?php
+
+namespace Vinelab\Auth;
 
 use Illuminate\Routing\Redirector;
 use Vinelab\Http\Client as HttpClient;
 use Illuminate\Config\Repository as Config;
 use Vinelab\Auth\Contracts\ProvidersManagerInterface;
 
-class Auth {
-
+class Auth
+{
     /**
      * The configuration instance.
      *
@@ -47,10 +49,10 @@ class Auth {
                                 HttpClient $http,
                                 ProvidersManagerInterface $manager)
     {
-        $this->config   = $config;
+        $this->config = $config;
         $this->redirect = $redirector;
-        $this->http     = $http;
-        $this->manager  = $manager;
+        $this->http = $http;
+        $this->manager = $manager;
     }
 
     public function authenticate($provider)

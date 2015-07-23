@@ -1,3 +1,7 @@
-<?php namespace Vinelab\Auth\Exceptions;
+<?php
 
-class InvalidFacebookCodeException extends SocialAuthException {}
+namespace Vinelab\Auth\Exceptions;
+
+class InvalidFacebookCodeException extends SocialAuthException
+{
+}

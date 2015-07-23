@@ -1,10 +1,9 @@
-<?php namespace Vinelab\Auth\Social\Providers\Twitter\Contracts;
+<?php
 
-use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface;
-use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface;
+namespace Vinelab\Auth\Social\Providers\Twitter\Contracts;
 
-interface OAuthInterface {
-
+interface OAuthInterface
+{
     public function getRequestToken($settings,
                                     OAuthConsumerInterface $consumer,
                                     OAuthTokenInterface $token);

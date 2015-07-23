@@ -1,15 +1,17 @@
-<?php namespace Vinelab\Auth\Social;
+<?php
 
-/**
+namespace Vinelab\Auth\Social;
+
+/*
  * @author  Abed Halawi <abed.halawi@vinelab.com>
  */
 
 use Vinelab\Auth\Contracts\ProfileInterface;
 
-class Profile implements ProfileInterface {
-
+class Profile implements ProfileInterface
+{
     /**
-     * The profile info;
+     * The profile info;.
      *
      * @var array
      */
@@ -29,14 +31,14 @@ class Profile implements ProfileInterface {
      *
      * @param object $profile
      * @param string $provider
+     *
      * @return Vinelab\Auth\Social\Profile
      */
     public function instantiate($profile, $provider)
     {
         $this->provider = $provider;
 
-        switch ($provider)
-        {
+        switch ($provider) {
             case 'facebook':
                 $this->info = $this->parseFb($profile);
             break;
@@ -70,9 +72,10 @@ class Profile implements ProfileInterface {
     }
 
     /**
-     * Parses a Twitter profile
+     * Parses a Twitter profile.
      *
-     * @param  object $profile
+     * @param object $profile
+     *
      * @return array
      */
     public function parseTwt($profile)
@@ -81,19 +84,21 @@ class Profile implements ProfileInterface {
         unset($profile->status);
         // stick avatar
         $profile->avatar = $profile->profile_image_url;
+
         return (array) $profile;
     }
 
     /**
      * Parse a Facebook profile.
      *
-     * @param  object $raw_profile
+     * @param object $raw_profile
+     *
      * @return array
      */
     public function parseFb($raw_profile)
     {
         $profile = $raw_profile;
-        $profile->avatar = sprintf("http://graph.facebook.com/%s/picture", $profile->id);
+        $profile->avatar = sprintf('http://graph.facebook.com/%s/picture', $profile->id);
 
         return (array) $profile;
     }
@@ -102,7 +107,8 @@ class Profile implements ProfileInterface {
      * Implement the __get Magic method
      * to return profile attributes directly.
      *
-     * @param  string $attr
+     * @param string $attr
+     *
      * @return mixed
      */
     public function __get($attr)
@@ -116,7 +122,7 @@ class Profile implements ProfileInterface {
      * values to the profile.
      *
      * @param string $attr
-     * @param mixed $val
+     * @param mixed  $val
      */
     public function __set($attr, $val)
     {
@@ -128,8 +134,9 @@ class Profile implements ProfileInterface {
      * to bypass issues when checking for
      * empty attributes of this class.
      *
-     * @param  string  $attr
-     * @return boolean
+     * @param string $attr
+     *
+     * @return bool
      */
     public function __isset($attr)
     {

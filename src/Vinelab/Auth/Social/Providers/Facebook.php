@@ -1,4 +1,6 @@
-<?php namespace Vinelab\Auth\Social\Providers;
+<?php
+
+namespace Vinelab\Auth\Social\Providers;
 
 use Vinelab\Http\Response;
 use Vinelab\Auth\Social\Provider;
@@ -9,12 +11,11 @@ use Vinelab\Auth\Exceptions\InvalidProfileException;
 use Vinelab\Auth\Exceptions\AuthenticationException;
 use Vinelab\Auth\Exceptions\InvalidFacebookCodeException;
 use Vinelab\Auth\Social\Providers\Facebook\Contracts\AccessTokenInterface;
-
 use Illuminate\Routing\Redirector;
 use Illuminate\Config\Repository as Config;
 
-class Facebook extends Provider {
-
+class Facebook extends Provider
+{
     protected $name = 'facebook';
 
     protected $mandatory = [
@@ -25,7 +26,7 @@ class Facebook extends Provider {
         'api_url',
         'authentication_url',
         'token_url',
-        'profile_uri'
+        'profile_uri',
     ];
 
     /**
@@ -46,10 +47,10 @@ class Facebook extends Provider {
     /**
      * Create a new Facebook instance.
      *
-     * @param Illuminate\Config\Repository $config
-     * @param Illuminate\Routing\Redirector $redirect
-     * @param Vinelab\Http\Client $http
-     * @param Vinelab\Auth\Contracts\StoreInterface $store
+     * @param Illuminate\Config\Repository            $config
+     * @param Illuminate\Routing\Redirector           $redirect
+     * @param Vinelab\Http\Client                     $http
+     * @param Vinelab\Auth\Contracts\StoreInterface   $store
      * @param Vinelab\Auth\Contracts\ProfileInterface $profile
      */
     public function __construct(Config $config,
@@ -61,19 +62,17 @@ class Facebook extends Provider {
     {
         parent::__construct($config);
 
-        $this->config       = $config;
-        $this->redirect     = $redirect;
-        $this->http         = $http;
-        $this->store        = $store;
-        $this->profile      = $profile;
+        $this->config = $config;
+        $this->redirect = $redirect;
+        $this->http = $http;
+        $this->store = $store;
+        $this->profile = $profile;
         $this->access_token = $access_token;
     }
 
     /**
      * Redirects to the corresponding
-     * authentication URL
-     *
-     * @return void
+     * authentication URL.
      */
     public function authenticate()
     {
@@ -88,28 +87,25 @@ class Facebook extends Provider {
      * Handles the authentication callback
      * returned from the provider.
      *
-     * @param  mixed   $input
+     * @param mixed $input
+     *
      * @return Vinelab\Auth\Contracts\ProfileInterface
      */
     public function callback($input)
     {
-        if (isset($input['error']))
-        {
-            throw new AuthenticationException($input['error'] . ':' . $input['error_description']);
+        if (isset($input['error'])) {
+            throw new AuthenticationException($input['error'].':'.$input['error_description']);
         }
 
-        if ( ! isset($input['code']) || empty($input['code']))
-        {
+        if (!isset($input['code']) || empty($input['code'])) {
             throw new AuthenticationException('invalid code');
         }
 
-        if ( ! isset($input['state']) || empty($input['state']))
-        {
+        if (!isset($input['state']) || empty($input['state'])) {
             throw new AuthenticationException('invalid state');
         }
 
-        if ( ! $this->store->has($input['state']))
-        {
+        if (!$this->store->has($input['state'])) {
             throw new AuthenticationException('state expired');
         }
 
@@ -136,39 +132,39 @@ class Facebook extends Provider {
         $url = $this->settings['authentication_url'];
 
         $params = [
-            'client_id'    => $this->settings('api_key'),
+            'client_id' => $this->settings('api_key'),
             'redirect_uri' => $this->settings('redirect_uri'),
-            'scope'        => $this->settings('permissions'),
-            'state'        => $state
+            'scope' => $this->settings('permissions'),
+            'state' => $state,
         ];
 
-        return $url . '?' . http_build_query($params);
+        return $url.'?'.http_build_query($params);
     }
 
     /**
      * Requests an access token from Facebook
      * according to the returned code.
      *
-     * @param  string $code The code returned from Facebook after authentication
+     * @param string $code The code returned from Facebook after authentication
+     *
      * @return Vinelab\Contracts\AccessTokenInterface
      */
     public function requestAccessToken($code)
     {
-        if ( ! $code || empty($code))
-        {
-            throw new InvalidFacebookCodeException;
+        if (!$code || empty($code)) {
+            throw new InvalidFacebookCodeException();
         }
 
         $request = [
             'url' => $this->settings['token_url'],
 
             'params' => [
-                'client_id'     => $this->settings['api_key'],
-                'redirect_uri'  => $this->settings['redirect_uri'],
+                'client_id' => $this->settings['api_key'],
+                'redirect_uri' => $this->settings['redirect_uri'],
                 'client_secret' => $this->settings['secret'],
-                'code'          => $code,
-                'format'        => 'json'
-            ]
+                'code' => $code,
+                'format' => 'json',
+            ],
         ];
 
         return $this->access_token->make($this->http->get($request));
@@ -178,14 +174,15 @@ class Facebook extends Provider {
      * Sends a request for a Facebook profile
      * using the acquired access token.
      *
-     * @param  Vinelab\Contracts\AccessTokenInterface $access_token
+     * @param Vinelab\Contracts\AccessTokenInterface $access_token
+     *
      * @return Vinelab\Auth\Social\Profile
      */
     public function requestProfile(AccessTokenInterface $access_token)
     {
         $request = [
-            'url' => $this->settings['api_url'] . $this->settings['profile_uri'],
-            'params' => ['access_token' => $access_token->token()]
+            'url' => $this->settings['api_url'].$this->settings['profile_uri'],
+            'params' => ['access_token' => $access_token->token()],
         ];
 
         return $this->parseProfileResponse($this->http->get($request), $access_token);
@@ -195,24 +192,23 @@ class Facebook extends Provider {
      * Parses a response coming from Facebook
      * containing a profile.
      *
-     * @param  Vinelab\Http\Response    $response
-     * @param  Vinelab\Contracts\AccessTokenInterface $access_token
+     * @param Vinelab\Http\Response                  $response
+     * @param Vinelab\Contracts\AccessTokenInterface $access_token
+     *
      * @return Vinelab\Auth\Social\Profile
      */
     public function parseProfileResponse(Response $response, AccessTokenInterface $access_token)
     {
         $profile = $response->json();
 
-        if (gettype($profile) !== 'object')
-        {
-            throw new InvalidProfileException;
+        if (gettype($profile) !== 'object') {
+            throw new InvalidProfileException();
         }
 
-        if (isset($profile->error))
-        {
+        if (isset($profile->error)) {
             $error = $profile->error;
 
-            throw new InvalidProfileException($error->type . ': ' . $error->message, $error->code);
+            throw new InvalidProfileException($error->type.': '.$error->message, $error->code);
         }
 
         $profile->access_token = $access_token->token();

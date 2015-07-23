@@ -1,14 +1,16 @@
-<?php namespace Vinelab\Auth\Social\Providers\Twitter;
+<?php
 
-/**
+namespace Vinelab\Auth\Social\Providers\Twitter;
+
+/*
  * @author Abed Halawi <abed.halawi@vinelab.com>
  */
 
 use Vinelab\Http\Response;
 use Vinelab\Auth\Exceptions\InvalidOAuthTokenException;
 
-class OAuthToken implements Contracts\OAuthTokenInterface {
-
+class OAuthToken implements Contracts\OAuthTokenInterface
+{
     /**
      * The token credentials holder.
      *
@@ -20,13 +22,14 @@ class OAuthToken implements Contracts\OAuthTokenInterface {
      * Creates and returns an OAuthToken instance
      * setting the token key and secret.
      *
-     * @param  string $key
-     * @param  string $secret
+     * @param string $key
+     * @param string $secret
+     *
      * @return Vinelab\Auth\Social\Providers\Twitter\OAuthToken
      */
     public function make($key, $secret)
     {
-        $this->credentials['key']    = $key;
+        $this->credentials['key'] = $key;
         $this->credentials['secret'] = $secret;
 
         return $this;
@@ -44,7 +47,8 @@ class OAuthToken implements Contracts\OAuthTokenInterface {
      * Creates and returns an OAuthToken instance
      * parsing values from the Twitter API Response.
      *
-     * @param  Vinelab\Http\Response $response
+     * @param Vinelab\Http\Response $response
+     *
      * @return Vinelab\Auth\Social\Providers\Twitter\OAuthToken
      */
     public function makeRequestToken(Response $response)
@@ -65,7 +69,8 @@ class OAuthToken implements Contracts\OAuthTokenInterface {
      * Parse an access token response and assign
      * credential values.
      *
-     * @param  Vinelab\Http\Response $response
+     * @param Vinelab\Http\Response $response
+     *
      * @return Vinelab\Auth\Social\Providers\Twitter\OAuthToken
      */
     public function makeAccessToken(Response $response)
@@ -74,9 +79,9 @@ class OAuthToken implements Contracts\OAuthTokenInterface {
 
         $this->validateAccessTokenResponse($params);
 
-        $this->credentials['key']         = $params['oauth_token'];
-        $this->credentials['secret']      = $params['oauth_token_secret'];
-        $this->credentials['user_id']     = $params['user_id'];
+        $this->credentials['key'] = $params['oauth_token'];
+        $this->credentials['secret'] = $params['oauth_token_secret'];
+        $this->credentials['user_id'] = $params['user_id'];
         $this->credentials['screen_name'] = $params['screen_name'];
 
         return $this;
@@ -85,16 +90,14 @@ class OAuthToken implements Contracts\OAuthTokenInterface {
     /**
      * Validates the received data for a request token.
      *
-     * @param  array $params
-     * @return void
+     * @param array $params
      */
     public function validateRequestTokenResponse($params)
     {
-        if ( ! isset($params['oauth_token']) ||
-             ! isset($params['oauth_token_secret']) ||
+        if (!isset($params['oauth_token']) ||
+             !isset($params['oauth_token_secret']) ||
             empty($params['oauth_token']) ||
-            empty($params['oauth_token_secret']))
-        {
+            empty($params['oauth_token_secret'])) {
             throw new InvalidOAuthTokenException('request token');
         }
 
@@ -104,16 +107,14 @@ class OAuthToken implements Contracts\OAuthTokenInterface {
     /**
      * Validates the received data for an access token.
      *
-     * @param  array $params
-     * @return void
+     * @param array $params
      */
     public function validateAccessTokenResponse($params)
     {
-        if ( ! isset($params['oauth_token']) ||
-             ! isset($params['oauth_token_secret']) ||
+        if (!isset($params['oauth_token']) ||
+             !isset($params['oauth_token_secret']) ||
             empty($params['oauth_token']) ||
-            empty($params['oauth_token_secret']))
-        {
+            empty($params['oauth_token_secret'])) {
             throw new InvalidOAuthTokenException('access token');
         }
 

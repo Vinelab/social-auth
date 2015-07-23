@@ -1,3 +1,7 @@
-<?php namespace Vinelab\Auth\Exceptions;
+<?php
 
-class InvalidProfileException extends SocialAuthException {}
+namespace Vinelab\Auth\Exceptions;
+
+class InvalidProfileException extends SocialAuthException
+{
+}

@@ -1,12 +1,13 @@
-<?php namespace Vinelab\Auth\Tests\Social\Providers\Twitter;
+<?php
+
+namespace Vinelab\Auth\Tests\Social\Providers\Twitter;
 
 use PHPUnit_Framework_TestCase as TestCase;
 use Mockery as M;
-
 use Vinelab\Auth\Social\Providers\Twitter\OAuth;
 
-class OAuthTest extends TestCase {
-
+class OauthTest extends TestCase
+{
     public function setUp()
     {
         $this->consumer = M::mock(
@@ -16,7 +17,7 @@ class OAuthTest extends TestCase {
 
         $this->token = M::mock(
             'Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface');
-        $this->http  = M::mock('Vinelab\Http\Client');
+        $this->http = M::mock('Vinelab\Http\Client');
 
         $this->settings = ['user_agent' => 'inspector gadget'];
 
@@ -31,12 +32,11 @@ class OAuthTest extends TestCase {
         $params = ['param1' => 'v1', 'param2' => 'v2', 'param3' => 'v3'];
         $normalized = $this->oauth->normalizeHeaders($params);
 
-        foreach (explode(',', $normalized) as $h)
-        {
+        foreach (explode(',', $normalized) as $h) {
             $v = explode('=', $h);
 
             $this->assertTrue(array_key_exists($v[0], $params));
-            $this->assertEquals('"' . $params[$v[0]] . '"', $v[1]);
+            $this->assertEquals('"'.$params[$v[0]].'"', $v[1]);
         }
     }
 
@@ -44,8 +44,7 @@ class OAuthTest extends TestCase {
     {
         $nonces = [];
 
-        for ($i = 0; $i < 10; $i++)
-        {
+        for ($i = 0; $i < 10; ++$i) {
             $nonce = $this->oauth->generateNonce();
             $this->assertFalse(in_array($nonce, $nonces));
             array_push($nonces, $nonce);
@@ -56,10 +55,9 @@ class OAuthTest extends TestCase {
         // environment might break it
         $pid = pcntl_fork();
 
-        if($pid) {
+        if ($pid) {
             // parent process runs what is here
-            for ($i = 0; $i < 10; $i++)
-            {
+            for ($i = 0; $i < 10; ++$i) {
                 $nonce = $this->oauth->generateNonce();
                 $this->assertFalse(in_array($nonce, $nonces));
                 array_push($nonces, $nonce);
@@ -67,11 +65,9 @@ class OAuthTest extends TestCase {
 
             // protect agains Zombie children
             pcntl_waitpid($pid, $status);
-
         } else {
             // child process runs what is here
-            for ($i = 0; $i < 10; $i++)
-            {
+            for ($i = 0; $i < 10; ++$i) {
                 $nonce = $this->oauth->generateNonce();
                 $this->assertFalse(in_array($nonce, $nonces));
                 array_push($nonces, $nonce);
@@ -82,7 +78,7 @@ class OAuthTest extends TestCase {
 
     public function test_generating_timestamps()
     {
-        $this->assertEquals('integer',gettype($this->oauth->generateTimestamp()));
+        $this->assertEquals('integer', gettype($this->oauth->generateTimestamp()));
     }
 
     public function test_generating_headers_with_null_token()
@@ -103,7 +99,7 @@ class OAuthTest extends TestCase {
 
         $oauth_headers = $this->getAuthorizationHeaders($headers);
 
-        $this->assertArrayHasKey('oauth_consumer_key',$oauth_headers);
+        $this->assertArrayHasKey('oauth_consumer_key', $oauth_headers);
         $this->assertNotEmpty($oauth_headers['oauth_consumer_key']);
 
         $this->assertArrayHasKey('oauth_nonce', $oauth_headers);
@@ -147,7 +143,7 @@ class OAuthTest extends TestCase {
 
         $oauth_headers = $this->getAuthorizationHeaders($headers);
 
-        $this->assertArrayHasKey('oauth_consumer_key',$oauth_headers);
+        $this->assertArrayHasKey('oauth_consumer_key', $oauth_headers);
         $this->assertNotEmpty($oauth_headers['oauth_consumer_key']);
 
         $this->assertArrayHasKey('oauth_nonce', $oauth_headers);
@@ -230,13 +226,11 @@ class OAuthTest extends TestCase {
         $this->oauth->getAccessToken($this->settings, $this->consumer, $this->token);
     }
 
-
     protected function getAuthorizationHeaders($headers)
     {
         $oauth_headers = [];
 
-        foreach (explode(',', $headers[0]) as $header_string)
-        {
+        foreach (explode(',', $headers[0]) as $header_string) {
             $header_string = trim(str_replace('Authorization: OAuth ', '', $header_string));
             $header = explode('=', $header_string);
             $oauth_headers[$header[0]] = $header[1];
@@ -247,12 +241,11 @@ class OAuthTest extends TestCase {
 
     protected function arraysHaveSimilarIndexes($left, $right)
     {
-        if (count(array_diff_assoc($left, $right)))
-        {
+        if (count(array_diff_assoc($left, $right))) {
             return false;
         }
 
-        foreach($left as $k => $v) {
+        foreach ($left as $k => $v) {
             if ($v !== $right[$k]) {
                 return false;
             }

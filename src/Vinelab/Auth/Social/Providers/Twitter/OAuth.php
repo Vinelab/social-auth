@@ -1,12 +1,14 @@
-<?php namespace Vinelab\Auth\Social\Providers\Twitter;
+<?php
+
+namespace Vinelab\Auth\Social\Providers\Twitter;
 
 use Vinelab\Http\Client as HttpClient;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface;
 use Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface;
 
-class OAuth implements Contracts\OAuthInterface {
-
+class OAuth implements Contracts\OAuthInterface
+{
     /**
      * The request signature interface.
      *
@@ -19,30 +21,31 @@ class OAuth implements Contracts\OAuthInterface {
      *
      * @param Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface     $token
      * @param Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthSignatureInterface $signature
-     * @param Vinelab\Http\Client $http
+     * @param Vinelab\Http\Client                                                     $http
      */
     public function __construct(OAuthTokenInterface $token,
                                 OAuthSignatureInterface $signature,
                                 HttpClient $http)
     {
-        $this->token     = $token;
-        $this->http      = $http;
+        $this->token = $token;
+        $this->http = $http;
         $this->signature = $signature;
     }
 
     /**
      * Requests Twitter for a request token.
      *
-     * @param  array $settings
-     * @param  Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface $consumer
-     * @param  Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface $token
+     * @param array                                                                  $settings
+     * @param Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface $consumer
+     * @param Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface    $token
+     *
      * @return Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface
      */
     public function getRequestToken($settings,
                                     OAuthConsumerInterface $consumer,
                                     OAuthTokenInterface $token)
     {
-        $url = $settings['auth_api_url'] . $settings['request_token_uri'];
+        $url = $settings['auth_api_url'].$settings['request_token_uri'];
         $options = ['oauth_callback' => $settings['callback_url']];
 
         $headers = $this->headers($settings, 'POST', $url, $consumer, $token, $options);
@@ -56,20 +59,21 @@ class OAuth implements Contracts\OAuthInterface {
      * Transforms a verifier (request) token
      * into an access token.
      *
-     * @param  array $settings
-     * @param  Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface $consumer
-     * @param  Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface $token
+     * @param array                                                                  $settings
+     * @param Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthConsumerInterface $consumer
+     * @param Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface    $token
+     *
      * @return Vinelab\Auth\Social\Providers\Twitter\Contracts\OAuthTokenInterface
      */
     public function getAccessToken($settings,
                                     OAuthConsumerInterface $consumer,
                                     OAuthTokenInterface $token)
     {
-        $url = $settings['auth_api_url'] . $settings['access_token_uri'];
+        $url = $settings['auth_api_url'].$settings['access_token_uri'];
         $params = ['oauth_verifier' => $token->verifier];
         $options = [
                 'Content-Type: application/x-www-form-urlencoded',
-                'Content-Length: ' . strlen(http_build_query($params))
+                'Content-Length: '.strlen(http_build_query($params)),
         ];
 
         $headers = $this->headers($settings, 'POST', $url, $consumer, $token, $options);
@@ -88,16 +92,15 @@ class OAuth implements Contracts\OAuthInterface {
                             $options = [])
     {
         $headers = [
-            'oauth_consumer_key'     => $consumer->key,
-            'oauth_nonce'            => $this->generateNonce(),
+            'oauth_consumer_key' => $consumer->key,
+            'oauth_nonce' => $this->generateNonce(),
             'oauth_signature_method' => $this->signature->method(),
-            'oauth_timestamp'        => $this->generateTimestamp(),
-            'oauth_version'          => "1.0"
+            'oauth_timestamp' => $this->generateTimestamp(),
+            'oauth_version' => '1.0',
         ];
 
         // check for a token to be added
-        if ( ! is_null($token->key))
-        {
+        if (!is_null($token->key)) {
             $headers['oauth_token'] = $token->key;
         }
 
@@ -113,8 +116,8 @@ class OAuth implements Contracts\OAuthInterface {
         $headers = $this->normalizeHeaders($headers);
 
         return [
-            'Authorization: OAuth ' . $headers,
-            'User-Agent: ' . $settings['user_agent']
+            'Authorization: OAuth '.$headers,
+            'User-Agent: '.$settings['user_agent'],
         ];
     }
 
@@ -123,29 +126,29 @@ class OAuth implements Contracts\OAuthInterface {
      * a series of strings compatible to be
      * embedded in a request header.
      *
-     * @param  array $params
+     * @param array $params
+     *
      * @return string
      */
     public function normalizeHeaders($params)
     {
         $out = '';
 
-        foreach($params as $key => $param)
-        {
-            $out .= $key . '="' . rawurlencode(trim($param)) . '",';
+        foreach ($params as $key => $param) {
+            $out .= $key.'="'.rawurlencode(trim($param)).'",';
         }
 
         return rtrim($out, ',');
     }
 
-     /**
-    * Generates a request nonce.
-    *
-    * @return string
-    */
+    /**
+     * Generates a request nonce.
+     *
+     * @return string
+     */
     public function generateNonce()
     {
-        return md5(microtime() . mt_rand());
+        return md5(microtime().mt_rand());
     }
 
     /**
